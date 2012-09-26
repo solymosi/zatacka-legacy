@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ZatackaLegacy")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Zatacka Legacy")]
+[assembly: AssemblyDescription("The Zatacka Legacy Game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ZatackaLegacy")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("Corvinus Informatikus Diákkör")]
+[assembly: AssemblyProduct("Zatacka Legacy")]
+[assembly: AssemblyCopyright("Copyright © CID 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

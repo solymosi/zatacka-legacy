@@ -6,15 +6,16 @@ namespace ZatackaLegacy
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        static public GameForm Form;
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Form = new GameForm();
+            Application.Run(Form);
         }
     }
 }
