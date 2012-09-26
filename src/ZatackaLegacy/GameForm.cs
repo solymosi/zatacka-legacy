@@ -15,15 +15,27 @@ namespace ZatackaLegacy
         public GameForm()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
-            Cursor.Hide();
-
+            SetupUI();
             SetupGame();
         }
 
         private void SetupGame()
         {
-            Game = new StandardGame(new Options(), new Pool(new Size(Width, Height)));   
+            Game = new StandardGame(new Pool(new Size(Width, Height)));
+            Game.Players.Add(new Player(Keys.D1, Keys.Q, Keys.D2));
+            Game.Players.Add(new Player(Keys.LButton, Keys.RButton, Keys.MButton));
+            Game.Initialize();
+        }
+
+        private void SetupUI()
+        {
+            Top = 0;
+            Left = 0;
+            Width = SystemInformation.VirtualScreen.Width;
+            Height = SystemInformation.VirtualScreen.Height;
+            WindowState = FormWindowState.Maximized;
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            Cursor.Hide();
         }
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
@@ -43,7 +55,7 @@ namespace ZatackaLegacy
             GFX.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
 
             GFX.Clear(Color.Black);
-            GFX.DrawEllipse(new Pen(Brushes.Yellow, 10), new Rectangle(50, 50, 100, 100));
+            Game.Pool.Draw(GFX);
         }
     }
 }
