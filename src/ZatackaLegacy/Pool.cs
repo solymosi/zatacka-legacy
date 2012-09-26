@@ -7,6 +7,7 @@ namespace ZatackaLegacy
 {
     public class Pool
     {
+        public Game Game;
         public Size Dimensions;
         public List<Unit> Units;
 
@@ -16,18 +17,26 @@ namespace ZatackaLegacy
             this.Units = new List<Unit>();
         }
 
-        public Point RandomLocation()
+        public Point RandomLocation() { return RandomLocation(100, 100); }
+        public Point RandomLocation(int Margin, int CollisionThreshold)
         {
-            return new Point(Tools.Random(0, Dimensions.Width), Tools.Random(0, Dimensions.Height));
+            Point P;
+            do
+            {
+                P = new Point(Tools.Random(Margin, Dimensions.Width - Margin), Tools.Random(Margin, Dimensions.Height - Margin));
+            } while (UnitsAt(P, CollisionThreshold).Count > 0);
+            return P;
         }
 
-        public Unit RegisterUnit(Unit Unit)
+        public List<Unit> UnitsAt(Point Point) { return UnitsAt(Point, 0); }
+        public List<Unit> UnitsAt(Point Point, float Threshold)
         {
-            if (!Units.Contains(Unit))
+            List<Unit> Result = new List<Unit>();
+            foreach (Unit U in Units)
             {
-                Units.Add(Unit);
+                if (U.CollidesWith(Point, Threshold)) { Result.Add(U); }
             }
-            return Unit;
+            return Result;
         }
 
         public void Draw(Graphics GFX)

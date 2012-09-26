@@ -7,7 +7,9 @@ namespace ZatackaLegacy
 {
     public abstract class Game
     {
-        public const int CurveRadius = 10;
+        public float CurveRadius { get { return 3; } }
+        public float SteeringSensitivity { get { return 5; } }
+        public float MovementSpeed { get { return 3; } }
 
         public Pool Pool;
         public List<Player> Players;
@@ -16,10 +18,18 @@ namespace ZatackaLegacy
         {
             this.Pool = Pool;
             this.Players = new List<Player>();
+            Pool.Game = this;
+        }
+
+        public void Tick()
+        {
+            Update();
         }
 
         public abstract void Initialize();
-        public abstract void Tick();
-        public abstract void Input(Keys Button);
+        public abstract void Update();
+
+        public void Input(Action Action) { Input(null, Action); }
+        public abstract void Input(Player Player, Action Action);
     }
 }
