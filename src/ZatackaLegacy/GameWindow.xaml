@@ -1,0 +1,6 @@
+﻿<Window x:Class="ZatackaLegacy.GameWindo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Zatacka Legacy" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" SizeToContent="Manual" Cursor="None" Background="Black" Loaded="Window_Loaded" ResizeMode="NoResize" KeyDown="Window_KeyDown" xmlns:my="clr-namespace:ZatackaLegacy">
+    <my:GameCanvas x:Name="Canvas" />
+</Window>
