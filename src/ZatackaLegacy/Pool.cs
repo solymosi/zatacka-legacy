@@ -11,12 +11,20 @@ namespace ZatackaLegacy
     {
         public Game Game;
         public Size Size;
-        public List<Unit> Units;
+        public List<Unit> Units = new List<Unit>();
+        public DrawingVisual Visual = new DrawingVisual();
 
-        public Pool(Size Dimensions)
+        public Pool(Game Game, Size Size)
         {
-            this.Size = Dimensions;
-            this.Units = new List<Unit>();
+            this.Game = Game;
+            this.Size = Size;
+        }
+
+        public void AddUnit(Unit Unit)
+        {
+            Units.Add(Unit);
+            Unit.Pool = this;
+            Visual.Children.Add(Unit.Visual);
         }
 
         public Point RandomLocation() { return RandomLocation(100, 100); }
@@ -41,11 +49,11 @@ namespace ZatackaLegacy
             return Result;
         }
 
-        public void Render(DrawingContext Context)
+        public void Draw(bool First)
         {
             foreach (Unit U in Units)
             {
-                U.Render(Context);
+                U.Draw(First);
             }
         }
     }

@@ -16,20 +16,30 @@ namespace ZatackaLegacy
 {
     public partial class GameCanvas : Canvas
     {
-        public GameCanvas()
-        {
-            InitializeComponent();
-        }
+        public DrawingVisual Visual;
 
-        public Game Game;
-
-        protected override void OnRender(DrawingContext Context)
+        public void SetVisual(DrawingVisual Visual)
         {
-            if (Game != null)
+            this.Visual = Visual;
+            AddVisualChild(Visual);
+            AddLogicalChild(Visual);
+
+            Unloaded += new RoutedEventHandler(delegate
             {
-                Game.Pool.Render(Context);
-            }
-            base.OnRender(Context);
+                RemoveVisualChild(Visual);
+                RemoveLogicalChild(Visual);
+            });
         }
+
+        protected override Visual GetVisualChild(int Index)
+        {
+            if (Visual == null)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            return Visual;
+        }
+
+        protected override int VisualChildrenCount { get { return Visual == null ? 0 : 1; } }
     }
 }

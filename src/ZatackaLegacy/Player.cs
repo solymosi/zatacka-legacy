@@ -17,7 +17,8 @@ namespace ZatackaLegacy
         public Player(Game Game, Key[] Buttons, Color Color)
         {
             this.Game = Game;
-            this.Curve = new Curve(Game.Pool, Game.Pool.RandomLocation(), Tools.Random(0, 359), Game.CurveRadius, Color);
+            this.Curve = new Curve(Game.Pool.RandomLocation(), Color, Game.CurveRadius, Tools.Random(0, 359));
+            Game.Pool.AddUnit(Curve);
 
             this.Buttons = new Dictionary<Action, Key>();
             this.Buttons.Add(Action.Left, Buttons[0]);

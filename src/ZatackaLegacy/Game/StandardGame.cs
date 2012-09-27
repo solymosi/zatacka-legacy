@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ZatackaLegacy
 {
     public class StandardGame : Game
     {
-        public StandardGame(Pool Pool) : base(Pool) { }
+        //public new double MovementSpeed = 0.03;
+        public int Acc = 1;
+
+        public StandardGame(Size Size) : base(Size) { }
 
         public override void Initialize()
         {
@@ -18,7 +22,12 @@ namespace ZatackaLegacy
         {
             foreach (Player P in Players)
             {
-                P.Curve.Advance();
+                for (int i = 0; i < Acc; i++)
+                {
+                    MovementSpeed = 3.0 / (double)Acc;
+                    P.Curve.Advance();
+                }
+                //P.Curve.Advance();
             }
         }
 
@@ -33,8 +42,6 @@ namespace ZatackaLegacy
                     Player.Curve.Right();
                     break;
                 case Action.Shoot:
-                    break;
-                default:
                     break;
             }
         }

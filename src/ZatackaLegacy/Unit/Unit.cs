@@ -11,20 +11,26 @@ namespace ZatackaLegacy
     {
         public double Radius;
         public Point Location;
+        public Color Color;
         public Pool Pool;
+        public DrawingVisual Visual = new DrawingVisual();
 
-        public Unit(Pool Pool, Point Location, double Radius)
+        public Unit(Point Location, Color Color, double Radius)
         {
-            this.Pool = Pool;
             this.Location = Location;
+            this.Color = Color;
             this.Radius = Radius;
-
-            Pool.Units.Add(this);
         }
 
-        public virtual void Render(DrawingContext Context)
+        public virtual void Draw(bool First)
         {
-            Context.DrawEllipse(Brushes.White, null, Location, Radius, Radius);
+            if (First)
+            {
+                using (DrawingContext Context = Visual.RenderOpen())
+                {
+                    Context.DrawEllipse(new SolidColorBrush(Color), null, Location, Radius, Radius);
+                }
+            }
         }
 
         public bool CollidesWith(Unit Unit) { return CollidesWith(Unit, 0); }

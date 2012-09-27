@@ -15,25 +15,27 @@ using System.Windows.Threading;
 
 namespace ZatackaLegacy
 {
-    public partial class GameWindo : Window
+    public partial class GameWindow : Window
     {
         StandardGame Game;
         DispatcherTimer Timer;
 
-        public GameWindo()
+        public GameWindow()
         {
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Game = new StandardGame(new Pool(new Size(Width, Height)));
-            Canvas.Game = Game;
+            Game = new StandardGame(new Size(Width, Height));
 
             new Player(Game, new Key[] { Key.D1, Key.Q, Key.D2 }, Colors.Red);
             new Player(Game, new Key[] { Key.M, Key.OemComma, Key.K }, Colors.Green);
-            
+
             Game.Initialize();
+
+            Canvas.SetVisual(Game.Pool.Visual);
+            Game.Pool.Draw(true);
 
             Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromMilliseconds(20);
@@ -55,6 +57,7 @@ namespace ZatackaLegacy
             }
 
             Game.Tick();
+            Game.Pool.Draw(false);
             Canvas.InvalidateVisual();
         }
 
@@ -64,6 +67,9 @@ namespace ZatackaLegacy
             {
                 Close();
             }
+
+            if (e.Key == Key.F1) { Game.Acc = 1; }
+            if (e.Key == Key.F2) { Game.Acc = 1000; }
         }
     }
 }
