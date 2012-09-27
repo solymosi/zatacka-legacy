@@ -31,7 +31,8 @@ namespace ZatackaLegacy
         public void Render(DrawingContext Context)
         {
             Pool.Render(Context);
-            Context.DrawText(new FormattedText(string.Join("\r\n", Log.GetRange(Log.Count - 20, 20)), null, FlowDirection.LeftToRight, null, 10, Brushes.White), new Point(10, 10));
+            Log.Add("Testing..." + Tools.Random(0, 1000).ToString());
+            Context.DrawText(new FormattedText(string.Join("\r\n", Log.GetRange(Math.Max(Log.Count - 20, 0), Math.Min(Log.Count, 20))), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, Brushes.White), new Point(10, 10));
         }
 
         public abstract void Initialize();
