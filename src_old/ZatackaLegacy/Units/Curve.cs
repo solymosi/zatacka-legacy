@@ -19,14 +19,18 @@ namespace ZatackaLegacy
             this.Heading = Heading;
             this.Color = Color;
             Points.Add(Location);
+
+            Buffer = new Bitmap(Pool.Size.Width, Pool.Size.Height);
         }
 
+        Bitmap Buffer;
         public override void Draw(Graphics GFX)
         {
             foreach (PointF P in Points)
             {
-                GFX.FillEllipse(new SolidBrush(Color), P.X - Radius, P.Y - Radius, Radius * 2, Radius * 2);
+                //GFX.FillEllipse(new SolidBrush(Color), P.X - Radius, P.Y - Radius, Radius * 2, Radius * 2);
             }
+            GFX.DrawImageUnscaled(Buffer, new Point(0, 0));
         }
 
         public void Left()

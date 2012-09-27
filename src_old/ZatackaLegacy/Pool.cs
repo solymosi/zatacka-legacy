@@ -8,12 +8,12 @@ namespace ZatackaLegacy
     public class Pool
     {
         public Game Game;
-        public Size Dimensions;
+        public Size Size;
         public List<Unit> Units;
 
         public Pool(Size Dimensions)
         {
-            this.Dimensions = Dimensions;
+            this.Size = Dimensions;
             this.Units = new List<Unit>();
         }
 
@@ -23,7 +23,7 @@ namespace ZatackaLegacy
             Point P;
             do
             {
-                P = new Point(Tools.Random(Margin, Dimensions.Width - Margin), Tools.Random(Margin, Dimensions.Height - Margin));
+                P = new Point(Tools.Random(Margin, Size.Width - Margin), Tools.Random(Margin, Size.Height - Margin));
             } while (UnitsAt(P, CollisionThreshold).Count > 0);
             return P;
         }
