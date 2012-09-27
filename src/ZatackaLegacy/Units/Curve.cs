@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace ZatackaLegacy
 {
@@ -45,6 +46,7 @@ namespace ZatackaLegacy
             PointF Distance = new PointF((float)(Math.Sin(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed), (float)(Math.Cos(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed * -1));
             Location = new PointF(Head.X + Distance.X, Head.Y + Distance.Y);
             Points.Add(Location);
+            Program.Form.Print(Points.Count.ToString() + ": " + System.Diagnostics.Process.GetCurrentProcess().TotalProcessorTime.ToString());
         }
     }
 }
