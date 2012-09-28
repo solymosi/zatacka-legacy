@@ -26,6 +26,7 @@ namespace ZatackaLegacy
 
         public void Tick()
         {
+            Log.Messages.Add(((((Players[0].Curve.Segments.Count - 1) * Players[0].Curve.SegmentCapacity) + Players[0].Curve.Head.Points.Count) * Players.Count).ToString());
             Update();
         }
 

@@ -9,8 +9,12 @@ namespace ZatackaLegacy
 {
     public class Curve : Unit
     {
+        public int SegmentCapacity = 250;
+
         public double Heading;
-        public Unit Head;
+        public List<Segment> Segments = new List<Segment>();
+        public List<Point> Targets = new List<Point>();
+        public Segment Head { get { return Segments.Count > 0 ? Segments.Last() : null; } }
 
         public Curve(Point Location, Color Color, double Radius, double Heading)
             : base(Location, Color, Radius)
@@ -18,8 +22,20 @@ namespace ZatackaLegacy
             this.Heading = Heading;
             this.Color = Color;
 
-            Head = new Unit(Location, Color, Radius);
-            Visual.Children.Add(Head.Visual);
+            AddItem(Location);
+        }
+
+        public void AddItem(Point Location)
+        {
+            if (Head == null || Head.Points.Count >= SegmentCapacity)
+            {
+                Segment Next = new Segment(Color.FromRgb((byte)Tools.Random(128, 255), (byte)Tools.Random(128, 255), (byte)Tools.Random(128, 255)), Radius);
+                Segments.Add(Next);
+                Visual.Children.Add(Next.Visual);
+                Next.Curve = this;
+            }
+
+            Head.Points.Add(Location);
         }
 
         public override void Draw(bool First)
@@ -43,8 +59,7 @@ namespace ZatackaLegacy
         {
             double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed;
             double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed * -1;
-            Head = new Unit(new Point(Head.Location.X + X, Head.Location.Y + Y), Color, Radius);
-            Visual.Children.Add(Head.Visual);
+            AddItem(new Point(Head.Location.X + X, Head.Location.Y + Y));
         }
     }
 }
