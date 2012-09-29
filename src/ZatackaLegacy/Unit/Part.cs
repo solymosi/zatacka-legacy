@@ -7,14 +7,14 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    public class Segment : Unit
+    public class Part : Unit
     {
         public Curve Curve;
         public List<Point> Points = new List<Point>();
         public new Point Location { get { return Points.Last(); } }
 
-        public Segment(Color Color, double Radius)
-            : base(new Point(0, 0), Color, Radius) { }
+        public Part(Color Color, double Radius)
+            : base(new Point(0, 0), Color, Radius) {}
 
         public override void Draw(bool First)
         {
@@ -25,6 +25,11 @@ namespace ZatackaLegacy
                     Context.DrawEllipse(new SolidColorBrush(Color), null, P, Radius, Radius);
                 }
             }
+        }
+
+        public override List<Point> CollisionsWith(Target Target, double Threshold)
+        {
+            return new List<Point>();
         }
     }
 }

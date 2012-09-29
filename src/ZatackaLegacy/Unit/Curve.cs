@@ -9,12 +9,16 @@ namespace ZatackaLegacy
 {
     public class Curve : Unit
     {
-        public int SegmentCapacity = 250;
+        public int PartLength = 250;
 
         public double Heading;
-        public List<Segment> Segments = new List<Segment>();
-        public List<Point> Targets = new List<Point>();
-        public Segment Head { get { return Segments.Count > 0 ? Segments.Last() : null; } }
+        public Target Target;
+        public List<Part> Parts = new List<Part>();
+
+        public Part Head
+        {
+            get { return Parts.Count > 0 ? Parts.Last() : null; }
+        }
 
         public Curve(Point Location, Color Color, double Radius, double Heading)
             : base(Location, Color, Radius)
@@ -23,24 +27,45 @@ namespace ZatackaLegacy
             this.Color = Color;
 
             AddItem(Location);
+            Target = Targets.First();
+            EnableCollision = true;
         }
 
         public void AddItem(Point Location)
         {
-            if (Head == null || Head.Points.Count >= SegmentCapacity)
+            if (Head == null || Head.Points.Count >= PartLength)
             {
-                Segment Next = new Segment(Color.FromRgb((byte)Tools.Random(128, 255), (byte)Tools.Random(128, 255), (byte)Tools.Random(128, 255)), Radius);
-                Segments.Add(Next);
+                Part Next = new Part(Color, Radius);
+                Parts.Add(Next);
                 Visual.Children.Add(Next.Visual);
                 Next.Curve = this;
             }
-
             Head.Points.Add(Location);
         }
 
         public override void Draw(bool First)
         {
             Head.Draw(true);
+        }
+
+        public override List<Point> CollisionsWith(Target Target, double Threshold)
+        {
+            List<Point> Result = new List<Point>();
+            foreach (HashSet<Target> Set in Targets.Near(Target.Location, Target.Radius * 2 + Threshold))
+            {
+                foreach (Target T in Set)
+                {
+                    if (T.CollidesWith(Target, -1))
+                    {
+                        Result.Add(T.Location);
+                    }
+                }
+            }
+            return Result;
+        }
+        public override List<Point> CollisionsWith(Unit Unit, double Threshold)
+        {
+            return Unit.CollisionsWith(Target);
         }
 
         public void Left()
@@ -59,7 +84,14 @@ namespace ZatackaLegacy
         {
             double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed;
             double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Pool.Game.MovementSpeed * -1;
-            AddItem(new Point(Head.Location.X + X, Head.Location.Y + Y));
+            Point Next = new Point(Head.Location.X + X, Head.Location.Y + Y);
+            AddItem(Next);
+
+            if (Tools.Distance(Head.Location, Target.Location) >= Radius * 2)
+            {
+                Target = new Target(this, Next, Radius);
+                Targets.Add(Target);
+            }
         }
     }
 }

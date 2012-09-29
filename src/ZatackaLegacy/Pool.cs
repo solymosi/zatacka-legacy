@@ -9,6 +9,9 @@ namespace ZatackaLegacy
 {
     public class Pool
     {
+        public delegate void CollisionDelegate(object sender, CollisionEventArgs e);
+        public event CollisionDelegate Collision = delegate { };
+
         public Game Game;
         public Size Size;
         public List<Unit> Units = new List<Unit>();
@@ -28,23 +31,23 @@ namespace ZatackaLegacy
         }
 
         public Point RandomLocation() { return RandomLocation(100, 100); }
-        public Point RandomLocation(int Margin, int CollisionThreshold)
+        public Point RandomLocation(int Margin, double Threshold)
         {
             Point P;
             do
             {
                 P = new Point(Tools.Random(Margin, Size.Width - Margin), Tools.Random(Margin, Size.Height - Margin));
-            } while (UnitsAt(P, CollisionThreshold).Count > 0);
+            } while (UnitsCollidingWith(new Target(null, P, 0), Threshold).Count > 0);
             return P;
         }
 
-        public List<Unit> UnitsAt(Point Point) { return UnitsAt(Point, 0); }
-        public List<Unit> UnitsAt(Point Point, double Threshold)
+        public List<Unit> UnitsCollidingWith(Target Target) { return UnitsCollidingWith(Target, 0); }
+        public List<Unit> UnitsCollidingWith(Target Target, double Threshold)
         {
             List<Unit> Result = new List<Unit>();
             foreach (Unit U in Units)
             {
-                if (U.CollidesWith(Point, Threshold)) { Result.Add(U); }
+                if (U.CollisionsWith(Target).Count > 0) { Result.Add(U); }
             }
             return Result;
         }
@@ -55,6 +58,38 @@ namespace ZatackaLegacy
             {
                 U.Draw(First);
             }
+        }
+
+        public void CheckCollision()
+        {
+            foreach (Unit Source in Units)
+            {
+                foreach (Unit Target in Units)
+                {
+                    if (Game.Running && Source.EnableCollision && Target.EnableCollision)
+                    {
+                        List<Point> Collisions = Source.CollisionsWith(Target);
+                        if (Collisions.Count > 0)
+                        {
+                            Collision(this, new CollisionEventArgs(Source, Target, Collisions));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public class CollisionEventArgs : EventArgs
+    {
+        public Unit Source;
+        public Unit Target;
+        public List<Point> Collisions;
+
+        public CollisionEventArgs(Unit Source, Unit Target, List<Point> Collisions)
+        {
+            this.Source = Source;
+            this.Target = Target;
+            this.Collisions = Collisions;
         }
     }
 }

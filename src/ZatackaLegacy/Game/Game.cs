@@ -16,6 +16,7 @@ namespace ZatackaLegacy
         public Pool Pool;
         public Log Log;
         public List<Player> Players = new List<Player>();
+        public bool Running = false;
 
         public Game(Size Size)
         {
@@ -26,7 +27,8 @@ namespace ZatackaLegacy
 
         public void Tick()
         {
-            Log.Messages.Add(((((Players[0].Curve.Segments.Count - 1) * Players[0].Curve.SegmentCapacity) + Players[0].Curve.Head.Points.Count) * Players.Count).ToString());
+            if (!Running) { return; }
+            Pool.CheckCollision();
             Update();
         }
 

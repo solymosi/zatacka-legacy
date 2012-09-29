@@ -8,26 +8,31 @@ namespace ZatackaLegacy
 {
     public class StandardGame : Game
     {
-        //public new double MovementSpeed = 0.03;
-        public int Acc = 1;
-
         public StandardGame(Size Size) : base(Size) { }
 
         public override void Initialize()
         {
+            Pool.Collision += new ZatackaLegacy.Pool.CollisionDelegate(Pool_Collision);
+            Running = true;
+        }
 
+        void Pool_Collision(object sender, CollisionEventArgs e)
+        {
+            Log.Messages.Add("Collision: source " + e.Source.GetHashCode().ToString() + "; target " + e.Target.GetHashCode().ToString() + "; collisions " + e.Collisions.Count.ToString() + "; location " + e.Collisions[0].ToString());
+            if (e.Source == Players[0].Curve) { Log.Messages.Add("Zöld nyert."); }
+            if (e.Source == Players[1].Curve) { Log.Messages.Add("Piros nyert."); }
+            Running = false;
         }
 
         public override void Update()
         {
-            foreach (Player P in Players)
+            if (Running)
             {
-                for (int i = 0; i < Acc; i++)
+                //Log.Messages.Add(((((Players[0].Curve.Parts.Count - 1) * Players[0].Curve.PartLength) + Players[0].Curve.Head.Points.Count) * Players.Count).ToString() + " - " + Players[0].Curve.Targets.Count.ToString());
+                foreach (Player P in Players)
                 {
-                    MovementSpeed = 3.0 / (double)Acc;
                     P.Curve.Advance();
                 }
-                //P.Curve.Advance();
             }
         }
 

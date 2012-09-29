@@ -74,9 +74,11 @@
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\StandardGame.cs" />
+    <Compile Include="Target.cs" />
     <Compile Include="Tools.cs" />
-    <Compile Include="Unit\Segment.cs" />
+    <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
+    <Compile Include="TargetCollection.cs" />
     <Compile Include="Unit\Unit.cs" />
     <Compile Include="Unit\Curve.cs" />
     <Page Include="GameCanvas.xaml">

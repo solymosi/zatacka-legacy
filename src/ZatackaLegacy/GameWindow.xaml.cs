@@ -18,7 +18,7 @@ namespace ZatackaLegacy
     public partial class GameWindow : Window
     {
         StandardGame Game;
-        DispatcherTimer Timer;
+        public DispatcherTimer Timer;
 
         public GameWindow()
         {
@@ -67,9 +67,6 @@ namespace ZatackaLegacy
             {
                 Close();
             }
-
-            if (e.Key == Key.F1) { Game.Acc = 1; }
-            if (e.Key == Key.F2) { Game.Acc = 100000; }
         }
     }
 }
