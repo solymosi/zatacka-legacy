@@ -13,14 +13,14 @@ namespace ZatackaLegacy
 
         public Game Game { get; private set; }
         public Size Size { get; private set; }
-        public List<Unit> Units { get; private set; }
+        public HashSet<Unit> Units { get; private set; }
         public DrawingVisual Visual { get; private set; }
 
         public Pool(Game Game, Size Size)
         {
             this.Game = Game;
             this.Size = Size;
-            this.Units = new List<Unit>();
+            this.Units = new HashSet<Unit>();
             this.Visual = new DrawingVisual();
         }
 
@@ -62,6 +62,9 @@ namespace ZatackaLegacy
 
         public void CheckCollision()
         {
+            HashSet<Unit> Units = new HashSet<Unit>();
+            foreach (Unit Unit in this.Units) { Units.Add(Unit); }
+
             foreach (Unit Source in Units)
             {
                 foreach (Unit Target in Units)
