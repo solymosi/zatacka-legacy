@@ -7,26 +7,27 @@ using System.Windows.Media;
 
 namespace ZatackaLegacy
 {
-    public class Pool
+    class Pool
     {
         public delegate void CollisionDelegate(object sender, CollisionEventArgs e);
         public event CollisionDelegate Collision = delegate { };
 
-        public Game Game;
-        public Size Size;
-        public List<Unit> Units = new List<Unit>();
-        public DrawingVisual Visual = new DrawingVisual();
+        public Game Game { get; private set; }
+        public Size Size { get; private set; }
+        public List<Unit> Units { get; private set; }
+        public DrawingVisual Visual { get; private set; }
 
         public Pool(Game Game, Size Size)
         {
             this.Game = Game;
             this.Size = Size;
+            this.Units = new List<Unit>();
+            this.Visual = new DrawingVisual();
         }
 
         public void AddUnit(Unit Unit)
         {
             Units.Add(Unit);
-            Unit.Pool = this;
             Visual.Children.Add(Unit.Visual);
         }
 
@@ -52,11 +53,11 @@ namespace ZatackaLegacy
             return Result;
         }
 
-        public void Draw(bool First)
+        public void Draw()
         {
-            foreach (Unit U in Units)
+            foreach (Unit Unit in Units)
             {
-                U.Draw(First);
+                Unit.Draw(Game.Time - Unit.Created);
             }
         }
 
@@ -66,7 +67,7 @@ namespace ZatackaLegacy
             {
                 foreach (Unit Target in Units)
                 {
-                    if (Game.Running && Source.EnableCollision && Target.EnableCollision)
+                    if (Game.Running && Source.EnableCollisions && Target.EnableCollisions)
                     {
                         List<Point> Collisions = Source.CollisionsWith(Target);
                         if (Collisions.Count > 0)
@@ -79,11 +80,11 @@ namespace ZatackaLegacy
         }
     }
 
-    public class CollisionEventArgs : EventArgs
+    class CollisionEventArgs : EventArgs
     {
-        public Unit Source;
-        public Unit Target;
-        public List<Point> Collisions;
+        public Unit Source { get; private set; }
+        public Unit Target { get; private set; }
+        public List<Point> Collisions { get; private set; }
 
         public CollisionEventArgs(Unit Source, Unit Target, List<Point> Collisions)
         {

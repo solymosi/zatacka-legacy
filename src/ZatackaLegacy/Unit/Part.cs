@@ -7,29 +7,32 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    public class Part : Unit
+    class Part : Unit
     {
-        public Curve Curve;
-        public List<Point> Points = new List<Point>();
-        public new Point Location { get { return Points.Last(); } }
+        public Curve Curve { get; private set; }
+        public List<Point> Points { get; private set; }
 
-        public Part(Color Color, double Radius)
-            : base(new Point(0, 0), Color, Radius) {}
+        public Point Head
+        {
+            get { return Points.Last(); }
+        }
 
-        public override void Draw(bool First)
+        public Part(Curve Curve)
+            : base(Curve.Game)
+        {
+            this.Curve = Curve;
+            this.Points = new List<Point>();
+        }
+
+        public override void Draw(long Lifetime)
         {
             using (DrawingContext Context = Visual.RenderOpen())
             {
-                foreach (Point P in Points)
+                foreach (Point Point in Points)
                 {
-                    Context.DrawEllipse(new SolidColorBrush(Color), null, P, Radius, Radius);
+                    Context.DrawEllipse(Curve.Fill, null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
                 }
             }
-        }
-
-        public override List<Point> CollisionsWith(Target Target, double Threshold)
-        {
-            return new List<Point>();
         }
     }
 }

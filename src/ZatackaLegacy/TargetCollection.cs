@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    public class TargetCollection : ISet<Target>
+    class TargetCollection : ISet<Target>
     {
         public double CellSize = 50;
 

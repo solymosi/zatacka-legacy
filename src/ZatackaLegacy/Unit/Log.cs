@@ -4,27 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Globalization;
 
 namespace ZatackaLegacy
 {
-    public class Log : Unit
+    class Log : Unit
     {
-        public List<string> Messages = new List<string>();
+        public int DisplayMessages { get; private set; }
+        private List<string> Messages { get; set; }
 
-        public Log()
-            : base(new Point(10, 10), Colors.White, 0) { }
+        public Log(Game Game)
+            : base(Game)
+        {
+            Messages = new List<string>();
+            DisplayMessages = 25;
+        }
 
-        public override void Draw(bool First)
+        public void Add(string Message)
+        {
+            if (Messages.Count >= DisplayMessages) { Messages.RemoveAt(0); }
+            Messages.Add(Message);
+        }
+
+        public override void Draw(long Lifetime)
         {
             using (DrawingContext Context = Visual.RenderOpen())
             {
-                Context.DrawText(new FormattedText(string.Join("\r\n", Messages.GetRange(Math.Max(Messages.Count - 20, 0), Math.Min(Messages.Count, 20))), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, new SolidColorBrush(Color)), Location);
+                Context.DrawText(new FormattedText(string.Join("\r\n", Messages), CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, new SolidColorBrush(Colors.White)), new Point(10, 10));
             }
-        }
-
-        public override List<Point> CollisionsWith(Target Target, double Threshold)
-        {
-            return new List<Point>();
         }
     }
 }

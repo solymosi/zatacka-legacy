@@ -7,35 +7,25 @@ using System.Windows.Media;
 
 namespace ZatackaLegacy
 {
-    public class Unit
+    abstract class Unit
     {
-        public bool EnableCollision = false;
+        public Game Game { get; protected set; }
+        public long Created { get; private set; }
+        public bool EnableCollisions { get; protected set; }
+        public TargetCollection Targets { get; private set; }
+        public DrawingVisual Visual { get; private set; }
 
-        public double Radius;
-        public Point Location;
-        public Color Color;
-        public Pool Pool;
-        public TargetCollection Targets = new TargetCollection();
-        public DrawingVisual Visual = new DrawingVisual();
-
-        public Unit(Point Location, Color Color, double Radius)
+        public Unit(Game Game)
         {
-            this.Location = Location;
-            this.Color = Color;
-            this.Radius = Radius;
-            Targets.Add(new Target(this, Location, Radius));
+            EnableCollisions = false;
+
+            this.Game = Game;
+            this.Created = Game.Time;
+            this.Targets = new TargetCollection();
+            this.Visual = new DrawingVisual();
         }
 
-        public virtual void Draw(bool First)
-        {
-            if (First)
-            {
-                using (DrawingContext Context = Visual.RenderOpen())
-                {
-                    Context.DrawEllipse(new SolidColorBrush(Color), null, Location, Radius, Radius);
-                }
-            }
-        }
+        public abstract void Draw(long Lifetime);
 
         public List<Point> CollisionsWith(Target Target) { return CollisionsWith(Target, 0); }
         public virtual List<Point> CollisionsWith(Target Target, double Threshold)

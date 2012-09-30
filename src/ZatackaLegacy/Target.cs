@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    public class Target
+    class Target
     {
         public Unit Unit;
         public Point Location;

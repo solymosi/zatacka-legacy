@@ -29,13 +29,20 @@ namespace ZatackaLegacy
         {
             Game = new StandardGame(new Size(Width, Height));
 
-            new Player(Game, new Key[] { Key.D1, Key.Q, Key.D2 }, Colors.Red);
-            new Player(Game, new Key[] { Key.M, Key.OemComma, Key.K }, Colors.Green);
+            Player First = new Player(Game, new SolidColorBrush(Colors.Red));
+            First.Bind(Key.D1, Action.Left);
+            First.Bind(Key.Q, Action.Right);
+            First.Bind(Key.D2,Action.Shoot);
+            Game.Players.Add(First);
+
+            /*Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
+            Second.Bind(Key.M, Action.Left);
+            Second.Bind(Key.OemComma, Action.Right);
+            Second.Bind(Key.K, Action.Shoot);
+            Game.Players.Add(Second);*/
 
             Game.Initialize();
-
             Canvas.SetVisual(Game.Pool.Visual);
-            Game.Pool.Draw(true);
 
             Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromMilliseconds(20);
@@ -47,17 +54,17 @@ namespace ZatackaLegacy
         {
             foreach (Player P in Game.Players)
             {
-                foreach (KeyValuePair<Action, Key> Item in P.Buttons)
+                foreach (KeyValuePair<Key, Action> Item in P.Buttons)
                 {
-                    if (Keyboard.IsKeyDown(Item.Value))
+                    if (Keyboard.IsKeyDown(Item.Key))
                     {
-                        Game.Input(P, Item.Key);
+                        Game.Input(P, Item.Value);
                     }
                 }
             }
 
             Game.Tick();
-            Game.Pool.Draw(false);
+            Game.Pool.Draw();
             Canvas.InvalidateVisual();
         }
 

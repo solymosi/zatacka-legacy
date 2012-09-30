@@ -6,33 +6,30 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    public class StandardGame : Game
+    class StandardGame : Game
     {
         public StandardGame(Size Size) : base(Size) { }
 
         public override void Initialize()
         {
             Pool.Collision += new ZatackaLegacy.Pool.CollisionDelegate(Pool_Collision);
-            Running = true;
+            Start();
         }
 
         void Pool_Collision(object sender, CollisionEventArgs e)
         {
-            Log.Messages.Add("Collision: source " + e.Source.GetHashCode().ToString() + "; target " + e.Target.GetHashCode().ToString() + "; collisions " + e.Collisions.Count.ToString() + "; location " + e.Collisions[0].ToString());
-            if (e.Source == Players[0].Curve) { Log.Messages.Add("Zöld nyert."); }
-            if (e.Source == Players[1].Curve) { Log.Messages.Add("Piros nyert."); }
-            Running = false;
+            Log.Add("Collision: source " + e.Source.GetHashCode().ToString() + "; target " + e.Target.GetHashCode().ToString() + "; collisions " + e.Collisions.Count.ToString() + "; location " + e.Collisions[0].ToString());
+            if (e.Source == Players[0].Curve) { Log.Add("GAME OVER."); }
+            //if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
+            Stop();
         }
 
-        public override void Update()
+        protected override void Update()
         {
-            if (Running)
+            Log.Add(((((Players[0].Curve.Parts.Count - 1) * Players[0].Curve.PartLength) + Players[0].Curve.Parts.Last().Points.Count) * Players.Count).ToString() + " - " + Players[0].Curve.Targets.Count.ToString());
+            foreach (Player P in Players)
             {
-                //Log.Messages.Add(((((Players[0].Curve.Parts.Count - 1) * Players[0].Curve.PartLength) + Players[0].Curve.Head.Points.Count) * Players.Count).ToString() + " - " + Players[0].Curve.Targets.Count.ToString());
-                foreach (Player P in Players)
-                {
-                    P.Curve.Advance();
-                }
+                P.Curve.Advance();
             }
         }
 
