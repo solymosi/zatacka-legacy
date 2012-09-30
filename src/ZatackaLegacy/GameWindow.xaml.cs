@@ -35,11 +35,11 @@ namespace ZatackaLegacy
             First.Bind(Key.D2,Action.Shoot);
             Game.Players.Add(First);
 
-            /*Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
+            Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
             Second.Bind(Key.M, Action.Left);
             Second.Bind(Key.OemComma, Action.Right);
             Second.Bind(Key.K, Action.Shoot);
-            Game.Players.Add(Second);*/
+            Game.Players.Add(Second);
 
             Game.Initialize();
             Canvas.SetVisual(Game.Pool.Visual);
@@ -65,7 +65,6 @@ namespace ZatackaLegacy
 
             Game.Tick();
             Game.Pool.Draw();
-            Canvas.InvalidateVisual();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

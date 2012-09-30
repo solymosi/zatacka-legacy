@@ -9,8 +9,7 @@ namespace ZatackaLegacy
 {
     class Pool
     {
-        public delegate void CollisionDelegate(object sender, CollisionEventArgs e);
-        public event CollisionDelegate Collision = delegate { };
+        public event EventHandler<CollisionEventArgs> Collision = delegate { };
 
         public Game Game { get; private set; }
         public Size Size { get; private set; }

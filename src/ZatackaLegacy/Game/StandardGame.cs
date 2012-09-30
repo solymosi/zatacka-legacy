@@ -12,21 +12,20 @@ namespace ZatackaLegacy
 
         public override void Initialize()
         {
-            Pool.Collision += new ZatackaLegacy.Pool.CollisionDelegate(Pool_Collision);
+            Pool.Collision += new EventHandler<CollisionEventArgs>(Pool_Collision);
             Start();
         }
 
         void Pool_Collision(object sender, CollisionEventArgs e)
         {
-            Log.Add("Collision: source " + e.Source.GetHashCode().ToString() + "; target " + e.Target.GetHashCode().ToString() + "; collisions " + e.Collisions.Count.ToString() + "; location " + e.Collisions[0].ToString());
-            if (e.Source == Players[0].Curve) { Log.Add("GAME OVER."); }
-            //if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
+            Log.Add("COLLISION -- SOURCE " + e.Source.ToString() + " -- TARGET " + e.Target.ToString() + " -- COUNT " + e.Collisions.Count.ToString() + " -- LOCATION " + e.Collisions[0].ToString());
+            if (e.Source == Players[0].Curve) { Log.Add("Zöld nyert."); }
+            if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
             Stop();
         }
 
         protected override void Update()
         {
-            Log.Add(((((Players[0].Curve.Parts.Count - 1) * Players[0].Curve.PartLength) + Players[0].Curve.Parts.Last().Points.Count) * Players.Count).ToString() + " - " + Players[0].Curve.Targets.Count.ToString());
             foreach (Player P in Players)
             {
                 P.Curve.Advance();
