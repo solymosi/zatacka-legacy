@@ -26,6 +26,7 @@ namespace ZatackaLegacy
             PartLength = 250;
 
             Heading = StartHeading;
+            Fill.Freeze();
 
             Parts = new List<Part>();
             AddPart(new Part(this));
