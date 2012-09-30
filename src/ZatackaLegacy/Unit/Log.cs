@@ -26,6 +26,12 @@ namespace ZatackaLegacy
             Messages.Add(Message);
         }
 
+        public void Measure(System.Action Action) { Measure(null, Action); }
+        public void Measure(string Name, System.Action Action)
+        {
+            Add((Name == null ? "" : Name + ": ") + Tools.Measure(Action).ToString() + " ms");
+        }
+
         public override void Draw(long Lifetime)
         {
             using (DrawingContext Context = Visual.RenderOpen())

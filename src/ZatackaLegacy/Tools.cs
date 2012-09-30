@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Diagnostics;
 
 namespace ZatackaLegacy
 {
@@ -28,6 +29,15 @@ namespace ZatackaLegacy
         static public double Distance(Point First, Point Second)
         {
             return Math.Sqrt(Math.Pow(First.X - Second.X, 2) + Math.Pow(First.Y - Second.Y, 2));
+        }
+
+        static public long Measure(System.Action Action)
+        {
+            Stopwatch Timer = new Stopwatch();
+            Timer.Start();
+            Action.Invoke();
+            Timer.Stop();
+            return Timer.ElapsedMilliseconds;
         }
     }
 }
