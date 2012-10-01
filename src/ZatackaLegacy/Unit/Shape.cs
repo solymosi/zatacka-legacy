@@ -17,6 +17,7 @@ namespace ZatackaLegacy
             : base(Game)
         {
             this.Geometry = Geometry;
+            this.CollisionGeometry = Geometry;
             this.Fill = Fill;
             this.Stroke = Stroke;
         }

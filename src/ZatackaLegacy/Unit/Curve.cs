@@ -11,7 +11,7 @@ namespace ZatackaLegacy
     {
         public int PartLength { get; private set; }
         public double Heading { get; private set; }
-        public Target Target { get; private set; }
+        //public Target Target { get; private set; }
         public List<Part> Parts { get; private set; }
         public Part Part { get; private set; }
 
@@ -33,7 +33,7 @@ namespace ZatackaLegacy
             AddItem(StartLocation);
 
             EnableCollisions = true;
-            AddTarget(new Target(this, Center, Game.CurveRadius));
+            //AddTarget(new Target(this, Center, Game.CurveRadius));
         }
 
         protected void AddPart(Part Part)
@@ -49,18 +49,18 @@ namespace ZatackaLegacy
             Part.Points.Add(Location);
         }
 
-        protected void AddTarget(Target Target)
+        /*protected void AddTarget(Target Target)
         {
             this.Target = Target;
             Targets.Add(Target);
-        }
+        }*/
 
         public override void Draw(long Lifetime)
         {
             Part.Draw(Lifetime);
         }
 
-        public override List<Point> CollisionsWith(Target Target, double Threshold)
+        /*public override List<Point> CollisionsWith(Target Target, double Threshold)
         {
             List<Point> Result = new List<Point>();
             foreach (HashSet<Target> Set in Targets.Near(Target.Location, Target.Radius * 2 + Threshold))
@@ -76,7 +76,7 @@ namespace ZatackaLegacy
         public override List<Point> CollisionsWith(Unit Unit, double Threshold)
         {
             return Unit.CollisionsWith(Target);
-        }
+        }*/
 
         public void Left()
         {
@@ -98,10 +98,10 @@ namespace ZatackaLegacy
             Point Next = new Point(Head.X + X, Head.Y + Y);
             AddItem(Next);
 
-            if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
+            /*if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
             {
                 AddTarget(new Target(this, Next, Game.CurveRadius));
-            }
+            }*/
         }
     }
 }

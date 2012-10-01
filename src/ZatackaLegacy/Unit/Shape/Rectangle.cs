@@ -9,10 +9,12 @@ namespace ZatackaLegacy
 {
     class Rectangle : Shape
     {
+        public Rect Rect { get; protected set; }
+
         public Rectangle(Game Game, Rect Rectangle, Brush Fill, Pen Stroke)
             : base(Game, new RectangleGeometry(Rectangle), Fill, Stroke)
         {
-
+            this.Rect = Rectangle;
         }
     }
 }

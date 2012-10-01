@@ -12,8 +12,9 @@ namespace ZatackaLegacy
         public Game Game { get; protected set; }
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
-        public TargetCollection Targets { get; private set; }
-        public DrawingVisual Visual { get; private set; }
+        //public TargetCollection Targets { get; private set; }
+        public Geometry CollisionGeometry { get; protected set; }
+        public UnitVisual Visual { get; private set; }
 
         public Unit(Game Game)
         {
@@ -21,13 +22,32 @@ namespace ZatackaLegacy
 
             this.Game = Game;
             this.Created = Game.Time;
-            this.Targets = new TargetCollection();
-            this.Visual = new DrawingVisual();
+            //this.Targets = new TargetCollection();
+            this.Visual = new UnitVisual(this);
         }
 
         public abstract void Draw(long Lifetime);
 
-        public List<Point> CollisionsWith(Target Target) { return CollisionsWith(Target, 0); }
+        public virtual HashSet<Unit> TestCollision()
+        {
+            HashSet<Unit> Units = new HashSet<Unit>();
+            Game.Pool.Visual.HitTest(new HitTestFilterCallback(delegate(DependencyObject D)
+            {
+                
+                if (D.GetType().Name != "UnitVisual") { return HitTestFilterBehavior.ContinueSkipSelf; }
+                Game.Log.Add(D.GetType().Name);
+                //if(((UnitVisual)D).Unit.EnableCollisions) { return HitTestFilterBehavior.Continue; }
+                return HitTestFilterBehavior.Continue;
+            }), new HitTestResultCallback(delegate(HitTestResult Result)
+            {
+               Unit Unit = ((UnitVisual)Result.VisualHit).Unit;
+                if (Unit.EnableCollisions) { Units.Add(Unit); }
+                return HitTestResultBehavior.Continue;
+            }), new GeometryHitTestParameters(CollisionGeometry));
+            return Units;
+        }
+
+        /*public List<Point> CollisionsWith(Target Target) { return CollisionsWith(Target, 0); }
         public virtual List<Point> CollisionsWith(Target Target, double Threshold)
         {
             List<Point> Result = new List<Point>();
@@ -46,6 +66,6 @@ namespace ZatackaLegacy
                 Result.AddRange(Unit.CollisionsWith(T, Threshold));
             }
             return Result;
-        }
+        }*/
     }
 }

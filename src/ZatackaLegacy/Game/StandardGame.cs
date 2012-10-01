@@ -18,11 +18,11 @@ namespace ZatackaLegacy
 
         void Pool_Collision(object sender, CollisionEventArgs e)
         {
-            Log.Add("COLLISION -- SOURCE " + e.Source.ToString() + " -- TARGET " + e.Target.ToString() + " -- COUNT " + e.Collisions.Count.ToString() + " -- LOCATION " + e.Collisions[0].ToString());
+            Log.Add("COLLISION -- SOURCE " + e.Source.ToString() + " -- TARGET " + e.Target.ToString());
             if (e.Source == Players[0].Curve) { Log.Add("Zöld nyert."); }
             if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
-            Ellipse E = new Ellipse(this, e.Collisions.First(), new Size(10, 10), new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow), null);
-            Pool.AddUnit(E);
+            //Ellipse E = new Ellipse(this, e.Collisions.First(), new Size(10, 10), new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow), null);
+            //Pool.AddUnit(E);
             Stop();
         }
 

@@ -7,10 +7,11 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class Part : Unit
+    class Part
     {
         public Curve Curve { get; private set; }
         public List<Point> Points { get; private set; }
+        public DrawingVisual Visual { get; private set; }
 
         public Point Head
         {
@@ -18,13 +19,13 @@ namespace ZatackaLegacy
         }
 
         public Part(Curve Curve)
-            : base(Curve.Game)
         {
             this.Curve = Curve;
             this.Points = new List<Point>();
+            this.Visual = new DrawingVisual();
         }
 
-        public override void Draw(long Lifetime)
+        public void Draw(long Lifetime)
         {
             using (DrawingContext Context = Visual.RenderOpen())
             {

@@ -37,18 +37,22 @@ namespace ZatackaLegacy
             do
             {
                 P = new Point(Tools.Random(Margin, Size.Width - Margin), Tools.Random(Margin, Size.Height - Margin));
-            } while (UnitsCollidingWith(new Target(null, P, 0), Threshold).Count > 0);
+            } while (UnitsCollidingWith(P).Count > 0);
             return P;
         }
 
-        public List<Unit> UnitsCollidingWith(Target Target) { return UnitsCollidingWith(Target, 0); }
-        public List<Unit> UnitsCollidingWith(Target Target, double Threshold)
+        public HashSet<Unit> UnitsCollidingWith(Point Point) { return UnitsCollidingWith(Point, 0); }
+        public HashSet<Unit> UnitsCollidingWith(Point Point, double Threshold)
         {
-            List<Unit> Result = new List<Unit>();
-            foreach (Unit U in Units)
+            HashSet<Unit> Result = new HashSet<Unit>();
+            Game.Pool.Visual.HitTest(new HitTestFilterCallback(delegate(DependencyObject D)
             {
-                if (U.CollisionsWith(Target).Count > 0) { Result.Add(U); }
-            }
+                return D.DependencyObjectType.Name == "UnitVisual" ? HitTestFilterBehavior.Continue : HitTestFilterBehavior.ContinueSkipSelfAndChildren;
+            }), new HitTestResultCallback(delegate(HitTestResult R)
+            {
+                Result.Add(((UnitVisual)R.VisualHit).Unit);
+                return HitTestResultBehavior.Continue;
+            }), new PointHitTestParameters(Point));
             return Result;
         }
 
@@ -67,7 +71,12 @@ namespace ZatackaLegacy
 
             foreach (Unit Source in Units)
             {
-                foreach (Unit Target in Units)
+                if (!Game.Running || !Source.EnableCollisions) { continue; }
+                foreach (Unit Target in Source.TestCollision())
+                {
+                    Collision(this, new CollisionEventArgs(Source, Target));
+                }
+                /*foreach (Unit Target in Units)
                 {
                     if (Game.Running && Source.EnableCollisions && Target.EnableCollisions)
                     {
@@ -77,7 +86,7 @@ namespace ZatackaLegacy
                             Collision(this, new CollisionEventArgs(Source, Target, Collisions));
                         }
                     }
-                }
+                }*/
             }
         }
     }
@@ -86,13 +95,11 @@ namespace ZatackaLegacy
     {
         public Unit Source { get; private set; }
         public Unit Target { get; private set; }
-        public List<Point> Collisions { get; private set; }
 
-        public CollisionEventArgs(Unit Source, Unit Target, List<Point> Collisions)
+        public CollisionEventArgs(Unit Source, Unit Target)
         {
             this.Source = Source;
             this.Target = Target;
-            this.Collisions = Collisions;
         }
     }
 }
