@@ -33,6 +33,7 @@ namespace ZatackaLegacy
             AddItem(StartLocation);
 
             EnableCollisions = true;
+            Targets.Clear();
             AddTarget(new Target(this, Center, Game.CurveRadius));
         }
 

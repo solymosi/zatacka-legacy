@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    abstract class Shape : Unit
+    class Shape : Unit
     {
         public Geometry Geometry { get; protected set; }
         public Brush Fill { get; protected set; }

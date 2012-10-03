@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Windows;
 
 namespace ZatackaLegacy
@@ -57,6 +57,12 @@ namespace ZatackaLegacy
             return List.Remove(Target);
         }
 
+        public void Clear()
+        {
+            Cells = new Dictionary<int, Dictionary<int, HashSet<Target>>>();
+            List.Clear();
+        }
+
         public void ExceptWith(IEnumerable<Target> other) { List.ExceptWith(other); }
         public void IntersectWith(IEnumerable<Target> other) { List.IntersectWith(other); }
         public bool IsProperSubsetOf(IEnumerable<Target> other) { return List.IsProperSubsetOf(other); }
@@ -67,7 +73,6 @@ namespace ZatackaLegacy
         public bool SetEquals(IEnumerable<Target> other) { return List.SetEquals(other); }
         public void SymmetricExceptWith(IEnumerable<Target> other) { List.SymmetricExceptWith(other); }
         public void UnionWith(IEnumerable<Target> other) { List.UnionWith(other); }
-        public void Clear() { List.Clear(); }
         public bool Contains(Target item) { return List.Contains(item); }
         public void CopyTo(Target[] array, int arrayIndex) { List.CopyTo(array, arrayIndex); }
         public int Count { get { return List.Count; } }
