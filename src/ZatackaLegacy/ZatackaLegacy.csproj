@@ -78,12 +78,10 @@
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\StandardGame.cs" />
-    <None Include="Target.cs.disable" />
     <Compile Include="Tools.cs" />
     <Compile Include="UnitVisual.cs" />
     <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
-    <None Include="TargetCollection.cs.disable" />
     <Compile Include="Unit\Shape.cs" />
     <Compile Include="Unit\Shape\Ellipse.cs" />
     <Compile Include="Unit\Shape\Rectangle.cs" />

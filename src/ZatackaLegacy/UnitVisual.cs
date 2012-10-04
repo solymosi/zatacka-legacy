@@ -9,6 +9,7 @@ namespace ZatackaLegacy
     class UnitVisual : DrawingVisual
     {
         public Unit Unit { get; private set; }
+        public bool EnableCollisions { get { return Unit.EnableCollisions; } }
 
         public UnitVisual(Unit Unit)
             : base()

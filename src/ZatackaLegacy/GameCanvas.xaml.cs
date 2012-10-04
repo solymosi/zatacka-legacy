@@ -16,9 +16,9 @@ namespace ZatackaLegacy
 {
     public partial class GameCanvas : Canvas
     {
-        public DrawingVisual Visual;
+        public Visual Visual;
 
-        public void SetVisual(DrawingVisual Visual)
+        public void SetVisual(Visual Visual)
         {
             this.Visual = Visual;
             AddVisualChild(Visual);

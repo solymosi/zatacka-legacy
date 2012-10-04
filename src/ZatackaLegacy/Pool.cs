@@ -14,14 +14,14 @@ namespace ZatackaLegacy
         public Game Game { get; private set; }
         public Size Size { get; private set; }
         public HashSet<Unit> Units { get; private set; }
-        public DrawingVisual Visual { get; private set; }
+        public ContainerVisual Visual { get; private set; }
 
         public Pool(Game Game, Size Size)
         {
             this.Game = Game;
             this.Size = Size;
             this.Units = new HashSet<Unit>();
-            this.Visual = new DrawingVisual();
+            this.Visual = new ContainerVisual();
         }
 
         public void AddUnit(Unit Unit)
@@ -71,22 +71,18 @@ namespace ZatackaLegacy
 
             foreach (Unit Source in Units)
             {
+                if (Source is Curve)
+                {
+                    Curve C = (Curve)Source;
+                    if (C.Head.X < 0 || C.Head.Y < 0) { Collision(this, new CollisionEventArgs(Source, Source)); }
+                    if (C.Head.X > Size.Width || C.Head.Y > Size.Height) { Collision(this, new CollisionEventArgs(Source, Source)); }
+                }
+
                 if (!Game.Running || !Source.EnableCollisions) { continue; }
                 foreach (Unit Target in Source.TestCollision())
                 {
                     Collision(this, new CollisionEventArgs(Source, Target));
                 }
-                /*foreach (Unit Target in Units)
-                {
-                    if (Game.Running && Source.EnableCollisions && Target.EnableCollisions)
-                    {
-                        List<Point> Collisions = Source.CollisionsWith(Target);
-                        if (Collisions.Count > 0)
-                        {
-                            Collision(this, new CollisionEventArgs(Source, Target, Collisions));
-                        }
-                    }
-                }*/
             }
         }
     }

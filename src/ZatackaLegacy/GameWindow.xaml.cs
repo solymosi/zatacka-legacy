@@ -35,11 +35,11 @@ namespace ZatackaLegacy
             First.Bind(Key.D2,Action.Shoot);
             Game.Players.Add(First);
 
-            Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
+            /*Player Second = new Player(Game, new SolidColorBrush(Colors.LawnGreen));
             Second.Bind(Key.M, Action.Left);
             Second.Bind(Key.OemComma, Action.Right);
             Second.Bind(Key.K, Action.Shoot);
-            Game.Players.Add(Second);
+            Game.Players.Add(Second);*/
 
             Game.Initialize();
             Canvas.SetVisual(Game.Pool.Visual);
@@ -63,8 +63,11 @@ namespace ZatackaLegacy
                 }
             }
 
-            Game.Tick();
-            Game.Pool.Draw();
+            Game.Log.Measure(delegate
+            {
+                Game.Tick();
+                Game.Pool.Draw();
+            });
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -73,6 +76,9 @@ namespace ZatackaLegacy
             {
                 Close();
             }
+
+            if (e.Key == Key.F1) { ((StandardGame)Game).Acc = 1; }
+            if (e.Key == Key.F2) { ((StandardGame)Game).Acc = 100000; }
         }
     }
 }

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Effects;
 
 namespace ZatackaLegacy
 {
-    class Part
+    class Part : Unit
     {
         public Curve Curve { get; private set; }
         public List<Point> Points { get; private set; }
-        public DrawingVisual Visual { get; private set; }
 
         public Point Head
         {
@@ -19,13 +19,16 @@ namespace ZatackaLegacy
         }
 
         public Part(Curve Curve)
+            : base(Curve.Game)
         {
             this.Curve = Curve;
             this.Points = new List<Point>();
-            this.Visual = new DrawingVisual();
+
+            EnableCollisions = true;
+            //Visual.Effect = new DropShadowEffect { Color = ((SolidColorBrush)Curve.Fill).Color, BlurRadius = 15, Opacity = 2, ShadowDepth = 0 };
         }
 
-        public void Draw(long Lifetime)
+        public override void Draw(long Lifetime)
         {
             using (DrawingContext Context = Visual.RenderOpen())
             {

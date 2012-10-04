@@ -31,41 +31,24 @@ namespace ZatackaLegacy
         public virtual HashSet<Unit> TestCollision()
         {
             HashSet<Unit> Units = new HashSet<Unit>();
-            Game.Pool.Visual.HitTest(new HitTestFilterCallback(delegate(DependencyObject D)
+            Game.Pool.Visual.HitTest(new HitTestFilterCallback(delegate(DependencyObject Element)
             {
-                
-                if (D.GetType().Name != "UnitVisual") { return HitTestFilterBehavior.ContinueSkipSelf; }
-                Game.Log.Add(D.GetType().Name);
-                //if(((UnitVisual)D).Unit.EnableCollisions) { return HitTestFilterBehavior.Continue; }
-                return HitTestFilterBehavior.Continue;
+                if (Element == Game.Pool.Visual || Element is UnitVisual)
+                {
+                    Game.Log.Add(Element.GetType().Name);
+                    return HitTestFilterBehavior.Continue;
+                }
+                return HitTestFilterBehavior.ContinueSkipSelfAndChildren;
             }), new HitTestResultCallback(delegate(HitTestResult Result)
             {
-               Unit Unit = ((UnitVisual)Result.VisualHit).Unit;
-                if (Unit.EnableCollisions) { Units.Add(Unit); }
+                Unit Unit = ((UnitVisual)Result.VisualHit).Unit;
+                if (Unit.EnableCollisions && Unit is Part && Unit != ((Curve)this).Part)
+                {
+                    Units.Add(Unit);
+                }
                 return HitTestResultBehavior.Continue;
             }), new GeometryHitTestParameters(CollisionGeometry));
             return Units;
         }
-
-        /*public List<Point> CollisionsWith(Target Target) { return CollisionsWith(Target, 0); }
-        public virtual List<Point> CollisionsWith(Target Target, double Threshold)
-        {
-            List<Point> Result = new List<Point>();
-            foreach (Target T in Targets)
-            {
-                if (T.CollidesWith(Target)) { Result.Add(T.Location); }
-            }
-            return Result;
-        }
-        public List<Point> CollisionsWith(Unit Unit) { return CollisionsWith(Unit, 0); }
-        public virtual List<Point> CollisionsWith(Unit Unit, double Threshold)
-        {
-            List<Point> Result = new List<Point>();
-            foreach (Target T in Targets)
-            {
-                Result.AddRange(Unit.CollisionsWith(T, Threshold));
-            }
-            return Result;
-        }*/
     }
 }

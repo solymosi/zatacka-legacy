@@ -10,6 +10,8 @@ namespace ZatackaLegacy
     {
         public StandardGame(Size Size) : base(Size) { }
 
+        public int Acc = 1;
+
         public override void Initialize()
         {
             Pool.Collision += new EventHandler<CollisionEventArgs>(Pool_Collision);
@@ -20,17 +22,26 @@ namespace ZatackaLegacy
         {
             Log.Add("COLLISION -- SOURCE " + e.Source.ToString() + " -- TARGET " + e.Target.ToString());
             if (e.Source == Players[0].Curve) { Log.Add("Zöld nyert."); }
-            if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
+            //if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
+            //Ellipse E = new Ellipse(this, ((Curve)e.Source).Head, new Size(20, 20), System.Windows.Media.Brushes.Yellow, null);
+            //E.Visual.Effect = new System.Windows.Media.Effects.DropShadowEffect { Color = System.Windows.Media.Colors.Yellow, BlurRadius = 50, Opacity = 2, ShadowDepth = 0 };
+           // Pool.AddUnit(E);
+            
+            //((System.Windows.Media.Effects.DropShadowEffect)((Part)e.Target).Visual.Effect).Color = System.Windows.Media.Colors.Pink;
             //Ellipse E = new Ellipse(this, e.Collisions.First(), new Size(10, 10), new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow), null);
             //Pool.AddUnit(E);
-            Stop();
+            //Stop();
         }
 
         protected override void Update()
         {
             foreach (Player P in Players)
             {
-                P.Curve.Advance();
+                for (int i = 0; i < Acc; i++)
+                {
+                    P.Curve.Advance();
+                }
+                //P.Curve.Advance();
             }
         }
 

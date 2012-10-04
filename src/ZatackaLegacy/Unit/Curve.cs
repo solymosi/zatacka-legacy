@@ -4,79 +4,68 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Effects;
 
 namespace ZatackaLegacy
 {
     class Curve : Ellipse
     {
         public int PartLength { get; private set; }
+        public int HeadLength { get; private set; }
         public double Heading { get; private set; }
-        //public Target Target { get; private set; }
         public List<Part> Parts { get; private set; }
         public Part Part { get; private set; }
 
         public Point Head
         {
-            get { return Part != null ? Part.Head : Center; }
+            get { return Part.Head; }
         }
 
         public Curve(Game Game, Point StartLocation, double StartHeading, Brush Fill)
             : base(Game, StartLocation, new Size(Game.CurveRadius * 2, Game.CurveRadius * 2), Fill, null)
         {
-            PartLength = 250;
+            PartLength = 50;
+            HeadLength = 10;
 
             Heading = StartHeading;
             Fill.Freeze();
 
             Parts = new List<Part>();
-            AddPart(new Part(this));
+            Part = new Part(this);
+            Visual.Children.Add(Part.Visual);
             AddItem(StartLocation);
 
             EnableCollisions = true;
-            //AddTarget(new Target(this, Center, Game.CurveRadius));
         }
 
         protected void AddPart(Part Part)
         {
-            this.Part = Part;
             Parts.Add(Part);
             Visual.Children.Add(Part.Visual);
         }
 
         protected void AddItem(Point Location)
         {
-            if (Part.Points.Count >= PartLength) { AddPart(new Part(this)); }
             Part.Points.Add(Location);
+            if(Part.Points.Count > HeadLength)
+            {
+                Point Move = Part.Points.First();
+                Part.Points.Remove(Move);
+                if(!Parts.Any() || Parts.Last().Points.Count >= PartLength)
+                {
+                    Part New = new Part(this);
+                    AddPart(New);
+                }
+                Parts.Last().Points.Add(Move);
+            }
+            CollisionGeometry = new EllipseGeometry(Location, Size.Width / 2, Size.Height / 2);
         }
-
-        /*protected void AddTarget(Target Target)
-        {
-            this.Target = Target;
-            Targets.Add(Target);
-        }*/
 
         public override void Draw(long Lifetime)
         {
             Part.Draw(Lifetime);
+            if (Parts.Any()) { Parts.Last().Draw(Lifetime); }
         }
-
-        /*public override List<Point> CollisionsWith(Target Target, double Threshold)
-        {
-            List<Point> Result = new List<Point>();
-            foreach (HashSet<Target> Set in Targets.Near(Target.Location, Target.Radius * 2 + Threshold))
-            {
-                foreach (Target T in Set)
-                {
-                    if (T.CollidesWith(Target, -1)) { Result.Add(T.Location); }
-                }
-            }
-            return Result;
-        }
-
-        public override List<Point> CollisionsWith(Unit Unit, double Threshold)
-        {
-            return Unit.CollisionsWith(Target);
-        }*/
 
         public void Left()
         {
@@ -92,16 +81,11 @@ namespace ZatackaLegacy
 
         public void Advance()
         {
-            double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed;
-            double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1;
+            double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed  / ((StandardGame)Game).Acc;
+            double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1 / ((StandardGame)Game).Acc;
 
             Point Next = new Point(Head.X + X, Head.Y + Y);
             AddItem(Next);
-
-            /*if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
-            {
-                AddTarget(new Target(this, Next, Game.CurveRadius));
-            }*/
         }
     }
 }
