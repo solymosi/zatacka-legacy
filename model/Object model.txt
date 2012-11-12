@@ -1,0 +1,105 @@
+interface ILifecycle
+	bool Active
+	void Enter()
+	void Execute()
+	void Exit()
+
+abstract class Message
+
+interface IState : ILifecycle
+	StateMachine Parent
+	void Message(Message Message, IState From)
+
+class StateMachine : IState
+	IState Current
+	List<IState> States
+
+abstract class Game : StateMachine
+	List<Player> Players
+	Pool Pool
+	void Start()
+	void Stop()
+
+class Slayer : Game
+class DeadManWalking : Game
+class Headhunter : Game
+class TeamDeathMatch : Game
+class LostInSpace : Game
+
+class Player
+	Curve Curve
+	Color Color
+	Dictionary<Key, Action> Buttons
+	void Bind(Key Button, Action Action)
+	void Input(Action Action)
+	int Score
+	List<Goodie> Goodies
+
+enum Action
+	Left
+	Right
+	Shoot
+
+abstract class Unit : DrawingVisual (WPF)
+	abstract void Draw()
+	//HashSet<Unit> Children
+	List<Unit> CollidingUnits
+
+class Pool : Unit
+	Size Size
+	override void Draw()
+	List<Unit> UnitsCollidingWith(Unit)
+
+class Curve : Unit
+	List<Part> Parts
+	double Heading
+	Point Head
+	override void Draw()
+	void Left()
+	void Right()
+	void Advance()
+
+class Part : Unit
+	List<Point> Points
+	Point Head
+	override void Draw()
+
+class Log : Unit
+	List<string> Messages
+	override void Draw()
+	void Add(string Message)
+
+abstract class Shape : Unit
+	Geometry Geometry
+	Brush Fill
+	Pen Stroke
+	override void Draw()
+
+class Ellipse : Shape
+	Point Center
+	Size Size
+
+class GoodieIcon : Ellipse, ILifecycle
+	GoodieCategory Category
+	GoodieType Type
+	override void Draw()
+	
+abstract class Goodie : StateMachine
+
+class Bazooka : Goodie
+class Shotgun : Goodie
+class Juggernaut : Goodie
+...
+
+enum GoodieCategory
+	Weapon
+	Modifier
+	Defense
+	Evil
+	
+enum GoodieType
+	Bazooka
+	Shotgun
+	Juggernaut
+	Gravity
+	...
