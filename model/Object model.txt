@@ -4,8 +4,6 @@ interface ILifecycle
 	void Execute()
 	void Exit()
 
-abstract class Message
-
 interface IState : ILifecycle
 	StateMachine Parent
 	void Message(Message Message, IState From)
