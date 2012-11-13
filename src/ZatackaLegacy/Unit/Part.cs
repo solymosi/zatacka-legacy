@@ -26,7 +26,7 @@ namespace ZatackaLegacy
 
         public override void Draw(long Lifetime)
         {
-            using (DrawingContext Context = Visual.RenderOpen())
+            using (DrawingContext Context = RenderOpen())
             {
                 foreach (Point Point in Points)
                 {

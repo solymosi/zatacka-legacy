@@ -7,13 +7,12 @@ using System.Windows.Media;
 
 namespace ZatackaLegacy
 {
-    abstract class Unit
+    abstract class Unit : DrawingVisual
     {
         public Game Game { get; protected set; }
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
         public TargetCollection Targets { get; private set; }
-        public DrawingVisual Visual { get; private set; }
 
         public Unit(Game Game)
         {
@@ -22,7 +21,6 @@ namespace ZatackaLegacy
             this.Game = Game;
             this.Created = Game.Time;
             this.Targets = new TargetCollection();
-            this.Visual = new DrawingVisual();
         }
 
         public abstract void Draw(long Lifetime);

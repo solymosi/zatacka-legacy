@@ -42,7 +42,7 @@ namespace ZatackaLegacy
             Game.Players.Add(Second);
 
             Game.Initialize();
-            Canvas.SetVisual(Game.Pool.Visual);
+            Canvas.SetVisual(Game.Pool);
 
             Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromMilliseconds(20);
@@ -64,7 +64,7 @@ namespace ZatackaLegacy
             }
 
             Game.Tick();
-            Game.Pool.Draw();
+            Game.Pool.Draw(Game.Time);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

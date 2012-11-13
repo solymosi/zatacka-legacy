@@ -77,16 +77,16 @@
     <Compile Include="GameCanvas.xaml.cs">
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Game\StandardGame.cs" />
-    <Compile Include="Target.cs" />
+    <Compile Include="Game\Slayer.cs" />
+    <Compile Include="Target\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
-    <Compile Include="TargetCollection.cs" />
+    <Compile Include="Target\TargetCollection.cs" />
     <Compile Include="Unit\Shape.cs" />
-    <Compile Include="Unit\Shape\Ellipse.cs" />
-    <Compile Include="Unit\Shape\Rectangle.cs" />
-    <Compile Include="Unit.cs" />
+    <Compile Include="Unit\Ellipse.cs" />
+    <Compile Include="Unit\Rectangle.cs" />
+    <Compile Include="Unit\Unit.cs" />
     <Compile Include="Unit\Curve.cs" />
     <Page Include="GameCanvas.xaml">
       <SubType>Designer</SubType>
@@ -100,7 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Game.cs" />
+    <Compile Include="Game\Game.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
-    <Compile Include="Pool.cs" />
+    <Compile Include="Unit\Pool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

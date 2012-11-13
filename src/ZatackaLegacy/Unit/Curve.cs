@@ -41,7 +41,7 @@ namespace ZatackaLegacy
         {
             this.Part = Part;
             Parts.Add(Part);
-            Visual.Children.Add(Part.Visual);
+            Children.Add(Part);
         }
 
         protected void AddItem(Point Location)

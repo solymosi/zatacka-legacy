@@ -24,7 +24,7 @@ namespace ZatackaLegacy
         public override void Draw(long Lifetime)
         {
             if (Lifetime > 0) { return; }
-            using (DrawingContext Context = Visual.RenderOpen())
+            using (DrawingContext Context = RenderOpen())
             {
                 Context.DrawGeometry(Fill, Stroke, Geometry);
             }
