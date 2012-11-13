@@ -7,26 +7,26 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class Curve : Ellipse
+    class Curve : Unit
     {
         public int PartLength { get; private set; }
         public double Heading { get; private set; }
+        public Color Color { get; private set; }
         public Target Target { get; private set; }
         public List<Part> Parts { get; private set; }
         public Part Part { get; private set; }
 
         public Point Head
         {
-            get { return Part != null ? Part.Head : Center; }
+            get { return Part.Head; }
         }
 
-        public Curve(Game Game, Point StartLocation, double StartHeading, Brush Fill)
-            : base(Game, StartLocation, new Size(Game.CurveRadius * 2, Game.CurveRadius * 2), Fill, null)
+        public Curve(Game Game, Point StartLocation, double StartHeading, Color Color)
+            : base(Game)
         {
             PartLength = 250;
-
             Heading = StartHeading;
-            Fill.Freeze();
+            this.Color = Color;
 
             Parts = new List<Part>();
             AddPart(new Part(this));
@@ -34,7 +34,7 @@ namespace ZatackaLegacy
 
             EnableCollisions = true;
             Targets.Clear();
-            AddTarget(new Target(this, Center, Game.CurveRadius));
+            AddTarget(new Target(this, StartLocation, Game.CurveRadius));
         }
 
         protected void AddPart(Part Part)

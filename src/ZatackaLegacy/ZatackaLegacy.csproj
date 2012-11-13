@@ -77,7 +77,13 @@
     <Compile Include="GameCanvas.xaml.cs">
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\LostInSpace.cs" />
+    <Compile Include="Game\TeamDeathMatch.cs" />
+    <Compile Include="Game\Headhunter.cs" />
+    <Compile Include="Game\DeadManWalking.cs" />
     <Compile Include="Game\Slayer.cs" />
+    <Compile Include="State\StateMachine.cs" />
+    <Compile Include="State\State.cs" />
     <Compile Include="Target\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Unit\Part.cs" />

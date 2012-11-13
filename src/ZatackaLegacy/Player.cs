@@ -11,16 +11,17 @@ namespace ZatackaLegacy
     {
         public Game Game { get; private set; }
         public Curve Curve { get; private set; }
-        public Brush Fill { get; private set; }
+        public Color Color { get; private set; }
         public Dictionary<Key, Action> Buttons { get; private set; }
+        public int Score { get; set; }
 
-        public Player(Game Game, Brush Fill)
+        public Player(Game Game, Color Color)
         {
             this.Game = Game;
-            this.Fill = Fill;
+            this.Color = Color;
             this.Buttons = new Dictionary<Key, Action>();
 
-            this.Curve = new Curve(Game, Game.Pool.RandomLocation(), Tools.Random(0, 359), Fill);
+            this.Curve = new Curve(Game, Game.Pool.RandomLocation(), Tools.Random(0, 359), Color);
             Game.Pool.AddUnit(Curve);
         }
 

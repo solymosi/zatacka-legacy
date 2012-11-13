@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    abstract class Game
+    abstract class Game : StateMachine
     {
         public long Time { get; private set; }
         public double CurveRadius { get; protected set; }

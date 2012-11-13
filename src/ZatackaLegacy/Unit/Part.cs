@@ -30,7 +30,7 @@ namespace ZatackaLegacy
             {
                 foreach (Point Point in Points)
                 {
-                    Context.DrawEllipse(Curve.Fill, null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
+                    Context.DrawEllipse(new SolidColorBrush(Curve.Color), null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
                 }
             }
         }

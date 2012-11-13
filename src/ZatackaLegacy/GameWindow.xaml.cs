@@ -29,13 +29,13 @@ namespace ZatackaLegacy
         {
             Game = new Slayer(new Size(Width, Height));
 
-            Player First = new Player(Game, new SolidColorBrush(Colors.Red));
+            Player First = new Player(Game, Colors.Red);
             First.Bind(Key.D1, Action.Left);
             First.Bind(Key.Q, Action.Right);
             First.Bind(Key.D2,Action.Shoot);
             Game.Players.Add(First);
 
-            Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
+            Player Second = new Player(Game, Colors.Green);
             Second.Bind(Key.M, Action.Left);
             Second.Bind(Key.OemComma, Action.Right);
             Second.Bind(Key.K, Action.Shoot);
