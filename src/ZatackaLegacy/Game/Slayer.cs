@@ -6,9 +6,9 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class StandardGame : Game
+    class Slayer : Game
     {
-        public StandardGame(Size Size) : base(Size) { }
+        public Slayer(Size Size) : base(Size) { }
 
         public override void Initialize()
         {

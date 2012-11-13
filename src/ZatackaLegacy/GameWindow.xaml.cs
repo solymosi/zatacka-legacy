@@ -17,7 +17,7 @@ namespace ZatackaLegacy
 {
     public partial class GameWindow : Window
     {
-        StandardGame Game;
+        Slayer Game;
         public DispatcherTimer Timer;
 
         public GameWindow()
@@ -27,7 +27,7 @@ namespace ZatackaLegacy
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Game = new StandardGame(new Size(Width, Height));
+            Game = new Slayer(new Size(Width, Height));
 
             Player First = new Player(Game, new SolidColorBrush(Colors.Red));
             First.Bind(Key.D1, Action.Left);
