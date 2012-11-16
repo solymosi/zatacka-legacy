@@ -14,12 +14,14 @@ namespace ZatackaLegacy
         public Color Color { get; private set; }
         public Dictionary<Key, Action> Buttons { get; private set; }
         public int Score { get; set; }
+        public List<Goodie> Goodies { get; private set; }
 
         public Player(Game Game, Color Color)
         {
             this.Game = Game;
             this.Color = Color;
             this.Buttons = new Dictionary<Key, Action>();
+            this.Goodies = new List<Goodie>();
 
             this.Curve = new Curve(Game, Game.Pool.RandomLocation(), Tools.Random(0, 359), Color);
             Game.Pool.AddUnit(Curve);

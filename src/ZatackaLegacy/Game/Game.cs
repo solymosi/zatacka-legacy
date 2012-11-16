@@ -9,6 +9,7 @@ namespace ZatackaLegacy
 {
     abstract class Game : StateMachine
     {
+        public double GoodieIconRadius { get; protected set; }
         public long Time { get; private set; }
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
@@ -20,6 +21,7 @@ namespace ZatackaLegacy
 
         public Game(Size Size)
         {
+            GoodieIconRadius = 10;
             Time = 0;
             CurveRadius = 3;
             SteeringSensitivity = 5;

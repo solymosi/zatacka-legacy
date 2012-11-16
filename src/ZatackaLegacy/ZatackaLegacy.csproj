@@ -82,10 +82,15 @@
     <Compile Include="Game\Headhunter.cs" />
     <Compile Include="Game\DeadManWalking.cs" />
     <Compile Include="Game\Slayer.cs" />
+    <Compile Include="Goodies\Bazooka.cs" />
+    <Compile Include="Goodies\Juggernaut.cs" />
+    <Compile Include="Goodies\Shotgun.cs" />
     <Compile Include="State\StateMachine.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="Target\Target.cs" />
     <Compile Include="Tools.cs" />
+    <Compile Include="Goodies\Goodie.cs" />
+    <Compile Include="Unit\GoodieIcon.cs" />
     <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
     <Compile Include="Target\TargetCollection.cs" />

@@ -28,9 +28,12 @@ namespace ZatackaLegacy
 
         protected override void Update()
         {
+            GoodieIcon goodieIcon=new GoodieIcon(this,Pool.RandomLocation(),GoodieCategory.Weapon,GoodieType.Bazooka);
+            Pool.AddUnit(goodieIcon);
             foreach (Player P in Players)
             {
                 P.Curve.Advance();
+                
             }
         }
 
