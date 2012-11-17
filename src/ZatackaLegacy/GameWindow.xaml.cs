@@ -17,7 +17,7 @@ namespace ZatackaLegacy
 {
     public partial class GameWindow : Window
     {
-        StandardGame Game;
+        Slayer Game;
         public DispatcherTimer Timer;
 
         public GameWindow()
@@ -27,22 +27,22 @@ namespace ZatackaLegacy
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Game = new StandardGame(new Size(Width, Height));
+            Game = new Slayer(new Size(Width, Height));
 
-            Player First = new Player(Game, new SolidColorBrush(Colors.Red));
+            Player First = new Player(Game, Colors.Red);
             First.Bind(Key.D1, Action.Left);
             First.Bind(Key.Q, Action.Right);
             First.Bind(Key.D2,Action.Shoot);
             Game.Players.Add(First);
 
-            Player Second = new Player(Game, new SolidColorBrush(Colors.Green));
+            Player Second = new Player(Game, Colors.Green);
             Second.Bind(Key.M, Action.Left);
             Second.Bind(Key.OemComma, Action.Right);
             Second.Bind(Key.K, Action.Shoot);
             Game.Players.Add(Second);
 
             Game.Initialize();
-            Canvas.SetVisual(Game.Pool.Visual);
+            Canvas.SetVisual(Game.Pool);
 
             Timer = new DispatcherTimer();
             Timer.Interval = TimeSpan.FromMilliseconds(20);
@@ -64,7 +64,7 @@ namespace ZatackaLegacy
             }
 
             Game.Tick();
-            Game.Pool.Draw();
+            Game.Pool.Draw(Game.Time);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

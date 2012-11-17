@@ -6,9 +6,9 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class StandardGame : Game
+    class Slayer : Game
     {
-        public StandardGame(Size Size) : base(Size) { }
+        public Slayer(Size Size) : base(Size) { }
 
         public override void Initialize()
         {
@@ -28,9 +28,12 @@ namespace ZatackaLegacy
 
         protected override void Update()
         {
+            GoodieIcon goodieIcon=new GoodieIcon(this,Pool.RandomLocation(),GoodieCategory.Weapon,GoodieType.Bazooka);
+            Pool.AddUnit(goodieIcon);
             foreach (Player P in Players)
             {
                 P.Curve.Advance();
+                
             }
         }
 

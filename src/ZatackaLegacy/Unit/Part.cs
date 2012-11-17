@@ -26,11 +26,11 @@ namespace ZatackaLegacy
 
         public override void Draw(long Lifetime)
         {
-            using (DrawingContext Context = Visual.RenderOpen())
+            using (DrawingContext Context = RenderOpen())
             {
                 foreach (Point Point in Points)
                 {
-                    Context.DrawEllipse(Curve.Fill, null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
+                    Context.DrawEllipse(new SolidColorBrush(Curve.Color), null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
                 }
             }
         }

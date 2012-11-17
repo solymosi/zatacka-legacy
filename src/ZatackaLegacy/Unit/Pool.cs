@@ -7,27 +7,24 @@ using System.Windows.Media;
 
 namespace ZatackaLegacy
 {
-    class Pool
+    class Pool : Unit
     {
         public event EventHandler<CollisionEventArgs> Collision = delegate { };
 
-        public Game Game { get; private set; }
         public Size Size { get; private set; }
         public HashSet<Unit> Units { get; private set; }
-        public DrawingVisual Visual { get; private set; }
 
         public Pool(Game Game, Size Size)
+            : base(Game)
         {
-            this.Game = Game;
             this.Size = Size;
             this.Units = new HashSet<Unit>();
-            this.Visual = new DrawingVisual();
         }
 
         public void AddUnit(Unit Unit)
         {
             Units.Add(Unit);
-            Visual.Children.Add(Unit.Visual);
+            Children.Add(Unit);
         }
 
         public Point RandomLocation() { return RandomLocation(100, 100); }
@@ -52,7 +49,7 @@ namespace ZatackaLegacy
             return Result;
         }
 
-        public void Draw()
+        public override void Draw(long Lifetime)
         {
             foreach (Unit Unit in Units)
             {

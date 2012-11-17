@@ -34,7 +34,7 @@ namespace ZatackaLegacy
 
         public override void Draw(long Lifetime)
         {
-            using (DrawingContext Context = Visual.RenderOpen())
+            using (DrawingContext Context = RenderOpen())
             {
                 Context.DrawText(new FormattedText(string.Join("\r\n", Messages), CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, new SolidColorBrush(Colors.White)), new Point(10, 10));
             }
