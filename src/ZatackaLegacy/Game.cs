@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    abstract class Game
+    abstract class Game : StateMachine
     {
         public long Time { get; private set; }
         public double CurveRadius { get; protected set; }
@@ -18,7 +18,21 @@ namespace ZatackaLegacy
         public List<Player> Players { get; private set; }
         public bool Running { get; private set; }
 
-        public Game(Size Size)
+        private IState current;
+        private List<IState> states;
+
+        public IState Current
+        {
+            get { return current; }
+            set { current = value; }
+        }
+        public List<IState> States
+        {
+            get { return states; }
+            set { states = value; }
+        }
+
+        public Game(IState Current, List<IState> States, Size Size) : base(Current,States)
         {
             Time = 0;
             CurveRadius = 3;
@@ -56,5 +70,37 @@ namespace ZatackaLegacy
 
         public void Input(Action Action) { Input(null, Action); }
         public abstract void Input(Player Player, Action Action);
+
+
+
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
+        public override void Execute()
+        {
+            base.Execute();
+        }
+        public override void Exit()
+        {
+            base.Exit();
+        }
+        public override void Active()
+        {
+             base.Active();
+        }
+        public override void Inactive()
+        {
+            base.Inactive();
+        }
+        public override void Paused()
+        {
+            base.Paused();
+        }
+        public override void Terminated()
+        {
+            base.Terminated();
+        }
     }
 }

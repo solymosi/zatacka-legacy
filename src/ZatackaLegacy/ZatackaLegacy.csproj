@@ -78,6 +78,9 @@
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\StandardGame.cs" />
+    <Compile Include="ILifecycle.cs" />
+    <Compile Include="IState.cs" />
+    <Compile Include="StateMachine.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Unit\Part.cs" />
