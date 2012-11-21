@@ -17,8 +17,7 @@ namespace ZatackaLegacy
 {
     public partial class GameWindow : Window
     {
-        Slayer Game;
-        public DispatcherTimer Timer;
+        Dispatcher Game;
 
         public GameWindow()
         {
@@ -27,9 +26,10 @@ namespace ZatackaLegacy
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Game = new Slayer(new Size(Width, Height));
+            Game = new Dispatcher(new Size(Width, Height));
+            Game.ScreenChanged += new EventHandler<ScreenEventArgs>(ScreenChanged);
 
-            Player First = new Player(Game, Colors.Red);
+            /*Player First = new Player(Game, Colors.Red);
             First.Bind(Key.D1, Action.Left);
             First.Bind(Key.Q, Action.Right);
             First.Bind(Key.D2,Action.Shoot);
@@ -41,29 +41,14 @@ namespace ZatackaLegacy
             Second.Bind(Key.K, Action.Shoot);
             Game.Players.Add(Second);
 
-            Canvas.SetVisual(Game.Pool);
+            Canvas.SetVisual(Game.Pool);*/
 
-            Timer = new DispatcherTimer();
-            Timer.Interval = TimeSpan.FromMilliseconds(20);
-            Timer.Tick += new EventHandler(Timer_Tick);
-            Timer.Start();
+            
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void ScreenChanged(object Dispatcher, ScreenEventArgs EventArgs)
         {
-            foreach (Player P in Game.Players)
-            {
-                foreach (KeyValuePair<Key, Action> Item in P.Buttons)
-                {
-                    if (Keyboard.IsKeyDown(Item.Key))
-                    {
-                        Game.Input(P, Item.Value);
-                    }
-                }
-            }
-
-            Game.Execute();
-            Game.Pool.Draw();
+            Canvas.SetVisual(EventArgs.Screen);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

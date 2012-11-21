@@ -8,9 +8,13 @@ namespace ZatackaLegacy
     public enum GoodieCategory { Weapon, Modifier, Defense, Evil }
     public enum GoodieType { Bazooka, Shotgun, Juggernaut, Gravity }
 
-    abstract class Goodie:StateMachine
+    abstract class Goodie : StateMachine<int, State<int>>
     {
+        public Goodie()
+            : base(0)
+        {
 
+        }
         
     }
 }

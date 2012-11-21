@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    abstract class Game : StateMachine
+    abstract class Game : StateMachine<Game.State, State<Game.State>>
     {
         public double GoodieIconRadius { get; protected set; }
         public long Time { get; private set; }
@@ -17,10 +17,11 @@ namespace ZatackaLegacy
 
         public List<Player> Players { get; private set; }
 
-        public Pool Pool { get; protected set; }
+        public Area Pool { get; protected set; }
         public Log Log { get; private set; }
 
         public Game(Size Size)
+            : base(State.Start)
         {
             GoodieIconRadius = 10;
             Time = 0;
@@ -28,7 +29,7 @@ namespace ZatackaLegacy
             SteeringSensitivity = 5;
             MovementSpeed = 3;
 
-            Pool = new Pool(this, Size);
+            Pool = new Area(this, Size);
             Players = new List<Player>();
 
             Log = new Log(this);
@@ -49,5 +50,14 @@ namespace ZatackaLegacy
         }
 
         abstract public void Input(Player Player, Action Action);
+
+        public enum State
+        {
+            Start = 1,
+            RoundStart,
+            Playing,
+            RoundEnd,
+            End
+        }
     }
 }

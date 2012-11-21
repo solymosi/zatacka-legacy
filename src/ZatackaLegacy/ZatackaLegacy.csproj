@@ -105,7 +105,10 @@
     <Compile Include="Goodies\GuidedMissile.cs" />
     <Compile Include="Goodies\Juggernaut.cs" />
     <Compile Include="Goodies\Shotgun.cs" />
-    <Compile Include="State\ILifecycle.cs" />
+    <Compile Include="State\Dispatcher.cs" />
+    <Compile Include="State\Lifecycle.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="State\StateMachine.cs" />
     <Compile Include="Target\Target.cs" />
@@ -141,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
-    <Compile Include="Unit\Pool.cs" />
+    <Compile Include="Unit\Area.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

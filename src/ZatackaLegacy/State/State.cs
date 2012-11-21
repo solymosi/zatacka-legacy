@@ -5,12 +5,12 @@ using System.Text;
 
 namespace ZatackaLegacy
 {
-    abstract class State : ILifecycle
+    abstract class State<T> : ILifecycle
     {
-        public StateMachine Parent { get; protected set; }
+        public StateMachine<T, State<T>> Parent { get; protected set; }
 
-        public void Enter() { }
-        public void Exit() { }
+        public virtual void Enter() { }
+        public virtual void Exit() { }
 
         abstract public void Execute();
     }

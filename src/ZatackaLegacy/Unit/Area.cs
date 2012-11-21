@@ -7,11 +7,11 @@ using System.Windows.Media;
 
 namespace ZatackaLegacy
 {
-    class Pool : Unit
+    class Area : Unit
     {
         public Size Size { get; private set; }
 
-        public Pool(Game Game, Size Size)
+        public Area(Game Game, Size Size)
             : base(Game)
         {
             this.Size = Size;
