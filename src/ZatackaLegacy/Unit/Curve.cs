@@ -13,28 +13,28 @@ namespace ZatackaLegacy
         public double Heading { get; private set; }
         public Color Color { get; private set; }
         public Target Target { get; private set; }
-        public List<Part> Parts { get; private set; }
         public Part Part { get; private set; }
+        public List<Part> Parts { get; private set; }
 
         public Point Head
         {
             get { return Part.Head; }
         }
 
-        public Curve(Game Game, Point StartLocation, double StartHeading, Color Color)
+        public Curve(Game Game, Point Location, double Heading, Color Color)
             : base(Game)
         {
             PartLength = 250;
-            Heading = StartHeading;
+            this.Parts = new List<Part>();
+            this.Heading = Heading;
             this.Color = Color;
 
-            Parts = new List<Part>();
             AddPart(new Part(this));
-            AddItem(StartLocation);
+            AddItem(Location);
 
             EnableCollisions = true;
             Targets.Clear();
-            AddTarget(new Target(this, StartLocation, Game.CurveRadius));
+            AddTarget(new Target(this, Location, Game.CurveRadius));
         }
 
         protected void AddPart(Part Part)
@@ -61,24 +61,6 @@ namespace ZatackaLegacy
             Part.Draw(Lifetime);
         }
 
-        public override List<Point> CollisionsWith(Target Target, double Threshold)
-        {
-            List<Point> Result = new List<Point>();
-            foreach (HashSet<Target> Set in Targets.Near(Target.Location, Target.Radius * 2 + Threshold))
-            {
-                foreach (Target T in Set)
-                {
-                    if (T.CollidesWith(Target, -1)) { Result.Add(T.Location); }
-                }
-            }
-            return Result;
-        }
-
-        public override List<Point> CollisionsWith(Unit Unit, double Threshold)
-        {
-            return Unit.CollisionsWith(Target);
-        }
-
         public void Left()
         {
             Heading -= Game.SteeringSensitivity;
@@ -93,16 +75,17 @@ namespace ZatackaLegacy
 
         public void Advance()
         {
-            double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed;
-            double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1;
+            
+                double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed;
+                double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1;
 
-            Point Next = new Point(Head.X + X, Head.Y + Y);
-            AddItem(Next);
+                Point Next = new Point(Head.X + X, Head.Y + Y);
+                AddItem(Next);
 
-            if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
+            /*if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
             {
                 AddTarget(new Target(this, Next, Game.CurveRadius));
-            }
+            }*/
         }
     }
 }

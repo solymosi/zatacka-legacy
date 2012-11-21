@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Collections;
 
 namespace ZatackaLegacy
 {
-    abstract class Unit : DrawingVisual
+    abstract class Unit : DrawingVisual, ICollection<Unit>
     {
         public Game Game { get; protected set; }
+        protected List<Unit> Units { get; set; }
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
         public TargetCollection Targets { get; private set; }
@@ -20,30 +22,47 @@ namespace ZatackaLegacy
 
             this.Game = Game;
             this.Created = Game.Time;
+            this.Units = new List<Unit>();
             this.Targets = new TargetCollection();
         }
 
-        public abstract void Draw(long Lifetime);
+        public virtual void Enter() { }
+        public virtual void Exit() { }
 
-        public List<Point> CollisionsWith(Target Target) { return CollisionsWith(Target, 0); }
-        public virtual List<Point> CollisionsWith(Target Target, double Threshold)
+        public void Draw()
         {
-            List<Point> Result = new List<Point>();
-            foreach (Target T in Targets)
+            Draw(Game.Time - Created);
+            foreach (Unit Unit in Units)
             {
-                if (T.CollidesWith(Target)) { Result.Add(T.Location); }
+                Unit.Draw();
             }
-            return Result;
         }
-        public List<Point> CollisionsWith(Unit Unit) { return CollisionsWith(Unit, 0); }
-        public virtual List<Point> CollisionsWith(Unit Unit, double Threshold)
+
+        public virtual void Draw(long Lifetime) { }
+
+        public virtual void Add(Unit Item)
         {
-            List<Point> Result = new List<Point>();
-            foreach (Target T in Targets)
-            {
-                Result.AddRange(Unit.CollisionsWith(T, Threshold));
-            }
-            return Result;
+            Units.Add(Item);
+            Children.Add(Item);
         }
+
+        public virtual bool Remove(Unit Item)
+        {
+            Children.Remove(Item);
+            return Units.Remove(Item);
+        }
+
+        public virtual void Clear()
+        {
+            Units.Clear();
+            Children.Clear();
+        }
+
+        public bool Contains(Unit Item) { return Units.Contains(Item); }
+        public void CopyTo(Unit[] Array, int Index) { Units.CopyTo(Array, Index); }
+        public int Count { get { return Units.Count; } }
+        public bool IsReadOnly { get { return false; } }
+        public IEnumerator<Unit> GetEnumerator() { return Units.GetEnumerator(); }
+        IEnumerator IEnumerable.GetEnumerator() { return Units.GetEnumerator(); }
     }
 }

@@ -14,11 +14,6 @@ namespace ZatackaLegacy
 
         }
 
-        public override void Initialize()
-        {
-            
-        }
-
         public override void Input(Player Player, Action Action)
         {
             

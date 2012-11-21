@@ -8,32 +8,20 @@ namespace ZatackaLegacy
 {
     class Slayer : Game
     {
-        public Slayer(Size Size) : base(Size) { }
-
-        public override void Initialize()
+        public Slayer(Size Size)
+            : base(Size)
         {
-            Pool.Collision += new EventHandler<CollisionEventArgs>(Pool_Collision);
-            Start();
-        }
-
-        void Pool_Collision(object sender, CollisionEventArgs e)
-        {
-            Log.Add("COLLISION -- SOURCE " + e.Source.ToString() + " -- TARGET " + e.Target.ToString() + " -- COUNT " + e.Collisions.Count.ToString() + " -- LOCATION " + e.Collisions[0].ToString());
-            if (e.Source == Players[0].Curve) { Log.Add("Zöld nyert."); }
-            if (e.Source == Players[1].Curve) { Log.Add("Piros nyert."); }
-            Ellipse E = new Ellipse(this, e.Collisions.First(), new Size(10, 10), new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow), null);
-            Pool.AddUnit(E);
-            Stop();
+            TestUnit U = new TestUnit(this);
+            Pool.Add(U);
         }
 
         protected override void Update()
         {
-            GoodieIcon goodieIcon=new GoodieIcon(this,Pool.RandomLocation(),GoodieCategory.Weapon,GoodieType.Bazooka);
-            Pool.AddUnit(goodieIcon);
+            //GoodieIcon goodieIcon=new GoodieIcon(this,Pool.RandomLocation(),GoodieCategory.Weapon,GoodieType.Bazooka);
+            //Pool.Add(goodieIcon);
             foreach (Player P in Players)
             {
                 P.Curve.Advance();
-                
             }
         }
 

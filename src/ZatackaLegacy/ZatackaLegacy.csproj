@@ -118,6 +118,7 @@
     <Compile Include="Unit\Shape.cs" />
     <Compile Include="Unit\Ellipse.cs" />
     <Compile Include="Unit\Rectangle.cs" />
+    <Compile Include="Unit\TestUnit.cs" />
     <Compile Include="Unit\Unit.cs" />
     <Compile Include="Unit\Curve.cs" />
     <Page Include="GameCanvas.xaml">

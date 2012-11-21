@@ -41,7 +41,6 @@ namespace ZatackaLegacy
             Second.Bind(Key.K, Action.Shoot);
             Game.Players.Add(Second);
 
-            Game.Initialize();
             Canvas.SetVisual(Game.Pool);
 
             Timer = new DispatcherTimer();
@@ -63,8 +62,8 @@ namespace ZatackaLegacy
                 }
             }
 
-            Game.Tick();
-            Game.Pool.Draw(Game.Time);
+            Game.Execute();
+            Game.Pool.Draw();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

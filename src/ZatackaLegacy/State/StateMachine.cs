@@ -9,8 +9,8 @@ namespace ZatackaLegacy
     class StateMachine : State, IDictionary<int, State>
     {
         public int ID { get; protected set; }
-        protected Dictionary<int, State> States { get; private set; }
         public State Current { get { return this[ID]; } }
+        protected Dictionary<int, State> States { get; set; }
 
         public StateMachine() : this(new Dictionary<int, State>()) { }
         public StateMachine(Dictionary<int, State> States) : this(States, 0) { }

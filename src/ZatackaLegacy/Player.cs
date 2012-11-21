@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows;
 
 namespace ZatackaLegacy
 {
@@ -23,8 +24,8 @@ namespace ZatackaLegacy
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie>();
 
-            this.Curve = new Curve(Game, Game.Pool.RandomLocation(), Tools.Random(0, 359), Color);
-            Game.Pool.AddUnit(Curve);
+            this.Curve = new Curve(Game, new Point(Tools.Random(0, 800), Tools.Random(0, 800)), Tools.Random(0, 359), Color);
+            Game.Pool.Add(Curve);
         }
 
         public void Bind(Key Button, Action Action)

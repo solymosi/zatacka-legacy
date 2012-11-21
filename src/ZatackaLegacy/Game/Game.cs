@@ -32,20 +32,22 @@ namespace ZatackaLegacy
             Players = new List<Player>();
 
             Log = new Log(this);
-            Pool.AddUnit(Log);
+            Pool.Add(Log);
         }
 
         public override void Execute()
         {
             Time++;
-            Pool.CheckCollision();
             Update();
         }
 
-        public abstract void Initialize();
-        protected abstract void Update();
+        abstract protected void Update();
 
-        public void Input(Action Action) { Input(null, Action); }
-        public abstract void Input(Player Player, Action Action);
+        public void Input(Action Action)
+        {
+            Input(null, Action);
+        }
+
+        abstract public void Input(Player Player, Action Action);
     }
 }
