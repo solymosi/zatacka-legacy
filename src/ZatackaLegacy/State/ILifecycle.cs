@@ -7,25 +7,8 @@ namespace ZatackaLegacy
 {
     interface ILifecycle
     {
-        bool ActiveCycle { get; set; }
-
-        void Enter()
-        {
-            ActiveCycle = true;
-        }
-        void Execute()
-        {
-            ActiveCycle = true;
-        }
-        void Exit()
-        {
-            ActiveCycle = false;
-        }
+        void Enter();
+        void Execute();
+        void Exit();
     }
-    /*public enum Command
-    {
-        Enter,
-        Execute,
-        Exit
-    }*/
 }

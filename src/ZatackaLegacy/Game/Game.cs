@@ -14,34 +14,19 @@ namespace ZatackaLegacy
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
+
+        public List<Player> Players { get; private set; }
+
         public Pool Pool { get; protected set; }
         public Log Log { get; private set; }
-        public List<Player> Players { get; private set; }
-        public bool Running { get; private set; }
 
-        private IState current;
-        private List<IState> states;
-
-        public IState Current
-        {
-            get { return current; }
-            set { current = value; }
-        }
-        public List<IState> States
-        {
-            get { return states; }
-            set { states = value; }
-        }
-
-        public Game(IState Current, List<IState> States, Size Size) : base(Current,States)
-        //public Game(Size Size)
+        public Game(Size Size)
         {
             GoodieIconRadius = 10;
             Time = 0;
             CurveRadius = 3;
             SteeringSensitivity = 5;
             MovementSpeed = 3;
-            Running = false;
 
             Pool = new Pool(this, Size);
             Players = new List<Player>();
@@ -50,19 +35,8 @@ namespace ZatackaLegacy
             Pool.AddUnit(Log);
         }
 
-        protected void Start()
+        public override void Execute()
         {
-            Running = true;
-        }
-
-        protected void Stop()
-        {
-            Running = false;
-        }
-
-        public void Tick()
-        {
-            if (!Running) { return; }
             Time++;
             Pool.CheckCollision();
             Update();
@@ -73,37 +47,5 @@ namespace ZatackaLegacy
 
         public void Input(Action Action) { Input(null, Action); }
         public abstract void Input(Player Player, Action Action);
-
-
-
-
-        public override void Enter()
-        {
-            base.Enter();
-        }
-        public override void Execute()
-        {
-            base.Execute();
-        }
-        public override void Exit()
-        {
-            base.Exit();
-        }
-        public override void Active()
-        {
-             base.Active();
-        }
-        public override void Inactive()
-        {
-            base.Inactive();
-        }
-        public override void Paused()
-        {
-            base.Paused();
-        }
-        public override void Terminated()
-        {
-            base.Terminated();
-        }
     }
 }
