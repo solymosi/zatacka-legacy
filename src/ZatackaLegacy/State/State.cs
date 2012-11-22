@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace ZatackaLegacy
 {
-    abstract class State<T> : ILifecycle
+    abstract class State : ILifecycle
     {
-        public StateMachine<T, State<T>> Parent { get; protected set; }
-
         public virtual void Enter() { }
         public virtual void Exit() { }
 
         abstract public void Execute();
+    }
+
+    abstract class State<TParent> : State
+    {
+        public TParent Parent { get; protected set; }
     }
 }

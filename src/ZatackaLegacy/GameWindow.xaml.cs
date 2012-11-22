@@ -27,7 +27,7 @@ namespace ZatackaLegacy
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Game = new Dispatcher(new Size(Width, Height));
-            Game.ScreenChanged += new EventHandler<ScreenEventArgs>(ScreenChanged);
+            Game.StateChanged += new EventHandler<StateChangedEventArgs<Dispatcher.State, Screen>>(ScreenChanged);
 
             /*Player First = new Player(Game, Colors.Red);
             First.Bind(Key.D1, Action.Left);
@@ -46,9 +46,9 @@ namespace ZatackaLegacy
             
         }
 
-        private void ScreenChanged(object Dispatcher, ScreenEventArgs EventArgs)
+        private void ScreenChanged(object Dispatcher, StateChangedEventArgs<Dispatcher.State, Screen> EventArgs)
         {
-            Canvas.SetVisual(EventArgs.Screen);
+            Canvas.SetVisual(EventArgs.State);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ZatackaLegacy
 {
-    class Menu : State<Dispatcher.State>
+    class Menu : Screen
     {
         public override void Execute()
         {

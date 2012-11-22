@@ -110,7 +110,7 @@
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
-    <Compile Include="State\StateMachine.cs" />
+    <Compile Include="State\StateManager.cs" />
     <Compile Include="Target\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Goodies\Goodie.cs" />
@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
-    <Compile Include="Unit\Area.cs" />
+    <Compile Include="Unit\Pool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

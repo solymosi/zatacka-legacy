@@ -7,11 +7,10 @@ using System.Windows.Threading;
 
 namespace ZatackaLegacy
 {
-    class Dispatcher : StateMachine<Dispatcher.State, State<Dispatcher.State>>
+    class Dispatcher : State<object, Dispatcher.State, Screen>
     {
         public Size Size { get; protected set; }
         public DispatcherTimer Timer { get; private set; }
-        public event EventHandler<ScreenEventArgs> ScreenChanged = delegate { };
 
         public Dispatcher(Size Size)
             : base(State.Menu)
@@ -45,11 +44,5 @@ namespace ZatackaLegacy
             Game = 1,
             Menu = 2
         }
-    }
-
-    class ScreenEventArgs : EventArgs
-    {
-        public Area Screen { get; private set; }
-        public ScreenEventArgs(Area Screen) { this.Screen = Screen; }
     }
 }
