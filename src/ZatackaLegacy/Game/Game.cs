@@ -14,8 +14,13 @@ namespace Zatacka.Game
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
-        public new Unit.Canvas.Game Canvas { get; protected set; }
         public List<Player> Players { get; private set; }
+
+        public new Unit.Canvas.Game Canvas
+        {
+            get { return base.Canvas.As<Unit.Canvas.Game>(); }
+            protected set { base.Canvas = value; }
+        }
 
         public Game(Size Size)
             : base(Size)
@@ -31,7 +36,7 @@ namespace Zatacka.Game
 
             using (DrawingContext DC = this.Canvas.RenderOpen())
             {
-                DC.DrawRectangle(Brushes.Blue, null, new Rect(new Point(0, 0), Canvas.Size));
+                DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
             }
         }
 

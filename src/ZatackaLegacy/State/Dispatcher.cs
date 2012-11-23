@@ -30,6 +30,7 @@ namespace Zatacka.State
 
             Add(State.Menu, new Menu.Menu(Size));
             Add(State.Game, new Game.Slayer(Size));
+            this[State.Game].As<Game.Slayer>().Players.Add(new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.AliceBlue));
         }
 
         private void Tick(object sender, EventArgs e)

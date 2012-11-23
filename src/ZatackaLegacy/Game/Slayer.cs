@@ -24,7 +24,7 @@ namespace Zatacka.Game
                 P.Curve.Advance();
             }
 
-            //Canvas.Draw();
+            Canvas.Draw();
         }
 
         public override void Input(Player Player, Action Action)
