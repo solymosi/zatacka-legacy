@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy.Goodie
+namespace ZatackaLegacy.Goodie.Evil
 {
-    class BlackHole : Goodie
+    class Madness : Evil
     {
-        public BlackHole()
+        public Madness()
         {
-
+            Type = Type.Madness;
         }
     }
 }

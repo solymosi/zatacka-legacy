@@ -82,41 +82,46 @@
     <Compile Include="Game\Headhunter.cs" />
     <Compile Include="Game\DeadManWalking.cs" />
     <Compile Include="Game\Slayer.cs" />
-    <Compile Include="Goodies\Bazooka.cs" />
-    <Compile Include="Goodies\Mist.cs" />
-    <Compile Include="Goodies\Purgation.cs" />
-    <Compile Include="Goodies\Portal.cs" />
-    <Compile Include="Goodies\Magneto.cs" />
-    <Compile Include="Goodies\BraveNewWorld.cs" />
-    <Compile Include="Goodies\Ghost.cs" />
-    <Compile Include="Goodies\InstantShield.cs" />
-    <Compile Include="Goodies\Madness.cs" />
-    <Compile Include="Goodies\RussianRoulette.cs" />
-    <Compile Include="Goodies\BlackHole.cs" />
-    <Compile Include="Goodies\BodySwitch.cs" />
-    <Compile Include="Goodies\Ninja.cs" />
-    <Compile Include="Goodies\FortuneWheel.cs" />
-    <Compile Include="Goodies\SnowWhite.cs" />
-    <Compile Include="Goodies\Drunken.cs" />
-    <Compile Include="Goodies\SlooMoo.cs" />
-    <Compile Include="Goodies\Turbo.cs" />
-    <Compile Include="Goodies\Tron.cs" />
-    <Compile Include="Goodies\Skinny.cs" />
-    <Compile Include="Goodies\GuidedMissile.cs" />
-    <Compile Include="Goodies\Juggernaut.cs" />
-    <Compile Include="Goodies\Shotgun.cs" />
+    <Compile Include="Goodie\Defense\GuardianAngel.cs" />
+    <Compile Include="Goodie\Defense\Defense.cs" />
+    <Compile Include="Goodie\Evil\FinalDestination.cs" />
+    <Compile Include="Goodie\Evil\Evil.cs" />
+    <Compile Include="Goodie\Modifier\Modifier.cs" />
+    <Compile Include="Goodie\Weapon\Bazooka.cs" />
+    <Compile Include="Goodie\Evil\Mist.cs" />
+    <Compile Include="Goodie\Evil\Purgation.cs" />
+    <Compile Include="Goodie\Evil\Magneto.cs" />
+    <Compile Include="Goodie\Evil\Understocked.cs" />
+    <Compile Include="Goodie\Defense\Ghost.cs" />
+    <Compile Include="Goodie\Defense\InstantShield.cs" />
+    <Compile Include="Goodie\Evil\Madness.cs" />
+    <Compile Include="Goodie\Evil\RussianRoulette.cs" />
+    <Compile Include="Goodie\Evil\BlackHole.cs" />
+    <Compile Include="Goodie\Evil\BodySwitch.cs" />
+    <Compile Include="Goodie\Evil\Ninja.cs" />
+    <Compile Include="Goodie\Evil\FortuneWheel.cs" />
+    <Compile Include="Goodie\Evil\SnowWhite.cs" />
+    <Compile Include="Goodie\Evil\Drunken.cs" />
+    <Compile Include="Goodie\Modifier\SlooMoo.cs" />
+    <Compile Include="Goodie\Modifier\Turbo.cs" />
+    <Compile Include="Goodie\Modifier\Tron.cs" />
+    <Compile Include="Goodie\Modifier\Skinny.cs" />
+    <Compile Include="Goodie\Weapon\GuidedMissile.cs" />
+    <Compile Include="Goodie\Modifier\Juggernaut.cs" />
+    <Compile Include="Goodie\Weapon\Shotgun.cs" />
+    <Compile Include="Goodie\Weapon\Weapon.cs" />
     <Compile Include="State\Dispatcher.cs" />
     <Compile Include="State\Lifecycle.cs" />
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
-    <Compile Include="Target\Target.cs" />
+    <Compile Include="Unit\Target\Target.cs" />
     <Compile Include="Tools.cs" />
-    <Compile Include="Goodies\Goodie.cs" />
+    <Compile Include="Goodie\Goodie.cs" />
     <Compile Include="Unit\Goodie.cs" />
     <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
-    <Compile Include="Target\TargetCollection.cs" />
+    <Compile Include="Unit\Target\Collection.cs" />
     <Compile Include="Unit\Shape.cs" />
     <Compile Include="Unit\Ellipse.cs" />
     <Compile Include="Unit\Rectangle.cs" />
@@ -193,8 +198,9 @@
     <None Include="Resources\ZatackaLegacy.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ZatackaLegacy.png" />
+    <Resource Include="Resources\ZatackaLegacy.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
