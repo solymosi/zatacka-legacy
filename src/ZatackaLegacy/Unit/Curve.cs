@@ -12,7 +12,7 @@ namespace ZatackaLegacy.Unit
         public int PartLength { get; private set; }
         public double Heading { get; private set; }
         public Color Color { get; private set; }
-        public Target Target { get; private set; }
+        public Target.Target Target { get; private set; }
         public Part Part { get; private set; }
         public List<Part> Parts { get; private set; }
 
@@ -34,7 +34,7 @@ namespace ZatackaLegacy.Unit
 
             EnableCollisions = true;
             Targets.Clear();
-            AddTarget(new Target(this, Location, Game.CurveRadius));
+            AddTarget(new Target.Target(this, Location, Game.CurveRadius));
         }
 
         protected void AddPart(Part Part)
@@ -50,7 +50,7 @@ namespace ZatackaLegacy.Unit
             Part.Points.Add(Location);
         }
 
-        protected void AddTarget(Target Target)
+        protected void AddTarget(Target.Target Target)
         {
             this.Target = Target;
             Targets.Add(Target);

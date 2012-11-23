@@ -13,7 +13,7 @@ namespace ZatackaLegacy.Unit
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
         public Screen Screen { get; protected set; }
-        public TargetCollection Targets { get; private set; }
+        public Target.Collection Targets { get; private set; }
         protected List<Unit> Units { get; set; }
 
         public Unit(Screen Screen)
@@ -23,7 +23,7 @@ namespace ZatackaLegacy.Unit
             this.Screen = Screen;
             this.Created = Screen.Time;
             this.Units = new List<Unit>();
-            this.Targets = new TargetCollection();
+            this.Targets = new Target.Collection();
         }
 
         public virtual void Enter() { }

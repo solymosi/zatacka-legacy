@@ -17,7 +17,7 @@ namespace ZatackaLegacy.Unit
         {
             this.Center = Center;
             this.Size = Size;
-            Targets.Add(new Target(this, Center, Size.Width / 2));
+            Targets.Add(new Target.Target(this, Center, Size.Width / 2));
         }
     }
 }
