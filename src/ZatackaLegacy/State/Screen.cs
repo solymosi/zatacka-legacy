@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class Screen : State.State
+    abstract class Screen : State.State
     {
         public long Time { get; protected set; }
         public Unit.Pool Pool { get; protected set; }
@@ -19,6 +19,9 @@ namespace ZatackaLegacy
         public override void Execute()
         {
             Time++;
+            Update();
         }
+
+        abstract protected void Update();
     }
 }

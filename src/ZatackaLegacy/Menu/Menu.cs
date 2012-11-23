@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Menu
 {
     class Menu : Screen
     {
@@ -14,9 +14,9 @@ namespace ZatackaLegacy
 
         }
 
-        public override void Execute()
+        protected override void Update()
         {
-            base.Execute();
+            
         }
     }
 }

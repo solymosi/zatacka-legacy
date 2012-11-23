@@ -31,14 +31,6 @@ namespace ZatackaLegacy
             Pool.Add(Log);
         }
 
-        public override void Execute()
-        {
-            Time++;
-            Update();
-        }
-
-        abstract protected void Update();
-
         public void Input(Action Action)
         {
             Input(null, Action);
