@@ -108,7 +108,6 @@
     <Compile Include="State\Dispatcher.cs" />
     <Compile Include="State\Lifecycle.cs" />
     <Compile Include="Menu\Menu.cs" />
-    <Compile Include="State\Manager.cs" />
     <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
     <Compile Include="Target\Target.cs" />
