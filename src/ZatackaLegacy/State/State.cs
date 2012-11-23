@@ -10,6 +10,12 @@ namespace Zatacka.State
     {
         public State Parent { get; protected set; }
 
+        public State() : this(null) { }
+        public State(State Parent)
+        {
+            this.Parent = Parent;
+        }
+
         public virtual void Enter() { }
         public virtual void Exit() { }
 
@@ -40,7 +46,9 @@ namespace Zatacka.State
         public event EventHandler Changed = delegate { };
         public event EventHandler Deactivated = delegate { };
 
-        public State()
+        public State() : this(null) { }
+        public State(State Parent)
+            : base(Parent)
         {
             Items = new Dictionary<T, State>();
         }
