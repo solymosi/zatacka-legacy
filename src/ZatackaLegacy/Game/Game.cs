@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Input;
 
-namespace ZatackaLegacy
+namespace Zatacka.Game
 {
-    abstract class Game : Screen
+    abstract class Game : State.Screen
     {
         public double GoodieIconRadius { get; protected set; }
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
+        public new Unit.Canvas.Game Canvas { get; protected set; }
         public List<Player> Players { get; private set; }
-        public Unit.Log Log { get; private set; }
 
         public Game(Size Size)
             : base(Size)
@@ -25,15 +26,23 @@ namespace ZatackaLegacy
             SteeringSensitivity = 5;
             MovementSpeed = 3;
 
+            Canvas = new Unit.Canvas.Game(this, Size);
             Players = new List<Player>();
 
-            Log = new Unit.Log(this);
-            Pool.Add(Log);
+            using (DrawingContext DC = this.Canvas.RenderOpen())
+            {
+                DC.DrawRectangle(Brushes.Blue, null, new Rect(new Point(0, 0), Canvas.Size));
+            }
         }
 
-        public void Input(Action Action)
+        public override void Input(Key Key)
         {
-            Input(null, Action);
+            
+        }
+
+        public override void Input(MouseButton Button)
+        {
+            
         }
 
         abstract public void Input(Player Player, Action Action);

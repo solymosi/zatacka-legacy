@@ -5,16 +5,21 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ZatackaLegacy.Unit
+namespace Zatacka.Unit.Canvas
 {
-    class Pool : Unit
+    class Canvas : Unit
     {
         public Size Size { get; private set; }
 
-        public Pool(Screen Screen, Size Size)
-            : base(Screen)
+        public Canvas(Size Size)
+            : base(null)
         {
             this.Size = Size;
+        }
+
+        public T As<T>() where T : Canvas
+        {
+            return (T)this;
         }
     }
 }

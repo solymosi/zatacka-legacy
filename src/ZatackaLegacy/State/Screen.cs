@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
-namespace ZatackaLegacy
+namespace Zatacka.State
 {
-    abstract class Screen : State.State
+    abstract class Screen : State
     {
         public long Time { get; protected set; }
-        public Unit.Pool Pool { get; protected set; }
+        public Unit.Canvas.Screen Canvas { get; protected set; }
 
         public Screen(Size Size)
         {
-            Pool = new Unit.Pool(this, Size);
+            Canvas = new Unit.Canvas.Screen(this, Size);
         }
 
         public override void Execute()
@@ -23,5 +24,8 @@ namespace ZatackaLegacy
         }
 
         abstract protected void Update();
+
+        public virtual void Input(Key Button) { }
+        public virtual void Input(MouseButton Button) { }
     }
 }

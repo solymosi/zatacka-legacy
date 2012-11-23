@@ -6,22 +6,22 @@ using System.Windows;
 using System.Windows.Media;
 using System.Collections;
 
-namespace ZatackaLegacy.Unit
+namespace Zatacka.Unit
 {
     abstract class Unit : DrawingVisual, ICollection<Unit>
     {
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
-        public Screen Screen { get; protected set; }
+        public Canvas.Canvas Canvas { get; protected set; }
         public Target.Collection Targets { get; private set; }
         protected List<Unit> Units { get; set; }
 
-        public Unit(Screen Screen)
+        public Unit(Canvas.Canvas Canvas)
         {
             EnableCollisions = false;
 
-            this.Screen = Screen;
-            this.Created = Screen.Time;
+            this.Canvas = Canvas;
+            //this.Created = Canvas.Time;
             this.Units = new List<Unit>();
             this.Targets = new Target.Collection();
         }
@@ -31,7 +31,8 @@ namespace ZatackaLegacy.Unit
 
         public void Draw()
         {
-            Draw(Screen.Time - Created);
+            //Draw(Screen.Time - Created);
+            Draw(0);
             foreach (Unit Unit in Units)
             {
                 Unit.Draw();
@@ -42,8 +43,40 @@ namespace ZatackaLegacy.Unit
 
         public virtual void Add(Unit Item)
         {
+            Add(Item, AbsolutePosition.Top);
+        }
+
+        public virtual void Add(Unit Item, int Position)
+        {
             Units.Add(Item);
-            Children.Add(Item);
+
+            if(Position == Children.Count)
+            {
+                Children.Add(Item);
+            }
+            else
+            {
+                Children.Insert(Position, Item);
+            }
+        }
+
+        public virtual void Add(Unit Item, AbsolutePosition Position)
+        {
+            switch (Position)
+            {
+                case AbsolutePosition.Top: Add(Item, Children.Count); break;
+                case AbsolutePosition.Bottom: Add(Item, 0); break;
+            }
+        }
+
+        public virtual void Add(Unit Item, RelativePosition Position, Unit Reference)
+        {
+            int ReferencePosition = Children.IndexOf(Reference);
+            switch (Position)
+            {
+                case RelativePosition.Above: Add(Item, ReferencePosition + 1); break;
+                case RelativePosition.Below: Add(Item, ReferencePosition); break;
+            }
         }
 
         public virtual bool Remove(Unit Item)
@@ -87,5 +120,17 @@ namespace ZatackaLegacy.Unit
         {
             return Units.GetEnumerator();
         }
+    }
+
+    public enum RelativePosition
+    {
+        Above,
+        Below
+    }
+
+    public enum AbsolutePosition
+    {
+        Top,
+        Bottom
     }
 }

@@ -6,15 +6,15 @@ using System.Windows;
 using System.Windows.Media;
 
 
-namespace ZatackaLegacy.Unit
+namespace Zatacka.Unit
 {
     class Goodie : Ellipse
     {
-        public ZatackaLegacy.Goodie.Category Category { get; private set; }
-        public ZatackaLegacy.Goodie.Type Type { get; private set; }
+        public Zatacka.Goodie.Category Category { get; private set; }
+        public Zatacka.Goodie.Type Type { get; private set; }
 
-        public Goodie(Game Game, Point Center, ZatackaLegacy.Goodie.Category Category, ZatackaLegacy.Goodie.Type Ty)
-            : base(Game, Center, new Size(Game.GoodieIconRadius * 2, Game.GoodieIconRadius * 2), Brushes.White, null)
+        public Goodie(Canvas.Game Canvas, Point Center, Zatacka.Goodie.Category Category, Zatacka.Goodie.Type Ty)
+            : base(Canvas, Center, new Size(Canvas.State.GoodieIconRadius * 2, Canvas.State.GoodieIconRadius * 2), Brushes.White, null)
         {
             this.Category = Category;
             this.Type = Ty;

@@ -8,7 +8,7 @@
     <ProjectGuid>{A603EDE3-DFCB-41C8-9EEB-3F131EF4D652}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZatackaLegacy</RootNamespace>
+    <RootNamespace>Zatacka</RootNamespace>
     <AssemblyName>ZatackaLegacy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -65,9 +65,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -115,6 +115,9 @@
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
+    <Compile Include="Unit\Canvas\Dispatcher.cs" />
+    <Compile Include="Unit\Canvas\Game.cs" />
+    <Compile Include="Unit\Canvas\Screen.cs" />
     <Compile Include="Unit\Target\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Goodie\Goodie.cs" />
@@ -148,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Player.cs" />
-    <Compile Include="Unit\Pool.cs" />
+    <Compile Include="Unit\Canvas\Canvas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -6,15 +6,15 @@ using System.Windows;
 using System.Windows.Media;
 using System.Globalization;
 
-namespace ZatackaLegacy.Unit
+namespace Zatacka.Unit
 {
     class Log : Unit
     {
         public int DisplayMessages { get; private set; }
         private List<string> Messages { get; set; }
 
-        public Log(Game Game)
-            : base(Game)
+        public Log(Canvas.Canvas Canvas)
+            : base(Canvas)
         {
             Messages = new List<string>();
             DisplayMessages = 25;
@@ -24,6 +24,7 @@ namespace ZatackaLegacy.Unit
         {
             if (Messages.Count >= DisplayMessages) { Messages.RemoveAt(0); }
             Messages.Add(Message);
+            Draw();
         }
 
         public void Measure(System.Action Action) { Measure(null, Action); }

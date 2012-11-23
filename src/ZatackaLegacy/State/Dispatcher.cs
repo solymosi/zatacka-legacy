@@ -4,21 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
+using System.Windows.Input;
 
-namespace ZatackaLegacy.State
+namespace Zatacka.State
 {
     class Dispatcher : State<Dispatcher.State>
     {
-        public Size Size { get; protected set; }
+        public Size Size { get; private set; }
         public DispatcherTimer Timer { get; private set; }
+        public Unit.Canvas.Dispatcher Canvas { get; private set; }
+        public Unit.Log Log { get; protected set; }
 
         public Dispatcher(Size Size)
         {
             this.Size = Size;
 
+            this.Canvas = new Unit.Canvas.Dispatcher(this, Size);
+
+            this.Log = new Unit.Log(Canvas);
+            this.Canvas.Add(Log);
+
             this.Timer = new DispatcherTimer();
             this.Timer.Interval = TimeSpan.FromMilliseconds(20);
             this.Timer.Tick += new EventHandler(Tick);
+
+            Add(State.Menu, new Menu.Menu(Size));
+            Add(State.Game, new Game.Slayer(Size));
         }
 
         private void Tick(object sender, EventArgs e)
@@ -28,21 +39,7 @@ namespace ZatackaLegacy.State
 
         public override void Enter()
         {
-            Slayer Game = new Slayer(Size);
-            /*Player First = new Player(Game, System.Windows.Media.Colors.Red);
-            First.Bind(System.Windows.Input.Key.D1, Action.Left);
-            First.Bind(System.Windows.Input.Key.Q, Action.Right);
-            First.Bind(System.Windows.Input.Key.D2, Action.Shoot);
-            Game.Players.Add(First);
-
-            Player Second = new Player(Game, System.Windows.Media.Colors.Green);
-            Second.Bind(System.Windows.Input.Key.M, Action.Left);
-            Second.Bind(System.Windows.Input.Key.OemComma, Action.Right);
-            Second.Bind(System.Windows.Input.Key.K, Action.Shoot);
-            Game.Players.Add(Second);*/
-
-            Add(State.Game, Game);
-            Change(State.Game);
+            Change(State.Menu);
 
             Timer.Start();
         }
@@ -50,6 +47,16 @@ namespace ZatackaLegacy.State
         public override void Exit()
         {
             Timer.Stop();
+        }
+
+        public void Input(Key Button)
+        {
+            if (Active) { Current.As<Screen>().Input(Button); }
+        }
+
+        public void Input(MouseButton Button)
+        {
+            if (Active) { Current.As<Screen>().Input(Button); }
         }
 
         public enum State

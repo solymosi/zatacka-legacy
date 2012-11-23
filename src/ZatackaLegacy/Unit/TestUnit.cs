@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace ZatackaLegacy.Unit
+namespace Zatacka.Unit
 {
     class TestUnit : Unit
     {
-        public TestUnit(Game Game)
-            : base(Game)
+        public TestUnit(Canvas.Canvas Canvas)
+            : base(Canvas)
         {
             
         }

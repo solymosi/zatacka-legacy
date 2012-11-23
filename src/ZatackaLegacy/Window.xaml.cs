@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace ZatackaLegacy
+namespace Zatacka.Window
 {
     public partial class Window : System.Windows.Window
     {
@@ -27,13 +27,8 @@ namespace ZatackaLegacy
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Game = new State.Dispatcher(new Size(Width, Height));
-            Game.StateChanged += new State.State<State.Dispatcher.State>.StateChangeDelegate(ScreenChanged);
+            Canvas.SetVisual(Game.Canvas);
             Game.Enter();
-        }
-
-        private void ScreenChanged(object sender, State.StateChangeEventArgs<State.Dispatcher.State> e)
-        {
-            Canvas.SetVisual(e.State.As<Screen>().Pool);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -42,6 +37,18 @@ namespace ZatackaLegacy
             {
                 Close();
             }
+
+            if (e.Key == Key.F1)
+            {
+                Game.Change(State.Dispatcher.State.Menu);
+            }
+
+            if (e.Key == Key.F2)
+            {
+                Game.Change(State.Dispatcher.State.Game);
+            }
+
+            Game.Log.Add(e.Key.ToString());
         }
     }
 }
