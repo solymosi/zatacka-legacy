@@ -37,6 +37,7 @@ namespace Zatacka.Game
             using (DrawingContext DC = this.Canvas.RenderOpen())
             {
                 DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
+                DC.DrawText(new FormattedText("This is the GAME.\r\nPress ESC to return to MENU.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
             }
         }
 

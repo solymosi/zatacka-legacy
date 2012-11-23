@@ -24,7 +24,7 @@ namespace Zatacka
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
 
-            this.Curve = new Unit.Curve(Game.Canvas, new Point(Tools.Random(0, 800), Tools.Random(0, 800)), Tools.Random(0, 359), Color);
+            this.Curve = new Unit.Curve(Game.Canvas, new Point(Tools.Random(0, Game.Canvas.Size.Width), Tools.Random(0, Game.Canvas.Size.Height)), Tools.Random(0, 359), Color);
             Game.Canvas.Add(Curve);
         }
 

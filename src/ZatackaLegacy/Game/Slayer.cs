@@ -12,12 +12,13 @@ namespace Zatacka.Game
             : base(Dispatcher)
         {
             Unit.TestUnit U = new Unit.TestUnit(Canvas);
-            Canvas.Add(U);
+            //Canvas.Add(U);
         }
 
         protected override void Update()
         {
-            Unit.Goodie goodieIcon = new Unit.Goodie(Canvas, new Point(Tools.Random(0, 500), Tools.Random(0, 500)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
+            Unit.Goodie goodieIcon = new Unit.Goodie(Canvas, new Point(Tools.Random(0, Canvas.Size.Width), Tools.Random(0, Canvas.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
+            goodieIcon.Opacity = 0.5;
             Canvas.Add(goodieIcon);
             foreach (Player P in Players)
             {

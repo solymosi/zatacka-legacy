@@ -16,6 +16,7 @@ namespace Zatacka.Menu
             using (DrawingContext DC = Canvas.RenderOpen())
             {
                 DC.DrawRectangle(Brushes.DarkRed, null, new Rect(new Point(0, 0), Canvas.Size));
+                DC.DrawText(new FormattedText("This is the MENU.\r\nPress ENTER to switch to GAME state.\r\nPress ESC to quit.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
             }
         }
 
