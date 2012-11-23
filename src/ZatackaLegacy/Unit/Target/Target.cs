@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit.Target
 {
     class Target
     {
-        public Unit.Unit Unit;
+        public Unit Unit;
         public Point Location;
         public double Radius;
 
-        public Target(Unit.Unit Unit, Point Location, double Radius)
+        public Target(Unit Unit, Point Location, double Radius)
         {
             this.Unit = Unit;
             this.Location = Location;

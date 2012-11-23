@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit.Target
 {
-    class TargetCollection : ISet<Target>
+    class Collection : ISet<Target>
     {
         public double CellSize = 50;
 
