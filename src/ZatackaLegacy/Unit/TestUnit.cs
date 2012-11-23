@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class TestUnit : Unit
     {

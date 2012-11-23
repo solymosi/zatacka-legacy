@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class Ellipse : Shape
     {

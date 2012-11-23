@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Goodie
 {
-    class BlackHole:Goodie
+    class BlackHole : Goodie
     {
+        public BlackHole()
+        {
 
+        }
     }
 }

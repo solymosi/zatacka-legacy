@@ -6,19 +6,19 @@ using System.Windows;
 
 namespace ZatackaLegacy
 {
-    class Screen : State<Dispatcher>
+    class Screen : State.State
     {
-        public Pool Pool { get; protected set; }
+        public long Time { get; protected set; }
+        public Unit.Pool Pool { get; protected set; }
 
         public Screen(Size Size)
-            : base()
         {
-            Pool = new Pool(this, Size);
+            Pool = new Unit.Pool(this, Size);
         }
 
         public override void Execute()
         {
-            
+            Time++;
         }
     }
 }

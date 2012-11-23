@@ -10,15 +10,14 @@ namespace ZatackaLegacy
     abstract class Game : Screen
     {
         public double GoodieIconRadius { get; protected set; }
-        public long Time { get; private set; }
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
         public List<Player> Players { get; private set; }
-        public Log Log { get; private set; }
+        public Unit.Log Log { get; private set; }
 
         public Game(Size Size)
-            : base()
+            : base(Size)
         {
             GoodieIconRadius = 10;
             Time = 0;
@@ -28,7 +27,7 @@ namespace ZatackaLegacy
 
             Players = new List<Player>();
 
-            Log = new Log(this);
+            Log = new Unit.Log(this);
             Pool.Add(Log);
         }
 

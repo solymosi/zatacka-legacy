@@ -11,18 +11,20 @@ namespace ZatackaLegacy
         public Slayer(Size Size)
             : base(Size)
         {
-            TestUnit U = new TestUnit(this);
+            Unit.TestUnit U = new Unit.TestUnit(this);
             Pool.Add(U);
         }
 
         protected override void Update()
         {
-            //GoodieIcon goodieIcon=new GoodieIcon(this,Pool.RandomLocation(),GoodieCategory.Weapon,GoodieType.Bazooka);
-            //Pool.Add(goodieIcon);
+            Unit.Goodie goodieIcon = new Unit.Goodie(this, new Point(Tools.Random(0, 500), Tools.Random(0, 500)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
+            Pool.Add(goodieIcon);
             foreach (Player P in Players)
             {
                 P.Curve.Advance();
             }
+
+            Pool.Draw();
         }
 
         public override void Input(Player Player, Action Action)

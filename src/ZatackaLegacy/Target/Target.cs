@@ -8,11 +8,11 @@ namespace ZatackaLegacy
 {
     class Target
     {
-        public Unit Unit;
+        public Unit.Unit Unit;
         public Point Location;
         public double Radius;
 
-        public Target(Unit Unit, Point Location, double Radius)
+        public Target(Unit.Unit Unit, Point Location, double Radius)
         {
             this.Unit = Unit;
             this.Location = Location;

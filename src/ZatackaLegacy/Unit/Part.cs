@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class Part : Unit
     {
@@ -18,7 +18,7 @@ namespace ZatackaLegacy
         }
 
         public Part(Curve Curve)
-            : base(Curve.Game)
+            : base(Curve.Screen)
         {
             this.Curve = Curve;
             this.Points = new List<Point>();
@@ -30,7 +30,7 @@ namespace ZatackaLegacy
             {
                 foreach (Point Point in Points)
                 {
-                    Context.DrawEllipse(new SolidColorBrush(Curve.Color), null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
+                    Context.DrawEllipse(new SolidColorBrush(Curve.Color), null, Point, Curve.Screen.As<Game>().CurveRadius, Curve.Screen.As<Game>().CurveRadius);
                 }
             }
         }

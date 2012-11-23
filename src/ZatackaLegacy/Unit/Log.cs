@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Globalization;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class Log : Unit
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class Shape : Unit
     {

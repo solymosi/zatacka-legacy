@@ -6,22 +6,22 @@ using System.Windows;
 using System.Windows.Media;
 using System.Collections;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     abstract class Unit : DrawingVisual, ICollection<Unit>
     {
-        public Game Game { get; protected set; }
-        protected List<Unit> Units { get; set; }
         public long Created { get; private set; }
         public bool EnableCollisions { get; protected set; }
+        public Screen Screen { get; protected set; }
         public TargetCollection Targets { get; private set; }
+        protected List<Unit> Units { get; set; }
 
-        public Unit(Game Game)
+        public Unit(Screen Screen)
         {
             EnableCollisions = false;
 
-            this.Game = Game;
-            this.Created = Game.Time;
+            this.Screen = Screen;
+            this.Created = Screen.Time;
             this.Units = new List<Unit>();
             this.Targets = new TargetCollection();
         }
@@ -31,7 +31,7 @@ namespace ZatackaLegacy
 
         public void Draw()
         {
-            Draw(Game.Time - Created);
+            Draw(Screen.Time - Created);
             foreach (Unit Unit in Units)
             {
                 Unit.Draw();
@@ -58,11 +58,34 @@ namespace ZatackaLegacy
             Children.Clear();
         }
 
-        public bool Contains(Unit Item) { return Units.Contains(Item); }
-        public void CopyTo(Unit[] Array, int Index) { Units.CopyTo(Array, Index); }
-        public int Count { get { return Units.Count; } }
-        public bool IsReadOnly { get { return false; } }
-        public IEnumerator<Unit> GetEnumerator() { return Units.GetEnumerator(); }
-        IEnumerator IEnumerable.GetEnumerator() { return Units.GetEnumerator(); }
+        public bool Contains(Unit Item)
+        {
+            return Units.Contains(Item);
+        }
+
+        public void CopyTo(Unit[] Array, int Index)
+        {
+            Units.CopyTo(Array, Index);
+        }
+
+        public int Count
+        {
+            get { return Units.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
+        public IEnumerator<Unit> GetEnumerator()
+        {
+            return Units.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Units.GetEnumerator();
+        }
     }
 }

@@ -3,18 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Goodie
 {
-    public enum GoodieCategory { Weapon, Modifier, Defense, Evil }
-    public enum GoodieType { Bazooka, Shotgun, Juggernaut, Gravity }
-
-    abstract class Goodie : State<object>
+    abstract class Goodie
     {
         public Goodie()
-            : base(0)
         {
-
+            
         }
-        
+    }
+
+    public enum Category
+    {
+        Weapon,
+        Modifier,
+        Defense,
+        Evil
+    }
+
+    public enum Type
+    {
+        Bazooka,
+        Shotgun,
+        Juggernaut,
+        Gravity
     }
 }

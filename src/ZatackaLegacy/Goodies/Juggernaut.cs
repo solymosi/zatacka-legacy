@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Goodie
 {
-    class Juggernaut:Goodie
+    class Juggernaut : Goodie
     {
 
     }

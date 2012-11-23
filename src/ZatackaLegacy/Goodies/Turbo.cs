@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Goodie
 {
-    class Turbo:Goodie
+    class Turbo : Goodie
     {
 
     }

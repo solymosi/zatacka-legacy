@@ -108,13 +108,13 @@
     <Compile Include="State\Dispatcher.cs" />
     <Compile Include="State\Lifecycle.cs" />
     <Compile Include="Menu\Menu.cs" />
+    <Compile Include="State\Manager.cs" />
     <Compile Include="State\Screen.cs" />
     <Compile Include="State\State.cs" />
-    <Compile Include="State\StateManager.cs" />
     <Compile Include="Target\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Goodies\Goodie.cs" />
-    <Compile Include="Unit\GoodieIcon.cs" />
+    <Compile Include="Unit\Goodie.cs" />
     <Compile Include="Unit\Part.cs" />
     <Compile Include="Unit\Log.cs" />
     <Compile Include="Target\TargetCollection.cs" />

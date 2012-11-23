@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace ZatackaLegacy.Unit
 {
     class Curve : Unit
     {
@@ -63,24 +63,24 @@ namespace ZatackaLegacy
 
         public void Left()
         {
-            Heading -= Game.SteeringSensitivity;
+            Heading -= Screen.As<Game>().SteeringSensitivity;
             if (Heading < 0) { Heading = 360 + Heading; }
         }
 
         public void Right()
         {
-            Heading += Game.SteeringSensitivity;
+            Heading += Screen.As<Game>().SteeringSensitivity;
             if (Heading >= 360) { Heading = 360 - Heading; }
         }
 
         public void Advance()
         {
-            
-                double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed;
-                double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1;
 
-                Point Next = new Point(Head.X + X, Head.Y + Y);
-                AddItem(Next);
+            double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Screen.As<Game>().MovementSpeed;
+            double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Screen.As<Game>().MovementSpeed * -1;
+
+            Point Next = new Point(Head.X + X, Head.Y + Y);
+            AddItem(Next);
 
             /*if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
             {
