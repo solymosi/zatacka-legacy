@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace ZatackaLegacy.State
+namespace Zatacka.State
 {
     abstract class State : ILifecycle
     {
@@ -37,11 +37,8 @@ namespace ZatackaLegacy.State
         protected T _Type;
         protected Dictionary<T, State> Items { get; set; }
 
-        public delegate void StateChangeDelegate(object sender, StateChangeEventArgs<T> e);
-        public event StateChangeDelegate StateChanged = delegate { };
-
-        public delegate void DeactivateDelegate(object sender, EventArgs e);
-        public event DeactivateDelegate Deactivated = delegate { };
+        public event EventHandler Changed = delegate { };
+        public event EventHandler Deactivated = delegate { };
 
         public State()
         {
@@ -73,7 +70,7 @@ namespace ZatackaLegacy.State
             this.Active = true;
             this.Type = Type;
             Current.Enter();
-            this.StateChanged(this, new StateChangeEventArgs<T>(Type, Current));
+            this.Changed(this, new EventArgs());
         }
 
         public void Reset()
@@ -151,18 +148,6 @@ namespace ZatackaLegacy.State
         IEnumerator IEnumerable.GetEnumerator()
         {
             return Items.Values.GetEnumerator();
-        }
-    }
-
-    class StateChangeEventArgs<T> : EventArgs
-    {
-        public T Type { get; private set; }
-        public State State { get; private set; }
-
-        public StateChangeEventArgs(T Type, State State)
-        {
-            this.Type = Type;
-            this.State = State;
         }
     }
 }

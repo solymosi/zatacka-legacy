@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy.Goodie.Weapon
+namespace Zatacka.Goodie.Weapon
 {
     class Bazooka : Weapon
     {

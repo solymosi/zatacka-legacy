@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace ZatackaLegacy.Unit.Target
+namespace Zatacka.Unit.Target
 {
     class Collection : ISet<Target>
     {

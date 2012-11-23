@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZatackaLegacy.Goodie.Modifier
+namespace Zatacka.Goodie.Modifier
 {
     class Skinny : Modifier
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Diagnostics;
 
-namespace ZatackaLegacy
+namespace Zatacka
 {
     static public class Tools
     {

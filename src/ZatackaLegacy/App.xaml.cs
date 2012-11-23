@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace ZatackaLegacy
+namespace Zatacka
 {
     public partial class App : Application
     {
