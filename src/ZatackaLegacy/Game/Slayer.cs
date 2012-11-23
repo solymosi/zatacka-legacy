@@ -8,8 +8,8 @@ namespace Zatacka.Game
 {
     class Slayer : Game
     {
-        public Slayer(Size Size)
-            : base(Size)
+        public Slayer(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
             Unit.TestUnit U = new Unit.TestUnit(Canvas);
             Canvas.Add(U);

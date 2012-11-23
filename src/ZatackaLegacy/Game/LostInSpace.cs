@@ -8,8 +8,8 @@ namespace Zatacka.Game
 {
     class LostInSpace : Game
     {
-        public LostInSpace(Size Size)
-            : base(Size)
+        public LostInSpace(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
 
         }

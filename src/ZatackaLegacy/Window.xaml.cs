@@ -17,7 +17,7 @@ namespace Zatacka.Window
 {
     public partial class Window : System.Windows.Window
     {
-        State.Dispatcher Game;
+        new State.Dispatcher Dispatcher;
 
         public Window()
         {
@@ -26,29 +26,21 @@ namespace Zatacka.Window
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Game = new State.Dispatcher(new Size(Width, Height));
-            Canvas.SetVisual(Game.Canvas);
-            Game.Enter();
+            Dispatcher = new State.Dispatcher(new Size(Width, Height));
+            Dispatcher.Ended += new EventHandler(Game_Ended);
+            Canvas.SetVisual(Dispatcher.Canvas);
+            Dispatcher.Enter();
+        }
+
+        private void Game_Ended(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape)
-            {
-                Close();
-            }
-
-            if (e.Key == Key.F1)
-            {
-                Game.Change(State.Dispatcher.State.Menu);
-            }
-
-            if (e.Key == Key.F2)
-            {
-                Game.Change(State.Dispatcher.State.Game);
-            }
-
-            Game.Log.Add(e.Key.ToString());
+            Dispatcher.Input(e.Key);
+            Dispatcher.Log.Add(e.Key.ToString());
         }
     }
 }

@@ -11,13 +11,16 @@ namespace Zatacka.State
     class Dispatcher : State<Dispatcher.State>
     {
         public Size Size { get; private set; }
+        public double Interval { get; private set; }
         public DispatcherTimer Timer { get; private set; }
         public Unit.Canvas.Dispatcher Canvas { get; private set; }
         public Unit.Log Log { get; protected set; }
+        public event EventHandler Ended = delegate { };
 
         public Dispatcher(Size Size)
         {
             this.Size = Size;
+            this.Interval = 20;
 
             this.Canvas = new Unit.Canvas.Dispatcher(this, Size);
 
@@ -25,11 +28,11 @@ namespace Zatacka.State
             this.Canvas.Add(Log);
 
             this.Timer = new DispatcherTimer();
-            this.Timer.Interval = TimeSpan.FromMilliseconds(20);
+            this.Timer.Interval = TimeSpan.FromMilliseconds(Interval);
             this.Timer.Tick += new EventHandler(Tick);
 
-            Add(State.Menu, new Menu.Menu(Size));
-            Add(State.Game, new Game.Slayer(Size));
+            Add(State.Menu, new Menu.Menu(this));
+            Add(State.Game, new Game.Slayer(this));
             this[State.Game].As<Game.Slayer>().Players.Add(new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.AliceBlue));
         }
 
@@ -41,13 +44,14 @@ namespace Zatacka.State
         public override void Enter()
         {
             Change(State.Menu);
-
             Timer.Start();
         }
 
         public override void Exit()
         {
             Timer.Stop();
+            Reset();
+            Ended(this, new EventArgs());
         }
 
         public void Input(Key Button)

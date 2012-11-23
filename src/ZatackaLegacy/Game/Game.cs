@@ -22,8 +22,8 @@ namespace Zatacka.Game
             protected set { base.Canvas = value; }
         }
 
-        public Game(Size Size)
-            : base(Size)
+        public Game(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
             GoodieIconRadius = 10;
             Time = 0;
@@ -31,7 +31,7 @@ namespace Zatacka.Game
             SteeringSensitivity = 5;
             MovementSpeed = 3;
 
-            Canvas = new Unit.Canvas.Game(this, Size);
+            Canvas = new Unit.Canvas.Game(this, Dispatcher.Size);
             Players = new List<Player>();
 
             using (DrawingContext DC = this.Canvas.RenderOpen())
@@ -40,9 +40,12 @@ namespace Zatacka.Game
             }
         }
 
-        public override void Input(Key Key)
+        public override void Input(Key Button)
         {
-            
+            if (Button == Key.Escape)
+            {
+                Dispatcher.Change(Zatacka.State.Dispatcher.State.Menu);
+            }
         }
 
         public override void Input(MouseButton Button)

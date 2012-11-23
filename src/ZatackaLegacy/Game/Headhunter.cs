@@ -8,8 +8,8 @@ namespace Zatacka.Game
 {
     class Headhunter : Game
     {
-        public Headhunter(Size Size)
-            : base(Size)
+        public Headhunter(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
 
         }

@@ -8,8 +8,8 @@ namespace Zatacka.Game
 {
     class DeadManWalking : Game
     {
-        public DeadManWalking(Size Size)
-            : base(Size)
+        public DeadManWalking(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
 
         }

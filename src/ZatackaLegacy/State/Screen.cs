@@ -12,9 +12,15 @@ namespace Zatacka.State
         public long Time { get; protected set; }
         public Unit.Canvas.Screen Canvas { get; protected set; }
 
-        public Screen(Size Size)
+        public Dispatcher Dispatcher
         {
-            Canvas = new Unit.Canvas.Screen(this, Size);
+            get { return Parent.As<Dispatcher>(); }
+        }
+
+        public Screen(Dispatcher Dispatcher)
+            : base(Dispatcher)
+        {
+            Canvas = new Unit.Canvas.Screen(this, Dispatcher.Size);
         }
 
         public override void Execute()

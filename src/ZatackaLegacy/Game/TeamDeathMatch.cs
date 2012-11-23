@@ -8,8 +8,8 @@ namespace Zatacka.Game
 {
     class TeamDeathMatch : Game
     {
-        public TeamDeathMatch(Size Size)
-            : base(Size)
+        public TeamDeathMatch(Zatacka.State.Dispatcher Dispatcher)
+            : base(Dispatcher)
         {
 
         }
