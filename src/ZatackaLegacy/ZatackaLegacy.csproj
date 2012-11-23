@@ -74,8 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameCanvas.xaml.cs">
-      <DependentUpon>GameCanvas.xaml</DependentUpon>
+    <Compile Include="Canvas.xaml.cs">
+      <DependentUpon>Canvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\LostInSpace.cs" />
     <Compile Include="Game\TeamDeathMatch.cs" />
@@ -123,11 +123,11 @@
     <Compile Include="Unit\TestUnit.cs" />
     <Compile Include="Unit\Unit.cs" />
     <Compile Include="Unit\Curve.cs" />
-    <Page Include="GameCanvas.xaml">
+    <Page Include="Canvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameWindow.xaml">
+    <Page Include="Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -136,8 +136,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Game\Game.cs" />
-    <Compile Include="GameWindow.xaml.cs">
-      <DependentUpon>GameWindow.xaml</DependentUpon>
+    <Compile Include="Window.xaml.cs">
+      <DependentUpon>Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

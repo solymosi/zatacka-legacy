@@ -15,11 +15,11 @@ using System.Windows.Threading;
 
 namespace ZatackaLegacy
 {
-    public partial class GameWindow : Window
+    public partial class Window : System.Windows.Window
     {
         State.Dispatcher Game;
 
-        public GameWindow()
+        public Window()
         {
             InitializeComponent();
         }

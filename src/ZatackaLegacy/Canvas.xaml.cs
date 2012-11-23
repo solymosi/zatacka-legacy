@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace ZatackaLegacy
 {
-    public partial class GameCanvas : Canvas
+    public partial class Canvas : System.Windows.Controls.Canvas
     {
         public DrawingVisual Visual;
 
