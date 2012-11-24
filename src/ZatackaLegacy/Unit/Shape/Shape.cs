@@ -12,20 +12,50 @@ namespace Zatacka.Unit.Shape
     /// </summary>
     class Shape : Unit
     {
+        protected Geometry _Geometry { get; set; }
+
         /// <summary>
         /// The Geometry instance defining the appearance of this Shape.
         /// </summary>
-        public Geometry Geometry { get; protected set; }
+        public Geometry Geometry
+        {
+            get { return _Geometry; }
+            set
+            {
+                _Geometry = value;
+                Draw();
+            }
+        }
+
+        protected Brush _Fill { get; set; }
 
         /// <summary>
         /// The Brush used to fill this Shape. If it is null, no fill is drawn.
         /// </summary>
-        public Brush Fill { get; protected set; }
+        public Brush Fill
+        {
+            get { return _Fill; }
+            set
+            {
+                _Fill = value;
+                Draw();
+            }
+        }
+
+        protected Pen _Pen { get; set; }
 
         /// <summary>
         /// The Pen used to draw the borders of this Shape. If it is null, no border is drawn.
         /// </summary>
-        public Pen Border { get; protected set; }
+        public Pen Border
+        {
+            get { return _Pen; }
+            set
+            {
+                _Pen = value;
+                Draw();
+            }
+        }
 
         /// <summary>
         /// Creates a Shape with the specified properties.
@@ -40,14 +70,20 @@ namespace Zatacka.Unit.Shape
             this.Geometry = Geometry;
             this.Fill = Fill;
             this.Border = Border;
+
+            Draw();
         }
+
+        /// <summary>
+        /// Implements the abstract Update method.
+        /// </summary>
+        protected override void Update() { }
 
         /// <summary>
         /// Renders this Shape on the screen.
         /// </summary>
-        protected override void Update()
+        protected virtual void Draw()
         {
-            if (Time > 0) { return; }
             using (DrawingContext Context = RenderOpen())
             {
                 Context.DrawGeometry(Fill, Border, Geometry);
