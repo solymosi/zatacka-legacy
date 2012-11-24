@@ -15,31 +15,51 @@ using System.Windows.Threading;
 
 namespace Zatacka.Window
 {
+    /// <summary>
+    /// The main Window of the application.
+    /// </summary>
     public partial class Window : System.Windows.Window
     {
-        new State.Dispatcher Dispatcher;
+        /// <summary>
+        /// The Dispatcher instance that manages the internals of the application.
+        /// </summary>
+        private new State.Dispatcher Dispatcher;
 
+        /// <summary>
+        /// Default constructor that initializes the window and its contents.
+        /// </summary>
         public Window()
         {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Executed when this Window has successfully been initialized. Creates and initializes the Dispatcher, assigns event handlers and sets the Visual hosted by the Canvas on the window.
+        /// </summary>
+        private void Load(object sender, RoutedEventArgs e)
         {
             Dispatcher = new State.Dispatcher(new Size(Width, Height));
-            Dispatcher.Ended += new EventHandler(Game_Ended);
+            Dispatcher.Ended += new EventHandler(Ended);
             Canvas.SetVisual(Dispatcher.Canvas);
             Dispatcher.Enter();
         }
 
-        private void Game_Ended(object sender, EventArgs e)
+        /// <summary>
+        /// Executed when the application should quit. Closes this Window.
+        /// </summary>
+        private void Ended(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// Executed when a button is pressed on the keyboard. Forwards the input to the Dispatcher.
+        /// </summary>
+        private void Input(object sender, KeyEventArgs e)
         {
             Dispatcher.Input(e.Key);
+            
+            /* */
             Dispatcher.Log.Add(e.Key.ToString());
         }
     }

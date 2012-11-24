@@ -14,10 +14,20 @@ using System.Windows.Shapes;
 
 namespace Zatacka.Window
 {
+    /// <summary>
+    /// Hosts and displays a Visual.
+    /// </summary>
     public partial class Canvas : System.Windows.Controls.Canvas
     {
+        /// <summary>
+        /// The hosted Visual.
+        /// </summary>
         public DrawingVisual Visual;
 
+        /// <summary>
+        /// Assigns the Visual instance to host.
+        /// </summary>
+        /// <param name="Visual">The Visual to host.</param>
         public void SetVisual(DrawingVisual Visual)
         {
             this.Visual = Visual;
@@ -31,6 +41,9 @@ namespace Zatacka.Window
             });
         }
 
+        /// <summary>
+        /// Implements a method required by WPF to display the hosted visual.
+        /// </summary>
         protected override Visual GetVisualChild(int Index)
         {
             if (Visual == null)
@@ -40,6 +53,9 @@ namespace Zatacka.Window
             return Visual;
         }
 
+        /// <summary>
+        /// Implements a method required by WPF to display the hosted visual.
+        /// </summary>
         protected override int VisualChildrenCount { get { return Visual == null ? 0 : 1; } }
     }
 }
