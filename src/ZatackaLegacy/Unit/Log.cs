@@ -61,7 +61,7 @@ namespace Zatacka.Unit
         }
 
         /// <summary>
-        /// Renders the Log to the screen.
+        /// Renders the Log on the screen.
         /// </summary>
         protected override void Update()
         {
