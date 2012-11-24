@@ -10,8 +10,9 @@ namespace Zatacka.Unit.Canvas
     {
         public State.Screen State { get; protected set; }
 
-        public Screen(State.Screen Screen, Size Size)
-            : base(Size)
+        public Screen(State.Screen Screen, Size Size) : this(Screen, Size.ToRect()) { }
+        public Screen(State.Screen Screen, Rect Bounds)
+            : base(Bounds)
         {
             State = Screen;
         }

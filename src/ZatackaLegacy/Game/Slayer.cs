@@ -12,11 +12,12 @@ namespace Zatacka.Game
         public Slayer(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-            using (DrawingContext DC = this.Canvas.RenderOpen())
+            Canvas.Background = new SolidColorBrush(Colors.DarkCyan);
+            /*using (DrawingContext DC = this.Canvas.RenderOpen())
             {
                 DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
                 DC.DrawText(new FormattedText("This is the GAME.\r\nPress ESC to return to MENU.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
-            }
+            }*/
         }
 
         protected override void Update()

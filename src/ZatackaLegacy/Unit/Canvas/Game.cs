@@ -13,7 +13,7 @@ namespace Zatacka.Unit.Canvas
             get { return base.State.As<Zatacka.Game.Game>(); }
         }
 
-        public Game(Zatacka.Game.Game Game, Size Size)
-            : base(Game, Size) { }
+        public Game(Zatacka.Game.Game Game, Size Size) : this(Game, Size.ToRect()) { }
+        public Game(Zatacka.Game.Game Game, Rect Bounds) : base(Game, Bounds) { }
     }
 }

@@ -12,8 +12,9 @@ namespace Zatacka.Unit.Canvas
         public State.Dispatcher State { get; protected set; }
         public Screen Current { get; protected set; }
 
-        public Dispatcher(State.Dispatcher Dispatcher, Size Size)
-            : base(Size)
+        public Dispatcher(State.Dispatcher Dispatcher, Size Size) : this(Dispatcher, Size.ToRect()) { }
+        public Dispatcher(State.Dispatcher Dispatcher, Rect Bounds)
+            : base(Bounds)
         {
             this.State = Dispatcher;
             this.State.Changed += new EventHandler(Changed);

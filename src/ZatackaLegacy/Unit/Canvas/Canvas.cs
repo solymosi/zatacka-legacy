@@ -7,21 +7,44 @@ using System.Windows.Media;
 
 namespace Zatacka.Unit.Canvas
 {
-    class Canvas : Unit
+    /// <summary>
+    /// Represents a canvas on the screen.
+    /// </summary>
+    class Canvas : Shape.Rectangle
     {
-        public Size Size { get; private set; }
-
-        public Canvas(Size Size)
-            : base(null)
+        /// <summary>
+        /// The Brush used to fill the background of the Canvas.
+        /// </summary>
+        public Brush Background
         {
-            this.Size = Size;
+            get { return Fill; }
+            set { Fill = value; }
         }
 
-        public T As<T>() where T : Canvas
+        /// <summary>
+        /// Creates a Canvas with the specified size in the top left corner of the screen
+        /// </summary>
+        /// <param name="Size">The size of the Canvas.</param>
+        public Canvas(Size Size) : this(Size.ToRect()) { }
+
+        /// <summary>
+        /// Creates a Canvas with the specified size and location on the screen.
+        /// </summary>
+        /// <param name="Bounds">A Rect instance describing the size and location of the Canvas on the screen.</param>
+        public Canvas(Rect Bounds)
+            : base(null, Bounds, null, null)
         {
-            return (T)this;
+            this.Bounds = Bounds;
+            this.Fill = Background;
+            this.Border = Border;
         }
 
-        protected override void Update() { }
+        /// <summary>
+        /// Triggers the update of the underlying Rectangle.
+        /// </summary>
+        protected override void Update()
+        {
+            base.Update();
+        }
     }
 }
