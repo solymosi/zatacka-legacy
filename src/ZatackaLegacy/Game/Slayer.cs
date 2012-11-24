@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Zatacka.Game
 {
@@ -11,21 +12,28 @@ namespace Zatacka.Game
         public Slayer(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-            Unit.TestUnit U = new Unit.TestUnit(Canvas);
-            //Canvas.Add(U);
+            using (DrawingContext DC = this.Canvas.RenderOpen())
+            {
+                DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
+                DC.DrawText(new FormattedText("This is the GAME.\r\nPress ESC to return to MENU.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
+            }
         }
 
         protected override void Update()
         {
-            Unit.Goodie goodieIcon = new Unit.Goodie(Canvas, new Point(Tools.Random(0, Canvas.Size.Width), Tools.Random(0, Canvas.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
-            goodieIcon.Opacity = 0.5;
-            Canvas.Add(goodieIcon);
-            foreach (Player P in Players)
+            Dispatcher.Log.Measure(new System.Action(delegate
             {
-                P.Curve.Advance();
-            }
-
-            Canvas.Draw();
+                if (Time % 10 == 0)
+                {
+                    Unit.Game.Goodie.Goodie goodieIcon = new Unit.Game.Goodie.Goodie(Canvas, new Point(Tools.Random(0, Canvas.Size.Width), Tools.Random(0, Canvas.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
+                    goodieIcon.Opacity = 0.5;
+                    Canvas.Add(goodieIcon);
+                }
+                foreach (Player P in Players)
+                {
+                    P.Curve.Advance();
+                }
+            }));
         }
 
         public override void Input(Player Player, Action Action)

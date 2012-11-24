@@ -33,12 +33,6 @@ namespace Zatacka.Game
 
             Canvas = new Unit.Canvas.Game(this, Dispatcher.Size);
             Players = new List<Player>();
-
-            using (DrawingContext DC = this.Canvas.RenderOpen())
-            {
-                DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
-                DC.DrawText(new FormattedText("This is the GAME.\r\nPress ESC to return to MENU.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
-            }
         }
 
         public override void Input(Key Button)
