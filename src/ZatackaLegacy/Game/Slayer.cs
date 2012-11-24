@@ -46,7 +46,7 @@ namespace Zatacka.Game
                 case Action.Right:
                     Player.Curve.Right();
                     break;
-                case Action.Shoot:
+                case Action.Trigger:
                     break;
             }
         }
