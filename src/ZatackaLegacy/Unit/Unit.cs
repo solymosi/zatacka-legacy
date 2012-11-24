@@ -8,14 +8,40 @@ using System.Collections;
 
 namespace Zatacka.Unit
 {
+    /// <summary>
+    /// Represents a visual element that can be displayed on the screen.
+    /// </summary>
     abstract class Unit : DrawingVisual, ICollection<Unit>
     {
+        /// <summary>
+        /// Counts the number of calls to Execute since the creation of this Unit.
+        /// </summary>
         public long Time { get; protected set; }
+
+        /// <summary>
+        /// Specified whether this Unit can collide with others. If collisions are disabled, this Unit can not detect collisions with others and it is skipped when other units search for collisions as well.
+        /// </summary>
         public bool EnableCollisions { get; protected set; }
+
+        /// <summary>
+        /// The Canvas this Unit is displayed on.
+        /// </summary>
         public Canvas.Canvas Canvas { get; protected set; }
+
+        /// <summary>
+        /// Manages the hit targets of this Unit. Used only when collisions are enabled.
+        /// </summary>
         public Target.Collection Targets { get; private set; }
+
+        /// <summary>
+        /// Contains child units belonging to this Unit in the unit hierarchy.
+        /// </summary>
         protected List<Unit> Units { get; set; }
 
+        /// <summary>
+        /// Creates and initializes this Unit and disables collisions by default.
+        /// </summary>
+        /// <param name="Canvas">The Canvas this Unit is displayed on.</param>
         public Unit(Canvas.Canvas Canvas)
         {
             EnableCollisions = false;
@@ -25,6 +51,9 @@ namespace Zatacka.Unit
             this.Targets = new Target.Collection();
         }
 
+        /// <summary>
+        /// Updates the state of this Unit and its child units.
+        /// </summary>
         public void Execute()
         {
             Update();
@@ -37,13 +66,25 @@ namespace Zatacka.Unit
             Time++;
         }
 
+        /// <summary>
+        /// Updates the state of this Unit.
+        /// </summary>
         abstract protected void Update();
 
+        /// <summary>
+        /// Adds a Unit to the children of this Unit and places it on the top of the other child Units.
+        /// </summary>
+        /// <param name="Item">The Unit to add.</param>
         public virtual void Add(Unit Item)
         {
             Add(Item, AbsolutePosition.Top);
         }
 
+        /// <summary>
+        /// Adds a Unit to the children of this Unit and places it just below the child with the specified position.
+        /// </summary>
+        /// <param name="Item">The Unit to add.</param>
+        /// <param name="Position">The position to place this Unit.</param>
         public virtual void Add(Unit Item, int Position)
         {
             Units.Add(Item);
@@ -58,6 +99,11 @@ namespace Zatacka.Unit
             }
         }
 
+        /// <summary>
+        /// Adds a Unit to the children of this unit and places it above or below all other child units.
+        /// </summary>
+        /// <param name="Item">The Unit to add.</param>
+        /// <param name="Position">The position to place this Unit.</param>
         public virtual void Add(Unit Item, AbsolutePosition Position)
         {
             switch (Position)
@@ -67,6 +113,12 @@ namespace Zatacka.Unit
             }
         }
 
+        /// <summary>
+        /// Adds a Unit to the children of this unit and places it above or below a specified reference unit.
+        /// </summary>
+        /// <param name="Item">The Unit to add.</param>
+        /// <param name="Position">The position to place this Unit relative to the reference unit.</param>
+        /// <param name="Reference">The Unit used as a reference point.</param>
         public virtual void Add(Unit Item, RelativePosition Position, Unit Reference)
         {
             int ReferencePosition = Children.IndexOf(Reference);
@@ -77,55 +129,89 @@ namespace Zatacka.Unit
             }
         }
 
+        /// <summary>
+        /// Removes a Unit from the children of this unit.
+        /// </summary>
+        /// <param name="Item">The Unit to remove.</param>
         public virtual bool Remove(Unit Item)
         {
             Children.Remove(Item);
             return Units.Remove(Item);
         }
 
+        /// <summary>
+        /// Removes all child units from this Unit.
+        /// </summary>
         public virtual void Clear()
         {
             Units.Clear();
             Children.Clear();
         }
 
+        /// <summary>
+        /// Gets whether the specified unit is a child of this Unit.
+        /// </summary>
+        /// <param name="Item">The Unit to search for.</param>
         public bool Contains(Unit Item)
         {
             return Units.Contains(Item);
         }
 
+        /// <summary>
+        /// Copies all child units to the specified array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="Array">The array to copy the child units to.</param>
+        /// <param name="Index">The starting index of the target array.</param>
         public void CopyTo(Unit[] Array, int Index)
         {
             Units.CopyTo(Array, Index);
         }
 
+        /// <summary>
+        /// Gets the number of child units belonging to this Unit.
+        /// </summary>
         public int Count
         {
             get { return Units.Count; }
         }
 
+        /// <summary>
+        /// Gets whether adding or removing child units is disabled.
+        /// </summary>
         public bool IsReadOnly
         {
             get { return false; }
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the child units.
+        /// </summary>
         public IEnumerator<Unit> GetEnumerator()
         {
             return Units.GetEnumerator();
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the child units.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return Units.GetEnumerator();
         }
     }
 
+    /// <summary>
+    /// Describes a position relative to a child unit.
+    /// </summary>
     public enum RelativePosition
     {
         Above,
         Below
     }
 
+    /// <summary>
+    /// Describes a position among all child units.
+    /// </summary>
     public enum AbsolutePosition
     {
         Top,

@@ -7,7 +7,5 @@ using System.Windows;
 
 namespace Zatacka
 {
-    public partial class App : Application
-    {
-    }
+    public partial class App : Application { }
 }

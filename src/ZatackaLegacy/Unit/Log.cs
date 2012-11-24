@@ -8,11 +8,25 @@ using System.Globalization;
 
 namespace Zatacka.Unit
 {
+    /// <summary>
+    /// Stores and displays a fixed number of log messages.
+    /// </summary>
     class Log : Unit
     {
+        /// <summary>
+        /// Specifies the number of messages to store and display.
+        /// </summary>
         public int DisplayMessages { get; private set; }
+
+        /// <summary>
+        /// Contains the log messages.
+        /// </summary>
         private List<string> Messages { get; set; }
 
+        /// <summary>
+        /// Creates the Log and sets the number of stored log messages.
+        /// </summary>
+        /// <param name="Canvas">The Canvas this Log is displayed on.</param>
         public Log(Canvas.Canvas Canvas)
             : base(Canvas)
         {
@@ -20,18 +34,35 @@ namespace Zatacka.Unit
             DisplayMessages = 25;
         }
 
+        /// <summary>
+        /// Adds a message to the Log.
+        /// </summary>
+        /// <param name="Message">The message to add.</param>
         public void Add(string Message)
         {
             if (Messages.Count >= DisplayMessages) { Messages.RemoveAt(0); }
             Messages.Add(Message);
         }
 
+        /// <summary>
+        /// Executes and measures the specified System.Action using Tools.Measure and displays its run time in the Log.
+        /// </summary>
+        /// <param name="Action">The System.Action to measure. Possible usage: new System.Action( delegate { ... } )</param>
         public void Measure(System.Action Action) { Measure(null, Action); }
+
+        /// <summary>
+        /// Executes and measures the specified System.Action using Tools.Measure and displays its run time along with a custom name in the Log.
+        /// </summary>
+        /// <param name="Name">The name of this measurement.</param>
+        /// <param name="Action">The System.Action to measure. Possible usage: new System.Action( delegate { ... } )</param>
         public void Measure(string Name, System.Action Action)
         {
             Add((Name == null ? "" : Name + ": ") + Tools.Measure(Action).ToString() + " ms");
         }
 
+        /// <summary>
+        /// Renders the Log to the screen.
+        /// </summary>
         protected override void Update()
         {
             using (DrawingContext Context = RenderOpen())
