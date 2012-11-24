@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Zatacka.Unit
+namespace Zatacka.Unit.Shape
 {
     class Rectangle : Shape
     {

@@ -6,9 +6,9 @@ using System.Windows;
 using System.Windows.Media;
 
 
-namespace Zatacka.Unit
+namespace Zatacka.Unit.Game.Goodie
 {
-    class Goodie : Ellipse
+    class Goodie : Shape.Ellipse
     {
         public Zatacka.Goodie.Category Category { get; private set; }
         public Zatacka.Goodie.Type Type { get; private set; }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Zatacka.Unit
+namespace Zatacka.Unit.Shape
 {
     class Shape : Unit
     {
@@ -21,9 +21,9 @@ namespace Zatacka.Unit
             this.Stroke = Stroke;
         }
 
-        public override void Draw(long Lifetime)
+        protected override void Update()
         {
-            if (Lifetime > 0) { return; }
+            if (Time > 0) { return; }
             using (DrawingContext Context = RenderOpen())
             {
                 Context.DrawGeometry(Fill, Stroke, Geometry);

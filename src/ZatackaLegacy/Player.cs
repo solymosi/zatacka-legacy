@@ -11,7 +11,7 @@ namespace Zatacka
     class Player
     {
         public Game.Game Game { get; private set; }
-        public Unit.Curve Curve { get; private set; }
+        public Unit.Game.Curve.Curve Curve { get; private set; }
         public Color Color { get; private set; }
         public Dictionary<Key, Action> Buttons { get; private set; }
         public int Score { get; set; }
@@ -24,7 +24,7 @@ namespace Zatacka
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
 
-            this.Curve = new Unit.Curve(Game.Canvas, new Point(Tools.Random(0, Game.Canvas.Size.Width), Tools.Random(0, Game.Canvas.Size.Height)), Tools.Random(0, 359), Color);
+            this.Curve = new Unit.Game.Curve.Curve(Game.Canvas, new Point(Tools.Random(0, Game.Canvas.Size.Width), Tools.Random(0, Game.Canvas.Size.Height)), Tools.Random(0, 359), Color);
             Game.Canvas.Add(Curve);
         }
 

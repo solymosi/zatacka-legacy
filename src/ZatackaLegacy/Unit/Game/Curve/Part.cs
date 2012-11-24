@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Zatacka.Unit
+namespace Zatacka.Unit.Game.Curve
 {
     class Part : Unit
     {
@@ -24,7 +24,7 @@ namespace Zatacka.Unit
             this.Points = new List<Point>();
         }
 
-        public override void Draw(long Lifetime)
+        protected override void Update()
         {
             using (DrawingContext Context = RenderOpen())
             {
