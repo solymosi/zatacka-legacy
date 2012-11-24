@@ -21,5 +21,7 @@ namespace Zatacka.Unit.Canvas
         {
             return (T)this;
         }
+
+        protected override void Update() { }
     }
 }

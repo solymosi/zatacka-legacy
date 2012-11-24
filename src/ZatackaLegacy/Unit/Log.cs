@@ -24,7 +24,6 @@ namespace Zatacka.Unit
         {
             if (Messages.Count >= DisplayMessages) { Messages.RemoveAt(0); }
             Messages.Add(Message);
-            Draw();
         }
 
         public void Measure(System.Action Action) { Measure(null, Action); }
@@ -33,7 +32,7 @@ namespace Zatacka.Unit
             Add((Name == null ? "" : Name + ": ") + Tools.Measure(Action).ToString() + " ms");
         }
 
-        public override void Draw(long Lifetime)
+        protected override void Update()
         {
             using (DrawingContext Context = RenderOpen())
             {

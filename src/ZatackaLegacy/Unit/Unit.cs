@@ -10,7 +10,7 @@ namespace Zatacka.Unit
 {
     abstract class Unit : DrawingVisual, ICollection<Unit>
     {
-        public long Created { get; private set; }
+        public long Time { get; protected set; }
         public bool EnableCollisions { get; protected set; }
         public Canvas.Canvas Canvas { get; protected set; }
         public Target.Collection Targets { get; private set; }
@@ -21,25 +21,23 @@ namespace Zatacka.Unit
             EnableCollisions = false;
 
             this.Canvas = Canvas;
-            //this.Created = Canvas.Time;
             this.Units = new List<Unit>();
             this.Targets = new Target.Collection();
         }
 
-        public virtual void Enter() { }
-        public virtual void Exit() { }
-
-        public void Draw()
+        public void Execute()
         {
-            //Draw(Screen.Time - Created);
-            Draw(0);
+            Update();
+
             foreach (Unit Unit in Units)
             {
-                Unit.Draw();
+                Unit.Execute();
             }
+
+            Time++;
         }
 
-        public virtual void Draw(long Lifetime) { }
+        abstract protected void Update();
 
         public virtual void Add(Unit Item)
         {
