@@ -10,6 +10,7 @@ namespace Zatacka.State
 {
     class Dispatcher : State<Dispatcher.State>
     {
+        public long Time { get; protected set; }
         public Size Size { get; private set; }
         public double Interval { get; private set; }
         public DispatcherTimer Timer { get; private set; }
@@ -31,14 +32,23 @@ namespace Zatacka.State
             this.Timer.Interval = TimeSpan.FromMilliseconds(Interval);
             this.Timer.Tick += new EventHandler(Tick);
 
+            Initialize();
+        }
+
+        protected void Initialize()
+        {
+            /* Tempoaray entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
             this[State.Game].As<Game.Slayer>().Players.Add(new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.AliceBlue));
+            /* ---------- */
         }
 
         private void Tick(object sender, EventArgs e)
         {
             Execute();
+            Canvas.Execute();
+            Time++;
         }
 
         public override void Enter()

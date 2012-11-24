@@ -25,8 +25,8 @@ namespace Zatacka.State
 
         public override void Execute()
         {
-            Time++;
             Update();
+            Time++;
         }
 
         abstract protected void Update();
