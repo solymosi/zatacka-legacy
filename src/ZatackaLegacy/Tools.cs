@@ -44,13 +44,22 @@ namespace Zatacka
         /// </summary>
         /// <param name="Degrees">The degree to convert.</param>
         /// <returns>The value in radians.</returns>
-        static public double DegreeToRadian(double Degrees)
+        static public double DegreesToRadians(double Degrees)
         {
             return Math.PI * Degrees / 180.0;
         }
 
         /// <summary>
-        /// Calculates the distance of two points on the 2D plane.
+        /// Converts this double from degrees to radians.
+        /// </summary>
+        /// <returns>The value in radians.</returns>
+        static public double ToRadians(this double Degrees)
+        {
+            return DegreesToRadians(Degrees);
+        }
+
+        /// <summary>
+        /// Calculates the distance between two points on the 2D plane.
         /// </summary>
         /// <param name="First">The first point.</param>
         /// <param name="Second">The second point.</param>
@@ -58,6 +67,16 @@ namespace Zatacka
         static public double Distance(Point First, Point Second)
         {
             return Math.Sqrt(Math.Pow(First.X - Second.X, 2) + Math.Pow(First.Y - Second.Y, 2));
+        }
+
+        /// <summary>
+        /// Calculates the distance between this point and another point on the 2D plane.
+        /// </summary>
+        /// <param name="Target">The other point.</param>
+        /// <returns>The calculated distance.</returns>
+        static public double DistanceFrom(this Point Source, Point Target)
+        {
+            return Distance(Source, Target);
         }
 
         /// <summary>

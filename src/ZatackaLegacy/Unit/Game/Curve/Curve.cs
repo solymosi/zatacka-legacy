@@ -30,31 +30,34 @@ namespace Zatacka.Unit.Game.Curve
             this.Heading = Heading;
             this.Color = Color;
 
-            AddPart(new Part(this));
-            AddItem(Location);
+            Add(new Part(this));
+            Add(Location);
 
             EnableCollisions = true;
             Targets.Clear();
-            AddTarget(new Target.Target(this, Location, Game.CurveRadius));
+            Add(new Target.Target(this, Location, Game.CurveRadius));
         }
 
-        protected void AddPart(Part Part)
+        protected void Add(Part Part)
         {
+            base.Add(Part);
             this.Part = Part;
-            Parts.Add(Part);
-            Children.Add(Part);
         }
 
-        protected void AddItem(Point Location)
+        protected void Add(Point Location)
         {
-            if (Part.Points.Count >= PartLength) { AddPart(new Part(this)); }
+            if (Part.Points.Count >= PartLength)
+            {
+                Add(new Part(this));
+            }
+
             Part.Points.Add(Location);
         }
 
-        protected void AddTarget(Target.Target Target)
+        protected void Add(Target.Target Target)
         {
-            this.Target = Target;
             Targets.Add(Target);
+            this.Target = Target;
         }
 
         protected override void Update() { }
@@ -62,28 +65,36 @@ namespace Zatacka.Unit.Game.Curve
         public void Left()
         {
             Heading -= Game.SteeringSensitivity;
-            if (Heading < 0) { Heading = 360 + Heading; }
+
+            if (Heading < 0)
+            {
+                Heading = 360 + Heading;
+            }
         }
 
         public void Right()
         {
             Heading += Game.SteeringSensitivity;
-            if (Heading >= 360) { Heading = 360 - Heading; }
+
+            if (Heading >= 360)
+            {
+                Heading = 360 - Heading;
+            }
         }
 
         public void Advance()
         {
 
-            double X = Math.Sin(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed;
-            double Y = Math.Cos(Tools.DegreeToRadian(Heading)) * Game.MovementSpeed * -1;
+            double X = Math.Sin(Heading.ToRadians()) * Game.MovementSpeed;
+            double Y = Math.Cos(Heading.ToRadians()) * Game.MovementSpeed * -1;
 
             Point Next = new Point(Head.X + X, Head.Y + Y);
-            AddItem(Next);
+            Add(Next);
 
-            /*if (Tools.Distance(Head, Target.Location) >= Game.CurveRadius * 2)
+            if (Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
-                AddTarget(new Target(this, Next, Game.CurveRadius));
-            }*/
+                Add(new Target.Target(this, Next, Game.CurveRadius));
+            }
         }
     }
 }
