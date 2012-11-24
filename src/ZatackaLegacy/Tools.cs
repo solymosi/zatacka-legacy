@@ -80,6 +80,25 @@ namespace Zatacka
         }
 
         /// <summary>
+        /// Returns a Rect instance with this size and a default location of (0, 0).
+        /// </summary>
+        /// <returns>The Rect instance.</returns>
+        static public Rect ToRect(this Size Size)
+        {
+            return new Rect(new Point(0, 0), Size);
+        }
+
+        /// <summary>
+        /// Returns this object casted to the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type to cast to. Must be compatible with the type of the object or an InvalidCastException will be thrown.</typeparam>
+        /// <returns>The casted object.</returns>
+        static public T As<T>(this object Object)
+        {
+            return (T)Object;
+        }
+
+        /// <summary>
         /// Executes and measures the specified System.Action and returns its run time in milliseconds.
         /// </summary>
         /// <param name="Action">The System.Action to measure. Possible usage: new System.Action( delegate { ... } )</param>
