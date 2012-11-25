@@ -20,11 +20,6 @@ namespace Zatacka.State
         public virtual void Exit() { }
 
         abstract public void Execute();
-
-        public virtual T As<T>() where T : State
-        {
-            return (T)this;
-        }
     }
 
     class State<T> : State, IEnumerable<State>

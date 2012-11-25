@@ -14,11 +14,6 @@ namespace Zatacka.Goodie
         {
             
         }
-
-        public T As<T>() where T : Goodie
-        {
-            return (T)this;
-        }
     }
 
     public enum Category

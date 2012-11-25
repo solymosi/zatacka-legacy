@@ -15,7 +15,7 @@ namespace Zatacka.Unit.Game.Curve
         public Target.Target Target { get; private set; }
         public Part Part { get; private set; }
         public List<Part> Parts { get; private set; }
-        public Zatacka.Game.Game Game { get { return Canvas.As<Canvas.Screen>().State.As<Zatacka.Game.Game>(); } }
+        public Zatacka.Game.Game Game { get { return Canvas.As<Canvas.Game>().State; } }
 
         public Point Head
         {
