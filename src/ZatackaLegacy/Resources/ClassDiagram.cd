@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Zatacka.App">
+    <Position X="14" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Player">
+    <Position X="8.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAgAAgAAAAAEAAAAAgAAAAAgAAAgAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Tools">
+    <Position X="8.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAAAAAQAAIAAAAAAAAAAAAARABAgAAAAAIAAAA=</HashCode>
+      <FileName>Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Window.Canvas">
+    <Position X="15.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Canvas.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Window.Window">
+    <Position X="14" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAEAAAAAAAAAEACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Window.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.DeadManWalking">
+    <Position X="12" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\DeadManWalking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.Game">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Zatacka.Game.Game.State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Game\Game.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAIAAAAAEAggAAIgAAAAAAAAAAA=</HashCode>
+      <FileName>Game\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.Headhunter">
+    <Position X="8" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\Headhunter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.LostInSpace">
+    <Position X="10" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\LostInSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.Slayer">
+    <Position X="4" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\Slayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Game.TeamDeathMatch">
+    <Position X="6" Y="10.5" Width="1.5" />
+    <InheritanceLine Type="Zatacka.Game.Game" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="9.937" />
+        <Point X="4.75" Y="10.2" />
+        <Point X="6" Y="10.2" />
+        <Point X="6" Y="10.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\TeamDeathMatch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Defense.Defense" Collapsed="true">
+    <Position X="4" Y="35.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Defense\Defense.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Defense.Ghost" Collapsed="true">
+    <Position X="4.5" Y="36.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Defense\Ghost.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Defense.GuardianAngel" Collapsed="true">
+    <Position X="4.5" Y="37" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Defense\GuardianAngel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Defense.InstantShield" Collapsed="true">
+    <Position X="4.5" Y="37.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Defense\InstantShield.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.BlackHole" Collapsed="true">
+    <Position X="2" Y="38.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\BlackHole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.BodySwitch" Collapsed="true">
+    <Position X="2" Y="36.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\BodySwitch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Drunken" Collapsed="true">
+    <Position X="2" Y="45.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Drunken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Evil" Collapsed="true">
+    <Position X="1.5" Y="35.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Evil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.FinalDestination" Collapsed="true">
+    <Position X="2" Y="43" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\FinalDestination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.FortuneWheel" Collapsed="true">
+    <Position X="2" Y="41.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\FortuneWheel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Madness" Collapsed="true">
+    <Position X="2" Y="40.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Madness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Magneto" Collapsed="true">
+    <Position X="2" Y="40" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Magneto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Mist" Collapsed="true">
+    <Position X="2" Y="39.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Mist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Ninja" Collapsed="true">
+    <Position X="2" Y="37.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Ninja.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.Purgation" Collapsed="true">
+    <Position X="2" Y="37" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Purgation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.RussianRoulette" Collapsed="true">
+    <Position X="2" Y="44.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\RussianRoulette.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.SnowWhite" Collapsed="true">
+    <Position X="2" Y="43.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\SnowWhite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Evil.BraveNewWorld" Collapsed="true">
+    <Position X="2" Y="42.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Evil\Understocked.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Goodie">
+    <Position X="1.5" Y="32.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAA=</HashCode>
+      <FileName>Goodie\Goodie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.Juggernaut" Collapsed="true">
+    <Position X="9.5" Y="38.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\Juggernaut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.Modifier" Collapsed="true">
+    <Position X="9" Y="35.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\Modifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.Skinny" Collapsed="true">
+    <Position X="9.5" Y="39.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\Skinny.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.SlooMoo" Collapsed="true">
+    <Position X="9.5" Y="36.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\SlooMoo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.Tron" Collapsed="true">
+    <Position X="9.5" Y="37" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\Tron.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Modifier.Turbo" Collapsed="true">
+    <Position X="9.5" Y="37.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Modifier\Turbo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Weapon.Bazooka" Collapsed="true">
+    <Position X="7" Y="36.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Weapon\Bazooka.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Weapon.GuidedMissile" Collapsed="true">
+    <Position X="7" Y="37" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Weapon\GuidedMissile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Weapon.Shotgun" Collapsed="true">
+    <Position X="7" Y="37.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Weapon\Shotgun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Goodie.Weapon.Weapon" Collapsed="true">
+    <Position X="6.5" Y="35.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goodie\Weapon\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Menu.Menu">
+    <Position X="6.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Menu\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Properties.Resources">
+    <Position X="17.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAEAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Properties.Settings">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.State.Dispatcher">
+    <Position X="1.25" Y="9.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Zatacka.State.Dispatcher.State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>State\Dispatcher.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgQEAAIIAAAAAEAgEAAAAIAAAAAAEQQA=</HashCode>
+      <FileName>State\Dispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.State.Screen">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAQAAAIAAAAAEACAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>State\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.State.State">
+    <Position X="1.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAQAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>State\State.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Zatacka.State.State&lt;T&gt;">
+    <Position X="1.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAABCDBQADACABAQAAARAAAAkAQAAAABABAA=</HashCode>
+      <FileName>State\State.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Zatacka.Unit.Canvas.Canvas">
+    <Position X="5.5" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Unit\Canvas\Canvas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Canvas.Dispatcher">
+    <Position X="7.5" Y="26.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABACAAAAAAAQAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Unit\Canvas\Dispatcher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Canvas.Game">
+    <Position X="5.5" Y="29" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Unit\Canvas\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Canvas.Screen">
+    <Position X="5.5" Y="26.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Unit\Canvas\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Game.Curve.Curve">
+    <Position X="1.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAIIAAAAIAAABAAACAAAAgAAAAACACAgCAABAA=</HashCode>
+      <FileName>Unit\Game\Curve\Curve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Game.Curve.Part">
+    <Position X="3.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgIAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Unit\Game\Curve\Part.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Game.Goodie.Goodie">
+    <Position X="9.75" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAA=</HashCode>
+      <FileName>Unit\Game\Goodie\Goodie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Log">
+    <Position X="5.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAYAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Unit\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Unit">
+    <Position X="1.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAABQQAAIABAQAAAAAAEAEEAAAAAhQIQA=</HashCode>
+      <FileName>Unit\Unit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Zatacka.Unit.Shape.Ellipse">
+    <Position X="7.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Unit\Shape\Ellipse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Shape.Rectangle">
+    <Position X="5.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Unit\Shape\Rectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Shape.Shape">
+    <Position X="5.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAEAAAAAAAAAACAAAAEAAAAIAgCA=</HashCode>
+      <FileName>Unit\Shape\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Zatacka.Unit.Target.Collection" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAqAABBAACBAQBBQAAIABCQAAEAAACAEAgAAAABQIAI=</HashCode>
+      <FileName>Unit\Target\Collection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Zatacka.Unit.Target.Target">
+    <Position X="13" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAIAIABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Unit\Target\Target.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Zatacka.State.ILifecycle">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>State\Lifecycle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Zatacka.Action">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Zatacka.Goodie.Category">
+    <Position X="4.5" Y="39.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAIAAAAAAAAAAAAAAAAAAAAAgAAAAAAgEAAAA=</HashCode>
+      <FileName>Goodie\Goodie.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Zatacka.Goodie.Type">
+    <Position X="7" Y="39.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAAQAFCAAQBIYAAAAAAAAEAAAEAAAAQUEFAAUgAAA=</HashCode>
+      <FileName>Goodie\Goodie.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Zatacka.Unit.RelativePosition">
+    <Position X="9.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Unit\Unit.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Zatacka.Unit.AbsolutePosition">
+    <Position X="9.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Unit\Unit.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
