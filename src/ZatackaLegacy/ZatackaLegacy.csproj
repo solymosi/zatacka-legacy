@@ -74,7 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Canvas.xaml.cs">
+    <Compile Include="Unit\Text.cs" />
+    <Compile Include="Window\Canvas.xaml.cs">
       <DependentUpon>Canvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\LostInSpace.cs" />
@@ -130,11 +131,11 @@
     <Compile Include="Unit\Shape\Rectangle.cs" />
     <Compile Include="Unit\Unit.cs" />
     <Compile Include="Unit\Game\Curve\Curve.cs" />
-    <Page Include="Canvas.xaml">
+    <Page Include="Window\Canvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window.xaml">
+    <Page Include="Window\Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -143,7 +144,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Window.xaml.cs">
+    <Compile Include="Window\Window.xaml.cs">
       <DependentUpon>Window.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
