@@ -11,6 +11,7 @@ namespace Zatacka.Unit.Game.Curve
     {
         public Curve Curve { get; private set; }
         public List<Point> Points { get; private set; }
+        protected Pen Pen { get; set; }
 
         public Point Head
         {
@@ -22,6 +23,10 @@ namespace Zatacka.Unit.Game.Curve
         {
             this.Curve = Curve;
             this.Points = new List<Point>();
+            this.Pen = new Pen(new SolidColorBrush(Curve.Color), Curve.Game.CurveRadius * 2);
+            this.Pen.StartLineCap = PenLineCap.Round;
+            this.Pen.EndLineCap = PenLineCap.Round;
+            this.Pen.Freeze();
         }
 
         protected override void Update()
@@ -30,7 +35,7 @@ namespace Zatacka.Unit.Game.Curve
             {
                 foreach (Point Point in Points)
                 {
-                    Context.DrawEllipse(new SolidColorBrush(Curve.Color), null, Point, Curve.Game.CurveRadius, Curve.Game.CurveRadius);
+                    Context.DrawLine(Pen, Point, Point);
                 }
             }
         }

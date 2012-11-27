@@ -24,6 +24,11 @@ namespace Zatacka.Unit
         private List<string> Messages { get; set; }
 
         /// <summary>
+        /// Specifies whether new messages have been added since the log was last rendered.
+        /// </summary>
+        private bool Changed { get; set; }
+
+        /// <summary>
         /// Creates the Log and sets the number of stored log messages.
         /// </summary>
         /// <param name="Canvas">The Canvas this Log is displayed on.</param>
@@ -40,8 +45,13 @@ namespace Zatacka.Unit
         /// <param name="Message">The message to add.</param>
         public void Add(string Message)
         {
-            if (Messages.Count >= DisplayMessages) { Messages.RemoveAt(0); }
+            if (Messages.Count >= DisplayMessages)
+            {
+                Messages.RemoveAt(0);
+            }
+
             Messages.Add(Message);
+            Changed = true;
         }
 
         /// <summary>
@@ -65,9 +75,14 @@ namespace Zatacka.Unit
         /// </summary>
         protected override void Update()
         {
-            using (DrawingContext Context = RenderOpen())
+            if (Changed)
             {
-                Context.DrawText(new FormattedText(string.Join("\r\n", Messages), CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, new SolidColorBrush(Colors.White)), new Point(10, 10));
+                using (DrawingContext Context = RenderOpen())
+                {
+                    Context.DrawText(new FormattedText(string.Join("\r\n", Messages), CultureInfo.InvariantCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, Brushes.White), new Point(10, 10));
+                }
+
+                Changed = false;
             }
         }
     }
