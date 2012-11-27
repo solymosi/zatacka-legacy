@@ -68,6 +68,17 @@ namespace Zatacka
         {
             Buttons.Add(Button, Action);
         }
+
+        public void Input()
+        {
+            foreach (KeyValuePair<Key, Action> Item in Buttons)
+            {
+                if (Keyboard.IsKeyDown(Item.Key))
+                {
+                    Game.Input(this, Item.Value);
+                }
+            }
+        }
     }
 
     /// <summary>

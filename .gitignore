@@ -1,4 +1,4 @@
-
+*.vsp
 *.suo
 bin
 obj

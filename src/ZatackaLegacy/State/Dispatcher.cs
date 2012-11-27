@@ -37,10 +37,15 @@ namespace Zatacka.State
 
         protected void Initialize()
         {
-            /* Tempoaray entries, todo: implement final */
+            /* Temporary entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
-            this[State.Game].As<Game.Slayer>().Players.Add(new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.AliceBlue));
+
+            Player P = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.White);
+            P.Buttons.Add(Key.D1, Action.Left);
+            P.Buttons.Add(Key.Q, Action.Right);
+            P.Buttons.Add(Key.D2, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(P);
             /* ---------- */
         }
 

@@ -35,17 +35,26 @@ namespace Zatacka.Game
             Players = new List<Player>();
         }
 
+        public override void Execute()
+        {
+            base.Execute();
+            this.Input();
+        }
+
+        public void Input()
+        {
+            foreach (Player Player in Players)
+            {
+                Player.Input();
+            }
+        }
+
         public override void Input(Key Button)
         {
             if (Button == Key.Escape)
             {
                 Dispatcher.Change(Zatacka.State.Dispatcher.State.Menu);
             }
-        }
-
-        public override void Input(MouseButton Button)
-        {
-            
         }
 
         abstract public void Input(Player Player, Action Action);
