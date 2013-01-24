@@ -15,6 +15,7 @@ namespace Zatacka.Game
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
         public List<Player> Players { get; private set; }
+        public Zatacka.State.State<State> Manager { get; private set; }
 
         public new Unit.Canvas.Game Canvas
         {
@@ -33,6 +34,8 @@ namespace Zatacka.Game
 
             Canvas = new Unit.Canvas.Game(this, Dispatcher.Size);
             Players = new List<Player>();
+
+            
         }
 
         public override void Execute()
@@ -49,12 +52,16 @@ namespace Zatacka.Game
             }
         }
 
+        public int Q = 1;
         public override void Input(Key Button)
         {
             if (Button == Key.Escape)
             {
                 Dispatcher.Change(Zatacka.State.Dispatcher.State.Menu);
             }
+
+            if (Button == Key.F1) { Q = 10; }
+            if (Button == Key.F2) { Q = 1; }
         }
 
         abstract public void Input(Player Player, Action Action);

@@ -58,9 +58,8 @@ namespace Zatacka.Window
         private void Input(object sender, KeyEventArgs e)
         {
             Dispatcher.Input(e.Key);
-            
             /* */
-            Dispatcher.Log.Add(e.Key.ToString());
+            //Dispatcher.Log.Add(e.Key.ToString());
         }
     }
 }

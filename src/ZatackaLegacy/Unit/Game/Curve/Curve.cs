@@ -4,54 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Effects;
 
 namespace Zatacka.Unit.Game.Curve
 {
     class Curve : Unit
     {
-        public int PartLength { get; private set; }
         public double Heading { get; private set; }
         public Color Color { get; private set; }
+        public Pen DefaultPen { get; private set; }
+        public List<Bit> Bits { get; private set; }
         public Target.Target Target { get; private set; }
-        public Part Part { get; private set; }
-        public List<Part> Parts { get; private set; }
+
         public Zatacka.Game.Game Game { get { return Canvas.As<Canvas.Game>().State; } }
 
-        public Point Head
+        public Bit Head
         {
-            get { return Part.Head; }
+            get { return Bits.Last(); }
         }
 
         public Curve(Canvas.Canvas Canvas, Point Location, double Heading, Color Color)
             : base(Canvas)
         {
-            PartLength = 250;
-            this.Parts = new List<Part>();
+            this.Bits = new List<Bit>();
             this.Heading = Heading;
             this.Color = Color;
 
-            Add(new Part(this));
-            Add(Location);
+            this.DefaultPen = new Pen(new SolidColorBrush(Color), Game.CurveRadius * 2);
+            this.DefaultPen.StartLineCap = PenLineCap.Round;
+            this.DefaultPen.EndLineCap = PenLineCap.Round;
+            this.DefaultPen.Freeze();
+
+            //this.CacheMode = new BitmapCache();
+
+            Add(new Bit(this, Location));
 
             EnableCollisions = true;
             Targets.Clear();
             Add(new Target.Target(this, Location, Game.CurveRadius));
         }
 
-        protected void Add(Part Part)
+        protected void Add(Bit Bit)
         {
-            base.Add(Part);
-            this.Part = Part;
-        }
-
-        protected void Add(Point Location)
-        {
-            if (Part.Points.Count >= PartLength)
-            {
-                Add(new Part(this));
-            }
-
-            Part.Points.Add(Location);
+            Bits.Add(Bit);
+            Children.Add(Bit);
         }
 
         protected void Add(Target.Target Target)
@@ -84,14 +80,13 @@ namespace Zatacka.Unit.Game.Curve
 
         public void Advance()
         {
-
             double X = Math.Sin(Heading.ToRadians()) * Game.MovementSpeed;
             double Y = Math.Cos(Heading.ToRadians()) * Game.MovementSpeed * -1;
 
-            Point Next = new Point(Head.X + X, Head.Y + Y);
-            Add(Next);
+            Point Next = new Point(Head.Location.X + X, Head.Location.Y + Y);
+            Add(new Bit(this, Next));
 
-            if (Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
+            if (Head.Location.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
                 Add(new Target.Target(this, Next, Game.CurveRadius));
             }

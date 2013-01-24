@@ -12,29 +12,17 @@ namespace Zatacka.Game
         public Slayer(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-            Canvas.Background = new SolidColorBrush(Colors.DarkCyan);
-            /*using (DrawingContext DC = this.Canvas.RenderOpen())
-            {
-                DC.DrawRectangle(Brushes.DarkCyan, null, new Rect(new Point(0, 0), Canvas.Size));
-                DC.DrawText(new FormattedText("This is the GAME.\r\nPress ESC to return to MENU.", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Arial Black"), 40, Brushes.White), new Point(100, 100));
-            }*/
+            
         }
 
         protected override void Update()
         {
-            Dispatcher.Log.Measure(new System.Action(delegate
+            foreach (Player P in Players)
             {
-                if (Time % 10 == 0)
-                {
-                    Unit.Game.Goodie.Goodie goodieIcon = new Unit.Game.Goodie.Goodie(Canvas, new Point(Tools.Random(0, Canvas.Size.Width), Tools.Random(0, Canvas.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
-                    goodieIcon.Opacity = 0.5;
-                    Canvas.Add(goodieIcon);
-                }
-                foreach (Player P in Players)
-                {
-                    P.Curve.Advance();
-                }
-            }));
+                P.Curve.Advance();
+            }
+
+            Dispatcher.Log.Add((Players[0].Curve.Bits.Count * Players.Count).ToString());
         }
 
         public override void Input(Player Player, Action Action)
