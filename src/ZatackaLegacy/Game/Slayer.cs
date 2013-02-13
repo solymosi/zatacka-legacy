@@ -12,32 +12,12 @@ namespace Zatacka.Game
         public Slayer(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-            
+
         }
 
         protected override void Update()
         {
-            foreach (Player P in Players)
-            {
-                P.Curve.Advance();
-            }
-
-            Dispatcher.Log.Add((Players[0].Curve.Bits.Count * Players.Count).ToString());
-        }
-
-        public override void Input(Player Player, Action Action)
-        {
-            switch (Action)
-            {
-                case Action.Left:
-                    Player.Curve.Left();
-                    break;
-                case Action.Right:
-                    Player.Curve.Right();
-                    break;
-                case Action.Trigger:
-                    break;
-            }
+            
         }
     }
 }

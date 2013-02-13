@@ -34,9 +34,9 @@ namespace Zatacka.Unit
             }
         }
 
-        protected Size _Bounds { get; set; }
+        protected Rect _Bounds { get; set; }
 
-        public Size Bounds
+        public Rect Bounds
         {
             get { return _Bounds; }
             set
@@ -70,10 +70,13 @@ namespace Zatacka.Unit
             }
         }
 
-        public Text(Canvas.Canvas Canvas)
+        public Text(Canvas.Canvas Canvas, string Label, double Size, Rect Bounds)
             : base(Canvas)
         {
-            
+            _Label = Label;
+            _Size = Size;
+            _Bounds = Bounds;
+            Draw();
         }
 
         protected override void Update() { }
@@ -82,6 +85,7 @@ namespace Zatacka.Unit
         {
             using (DrawingContext Context = RenderOpen())
             {
+                Context.DrawText(new FormattedText(Label, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("Open Sans"), FontStyles.Normal, FontWeights.Normal, FontStretches.Normal), Size, Brushes.White), Bounds.Location);
                 //Context.DrawText(new FormattedText(Label, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, Font, Bounds, Fill), Location);
             }
         }

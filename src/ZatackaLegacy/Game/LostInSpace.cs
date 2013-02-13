@@ -11,11 +11,6 @@ namespace Zatacka.Game
         public LostInSpace(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-
-        }
-
-        public override void Input(Player Player, Action Action)
-        {
             
         }
 

@@ -75,7 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Game\State\Paused.cs" />
+    <Compile Include="Game\State\RoundEnd.cs" />
+    <Compile Include="Game\State\End.cs" />
+    <Compile Include="Game\State\RoundStart.cs" />
+    <Compile Include="Game\State\Start.cs" />
+    <Compile Include="Game\State\Playing.cs" />
+    <Compile Include="Game\State\State.cs" />
     <Compile Include="Unit\Game\Curve\Bit.cs" />
+    <Compile Include="Unit\Game\Panel.cs" />
     <Compile Include="Unit\Text.cs" />
     <Compile Include="Window\Canvas.xaml.cs">
       <DependentUpon>Canvas.xaml</DependentUpon>
@@ -205,9 +213,7 @@
   <ItemGroup>
     <Resource Include="Resources\ZatackaLegacy.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\State\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

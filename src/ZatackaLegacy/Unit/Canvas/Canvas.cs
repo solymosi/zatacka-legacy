@@ -25,7 +25,9 @@ namespace Zatacka.Unit.Canvas
         /// Creates a Canvas with the specified size in the top left corner of the screen
         /// </summary>
         /// <param name="Size">The size of the Canvas.</param>
-        public Canvas(Size Size) : this(Size.ToRect()) { }
+        public Canvas(Size Size)
+            : this(Size.ToRect())
+        { }
 
         /// <summary>
         /// Creates a Canvas with the specified size and location on the screen.
@@ -37,6 +39,7 @@ namespace Zatacka.Unit.Canvas
             this.Bounds = Bounds;
             this.Fill = Background;
             this.Border = Border;
+            this.Clip = new RectangleGeometry(Bounds);
         }
 
         /// <summary>

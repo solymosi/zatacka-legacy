@@ -14,11 +14,6 @@ namespace Zatacka.Game
 
         }
 
-        public override void Input(Player Player, Action Action)
-        {
-            
-        }
-
         protected override void Update()
         {
             

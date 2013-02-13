@@ -54,9 +54,6 @@ namespace Zatacka
             this.Color = Color;
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
-
-            this.Curve = new Unit.Game.Curve.Curve(Game.Canvas, new Point(Tools.Random(0, Game.Canvas.Size.Width), Tools.Random(0, Game.Canvas.Size.Height)), Tools.Random(0, 359), Color);
-            Game.Canvas.Add(Curve);
         }
 
         /// <summary>
@@ -78,6 +75,17 @@ namespace Zatacka
                     Game.Input(this, Item.Value);
                 }
             }
+        }
+
+        public void CreateCurve()
+        {
+            if (Curve != null)
+            {
+                Game.Arena.Remove(Curve);
+            }
+
+            Curve = new Unit.Game.Curve.Curve(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Tools.Random(0, 359), Color);
+            Game.Arena.Add(Curve);
         }
     }
 

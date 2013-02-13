@@ -45,7 +45,7 @@ namespace Zatacka.Unit
         public Unit(Canvas.Canvas Canvas)
         {
             EnableCollisions = false;
-
+            
             this.Canvas = Canvas;
             this.Units = new List<Unit>();
             this.Targets = new Target.Collection();
