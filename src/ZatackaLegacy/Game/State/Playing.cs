@@ -20,8 +20,6 @@ namespace Zatacka.Game.State
             {
                 P.Curve.Advance();
             }
-
-            //Game.Dispatcher.Log.Add((Game.Players[0].Curve.Bits.Count * Game.Players.Count).ToString());
         }
 
         public override void Input(Key Button)
@@ -30,6 +28,9 @@ namespace Zatacka.Game.State
             {
                 Game.Manager.Change(Zatacka.Game.Game.State.Paused);
             }
+
+            // LOG DEMO
+            //Game.Dispatcher.Log.Add(Button.ToString());
 
             /* TEMP FOR TESTING */
             if (Button == Key.Insert)
