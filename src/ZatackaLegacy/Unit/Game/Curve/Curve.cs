@@ -12,7 +12,7 @@ namespace Zatacka.Unit.Game.Curve
     {
         public double Heading { get; private set; }
         public Color Color { get; private set; }
-        public Pen DefaultPen { get; private set; }
+        public Brush Fill { get; private set; }
         public Bit Bit { get; private set; }
         public List<Bit> Bits { get; private set; }
         public int BitLength { get; private set; }
@@ -34,15 +34,10 @@ namespace Zatacka.Unit.Game.Curve
             this.Bits = new List<Bit>();
             this.Heading = Heading;
             this.Color = Color;
+            this.Fill = new SolidColorBrush(Color);
+            this.Fill.Freeze();
 
-            this.DefaultPen = new Pen(new SolidColorBrush(Color), Game.CurveRadius * 2);
-            this.DefaultPen.StartLineCap = PenLineCap.Round;
-            this.DefaultPen.EndLineCap = PenLineCap.Round;
-            this.DefaultPen.Freeze();
-
-            this.CacheMode = new BitmapCache();
-
-            BitLength = 200;
+            BitLength = 100;
             Add(new Bit(this));
             Add(Location);
 

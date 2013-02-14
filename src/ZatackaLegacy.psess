@@ -77,11 +77,6 @@
       <ProjName>ZatackaLegacy</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>C:\Users\mate\Desktop\Projects\zatacka-legacy\src\ZatackaLegacy121128.vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{A603EDE3-DFCB-41C8-9EEB-3F131EF4D652}|ZatackaLegacy\ZatackaLegacy.csproj</Path>

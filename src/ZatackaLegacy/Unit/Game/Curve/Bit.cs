@@ -12,6 +12,7 @@ namespace Zatacka.Unit.Game.Curve
     {
         public Curve Curve { get; private set; }
         public List<Point> Points { get; private set; }
+        public double Radius { get; private set; }
 
         public Point Head
         {
@@ -23,7 +24,7 @@ namespace Zatacka.Unit.Game.Curve
         {
             this.Curve = Curve;
             this.Points = new List<Point>(Curve.BitLength);
-            this.CacheMode = new BitmapCache();
+            this.Radius = Curve.Game.CurveRadius;
         }
 
         public void Add(Point Point)
@@ -38,7 +39,7 @@ namespace Zatacka.Unit.Game.Curve
             {
                 foreach (Point P in Points)
                 {
-                    Context.DrawLine(Curve.DefaultPen, P, P);
+                    Context.DrawEllipse(Curve.Fill, null, P, Radius, Radius);
                 }
             }
         }
