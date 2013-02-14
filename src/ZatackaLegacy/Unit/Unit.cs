@@ -31,7 +31,7 @@ namespace Zatacka.Unit
         /// <summary>
         /// Manages the hit targets of this Unit. Used only when collisions are enabled.
         /// </summary>
-        public Target.Collection Targets { get; private set; }
+        public HashSet<Target.Target> Targets { get; private set; }
 
         /// <summary>
         /// Contains child units belonging to this Unit in the unit hierarchy.
@@ -48,7 +48,7 @@ namespace Zatacka.Unit
             
             this.Canvas = Canvas;
             this.Units = new List<Unit>();
-            this.Targets = new Target.Collection();
+            this.Targets = new HashSet<Target.Target>();
         }
 
         /// <summary>
@@ -70,6 +70,15 @@ namespace Zatacka.Unit
         /// Updates the state of this Unit.
         /// </summary>
         abstract protected void Update();
+
+        public virtual bool CollidesWith(Target.Target Target)
+        {
+            foreach (Target.Target T in Targets)
+            {
+                if (T.CollidesWith(Target)) { return true; }
+            }
+            return false;
+        }
 
         /// <summary>
         /// Adds a Unit to the children of this Unit and places it on the top of the other child Units.

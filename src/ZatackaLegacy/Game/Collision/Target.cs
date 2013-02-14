@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Zatacka.Unit.Target
+namespace Zatacka.Game.Collision
 {
     class Target
     {
-        public Unit Unit;
-        public Point Location;
-        public double Radius;
+        public Unit.Unit Unit { get; private set; }
+        public Point Location { get; private set; }
+        public double Radius { get; private set; }
 
-        public Target(Unit Unit, Point Location, double Radius)
+        public Target(Unit.Unit Unit, Point Location, double Radius)
         {
             this.Unit = Unit;
             this.Location = Location;

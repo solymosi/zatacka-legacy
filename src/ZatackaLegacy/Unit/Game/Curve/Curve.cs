@@ -17,6 +17,7 @@ namespace Zatacka.Unit.Game.Curve
         public List<Bit> Bits { get; private set; }
         public int BitLength { get; private set; }
         public Target.Target Target { get; private set; }
+        public new Target.Collection Targets { get; private set; }
 
         public Zatacka.Game.Game Game
         {
@@ -32,6 +33,7 @@ namespace Zatacka.Unit.Game.Curve
             : base(Canvas)
         {
             this.Bits = new List<Bit>();
+            this.Targets = new Target.Collection();
             this.Heading = Heading;
             this.Color = Color;
             this.Fill = new SolidColorBrush(Color);
@@ -102,6 +104,12 @@ namespace Zatacka.Unit.Game.Curve
             if (Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
                 Add(new Target.Target(this, Next, Game.CurveRadius));
+                DrawingVisual V = new DrawingVisual();
+                using (DrawingContext C = V.RenderOpen())
+                {
+                    C.DrawEllipse(Brushes.Yellow, null, Next, 1, 1);
+                }
+                this.Children.Add(V);
             }
         }
     }

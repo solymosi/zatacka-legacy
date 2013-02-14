@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Game\Collision\Engine.cs" />
     <Compile Include="Game\State\Paused.cs" />
     <Compile Include="Game\State\RoundEnd.cs" />
     <Compile Include="Game\State\End.cs" />
@@ -129,12 +130,12 @@
     <Compile Include="Unit\Canvas\Dispatcher.cs" />
     <Compile Include="Unit\Canvas\Game.cs" />
     <Compile Include="Unit\Canvas\Screen.cs" />
-    <Compile Include="Unit\Target\Target.cs" />
+    <Compile Include="Game\Collision\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Goodie\Goodie.cs" />
     <Compile Include="Unit\Game\Goodie\Goodie.cs" />
     <Compile Include="Unit\Log.cs" />
-    <Compile Include="Unit\Target\Collection.cs" />
+    <Compile Include="Game\Collision\Field.cs" />
     <Compile Include="Unit\Shape\Shape.cs" />
     <Compile Include="Unit\Shape\Ellipse.cs" />
     <Compile Include="Unit\Shape\Rectangle.cs" />
