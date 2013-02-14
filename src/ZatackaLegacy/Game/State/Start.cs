@@ -9,10 +9,7 @@ namespace Zatacka.Game.State
     class Start : State
     {
         public Start(Zatacka.Game.Game Game)
-            : base(Game)
-        {
-            
-        }
+            : base(Game) { }
 
         public override void Enter()
         {

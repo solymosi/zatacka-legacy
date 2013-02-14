@@ -91,12 +91,12 @@ namespace Zatacka.Game
 
         public enum State
         {
-            Start = 1, /* játék kezdete, visszaszámlálás, majd change to PLAYING */
-            RoundStart, /* kör kezdete, visszaszámlálás, majd change to PLAYING */
-            Playing,  /* játék!  (esc-re PAUSED) */
-            Paused,    /* kiírja, PAUSED, press esc/enter to continue, press F10 to end game */
-            RoundEnd,  /* kör vége, kiírja, ki nyert, press enter to goto next round */
-            End  /* játék vége, kiírja, ki nyert az egész játékban */
+            Start = 1,
+            RoundStart,
+            Playing,
+            Paused,
+            RoundEnd,
+            End
         }
     }
 }

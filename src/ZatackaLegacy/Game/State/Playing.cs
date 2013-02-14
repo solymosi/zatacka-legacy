@@ -9,10 +9,7 @@ namespace Zatacka.Game.State
     class Playing : State
     {
         public Playing(Zatacka.Game.Game Game)
-            : base(Game)
-        {
-
-        }
+            : base(Game) { }
 
         public override void Execute()
         {
