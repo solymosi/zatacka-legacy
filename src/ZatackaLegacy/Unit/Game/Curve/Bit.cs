@@ -10,19 +10,36 @@ namespace Zatacka.Unit.Game.Curve
 {
     class Bit : Unit
     {
-        public Point Location { get; private set; }
+        public Curve Curve { get; private set; }
+        public List<Point> Points { get; private set; }
 
-        public Bit(Curve Curve, Point Location)
+        public Point Head
+        {
+            get { return Points.Last(); }
+        }
+
+        public Bit(Curve Curve)
             : base(Curve.Canvas)
         {
-            this.Location = Location;
+            this.Curve = Curve;
+            this.Points = new List<Point>(Curve.BitLength);
             this.CacheMode = new BitmapCache();
-            //this.Effect = new BlurEffect { Radius = 20 };
-            //this.Effect.Freeze();
+        }
 
+        public void Add(Point Point)
+        {
+            Points.Add(Point);
+            Draw();
+        }
+
+        public void Draw()
+        {
             using (DrawingContext Context = RenderOpen())
             {
-                Context.DrawLine(Curve.DefaultPen, Location, Location);
+                foreach (Point P in Points)
+                {
+                    Context.DrawLine(Curve.DefaultPen, P, P);
+                }
             }
         }
 

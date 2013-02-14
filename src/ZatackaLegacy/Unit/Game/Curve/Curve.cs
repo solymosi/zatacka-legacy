@@ -13,14 +13,19 @@ namespace Zatacka.Unit.Game.Curve
         public double Heading { get; private set; }
         public Color Color { get; private set; }
         public Pen DefaultPen { get; private set; }
+        public Bit Bit { get; private set; }
         public List<Bit> Bits { get; private set; }
+        public int BitLength { get; private set; }
         public Target.Target Target { get; private set; }
 
-        public Zatacka.Game.Game Game { get { return Canvas.As<Canvas.Game>().State; } }
-
-        public Bit Head
+        public Zatacka.Game.Game Game
         {
-            get { return Bits.Last(); }
+            get { return Canvas.As<Canvas.Game>().State; }
+        }
+
+        public Point Head
+        {
+            get { return Bit.Head; }
         }
 
         public Curve(Canvas.Canvas Canvas, Point Location, double Heading, Color Color)
@@ -35,9 +40,11 @@ namespace Zatacka.Unit.Game.Curve
             this.DefaultPen.EndLineCap = PenLineCap.Round;
             this.DefaultPen.Freeze();
 
-            //this.CacheMode = new BitmapCache();
+            this.CacheMode = new BitmapCache();
 
-            Add(new Bit(this, Location));
+            BitLength = 200;
+            Add(new Bit(this));
+            Add(Location);
 
             EnableCollisions = true;
             Targets.Clear();
@@ -48,6 +55,17 @@ namespace Zatacka.Unit.Game.Curve
         {
             Bits.Add(Bit);
             Children.Add(Bit);
+            this.Bit = Bit;
+        }
+
+        protected void Add(Point Location)
+        {
+            if (Bit.Points.Count >= BitLength)
+            {
+                Add(new Bit(this));
+            }
+
+            Bit.Add(Location);
         }
 
         protected void Add(Target.Target Target)
@@ -83,10 +101,10 @@ namespace Zatacka.Unit.Game.Curve
             double X = Math.Sin(Heading.ToRadians()) * Game.MovementSpeed;
             double Y = Math.Cos(Heading.ToRadians()) * Game.MovementSpeed * -1;
 
-            Point Next = new Point(Head.Location.X + X, Head.Location.Y + Y);
-            Add(new Bit(this, Next));
+            Point Next = new Point(Head.X + X, Head.Y + Y);
+            Add(Next);
 
-            if (Head.Location.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
+            if (Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
                 Add(new Target.Target(this, Next, Game.CurveRadius));
             }
