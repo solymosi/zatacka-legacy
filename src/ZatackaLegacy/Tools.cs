@@ -89,6 +89,16 @@ namespace Zatacka
         }
 
         /// <summary>
+        /// Calculates and returns the center point of the rectangle.
+        /// </summary>
+        /// <param name="Rect"></param>
+        /// <returns></returns>
+        static public Point Center(this Rect Rect)
+        {
+            return new Point(Rect.Left + Rect.Width / 2, Rect.Top + Rect.Height / 2);
+        }
+
+        /// <summary>
         /// Returns this object casted to the specified type.
         /// </summary>
         /// <typeparam name="T">The type to cast to. Must be compatible with the type of the object or an InvalidCastException will be thrown.</typeparam>

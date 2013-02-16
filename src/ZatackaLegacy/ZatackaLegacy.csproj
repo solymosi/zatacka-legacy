@@ -82,7 +82,9 @@
     <Compile Include="Game\State\Start.cs" />
     <Compile Include="Game\State\Playing.cs" />
     <Compile Include="Game\State\State.cs" />
+    <Compile Include="Unit\Collision\Result.cs" />
     <Compile Include="Unit\Game\Curve\Bit.cs" />
+    <Compile Include="Unit\Game\Curve\Target.cs" />
     <Compile Include="Unit\Game\Panel.cs" />
     <Compile Include="Unit\Text.cs" />
     <Compile Include="Window\Canvas.xaml.cs">
@@ -129,12 +131,12 @@
     <Compile Include="Unit\Canvas\Dispatcher.cs" />
     <Compile Include="Unit\Canvas\Game.cs" />
     <Compile Include="Unit\Canvas\Screen.cs" />
-    <Compile Include="Unit\Target\Target.cs" />
+    <Compile Include="Unit\Collision\Target.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Goodie\Goodie.cs" />
     <Compile Include="Unit\Game\Goodie\Icon.cs" />
     <Compile Include="Unit\Log.cs" />
-    <Compile Include="Unit\Target\Collection.cs" />
+    <Compile Include="Unit\Collision\Field.cs" />
     <Compile Include="Unit\Shape\Shape.cs" />
     <Compile Include="Unit\Shape\Ellipse.cs" />
     <Compile Include="Unit\Shape\Rectangle.cs" />
