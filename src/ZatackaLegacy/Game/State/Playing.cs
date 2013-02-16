@@ -9,7 +9,8 @@ namespace Zatacka.Game.State
     class Playing : State
     {
         public Playing(Zatacka.Game.Game Game)
-            : base(Game) { }
+            : base(Game)
+        {
             Game.Arena.Collision += new Unit.Canvas.Game.CollisionEvent(Collision);
         }
 
@@ -34,9 +35,6 @@ namespace Zatacka.Game.State
             {
                 Game.Manager.Change(Zatacka.Game.Game.State.Paused);
             }
-
-            // LOG DEMO
-            //Game.Dispatcher.Log.Add(Button.ToString());
 
             /* TEMP FOR TESTING */
             if (Button == Key.Insert)
