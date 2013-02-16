@@ -11,7 +11,12 @@ namespace Zatacka.Game.State
         public Playing(Zatacka.Game.Game Game)
             : base(Game)
         {
+            Game.Arena.Collision += new Unit.Canvas.Game.CollisionEvent(Collision);
+        }
 
+        public void Collision(Unit.Unit From, Unit.Unit To, List<Unit.Collision.Target> Colliders, List<Unit.Collision.Target> Targets)
+        {
+            Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
         }
 
         public override void Execute()
@@ -20,6 +25,8 @@ namespace Zatacka.Game.State
             {
                 P.Curve.Advance();
             }
+
+            Game.Arena.CheckCollisions();
         }
 
         public override void Input(Key Button)

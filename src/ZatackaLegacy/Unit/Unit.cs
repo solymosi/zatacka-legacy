@@ -19,19 +19,29 @@ namespace Zatacka.Unit
         public long Time { get; protected set; }
 
         /// <summary>
-        /// Specified whether this Unit can collide with others. If collisions are disabled, this Unit can not detect collisions with others and it is skipped when other units search for collisions as well.
+        /// Specifies whether this Unit can collide with others. If collisions are disabled, this Unit can not detect collisions with others and it is skipped when other units test for collisions as well.
         /// </summary>
-        public bool EnableCollisions { get; protected set; }
+        public bool EnableCollisions { get; set; }
+
+        /// <summary>
+        /// Specifies whether this Unit can collide with itself. Used only when collisions are enabled.
+        /// </summary>
+        public bool SelfCollision { get; set; }
+
+        /// <summary>
+        /// Contains Target instances other units use to determine whether they have a collision with this Unit. Used only when collisions are enabled.
+        /// </summary>
+        public Collision.Field Targets { get; protected set; }
+
+        /// <summary>
+        /// Contains Target instances this Unit uses to determine whether it has a collision with other units. Used only when collisions are enabled.
+        /// </summary>
+        public HashSet<Collision.Target> Colliders { get; protected set; }
 
         /// <summary>
         /// The Canvas this Unit is displayed on.
         /// </summary>
         public Canvas.Canvas Canvas { get; protected set; }
-
-        /// <summary>
-        /// Manages the hit targets of this Unit. Used only when collisions are enabled.
-        /// </summary>
-        public HashSet<Target.Target> Targets { get; private set; }
 
         /// <summary>
         /// Contains child units belonging to this Unit in the unit hierarchy.
@@ -44,11 +54,14 @@ namespace Zatacka.Unit
         /// <param name="Canvas">The Canvas this Unit is displayed on.</param>
         public Unit(Canvas.Canvas Canvas)
         {
-            EnableCollisions = false;
-            
             this.Canvas = Canvas;
             this.Units = new List<Unit>();
-            this.Targets = new HashSet<Target.Target>();
+
+            EnableCollisions = false;
+            SelfCollision = false;
+
+            this.Targets = new Collision.Field(this);
+            this.Colliders = new HashSet<Collision.Target>();
         }
 
         /// <summary>
@@ -71,13 +84,35 @@ namespace Zatacka.Unit
         /// </summary>
         abstract protected void Update();
 
-        public virtual bool CollidesWith(Target.Target Target)
+        /// <summary>
+        /// Determines whether this Unit collides with another and returns the collision information.
+        /// </summary>
+        /// <param name="Unit">The other Unit to test collisions on.</param>
+        public virtual Collision.Result CollisionsWith(Unit Unit)
         {
-            foreach (Target.Target T in Targets)
+            if (!EnableCollisions)
             {
-                if (T.CollidesWith(Target)) { return true; }
+                throw new InvalidOperationException("Collisions are not enabled for this Unit.");
             }
-            return false;
+
+            Collision.Result Result = new Collision.Result(this, Unit);
+
+            if (Unit.EnableCollisions)
+            {
+                foreach (Collision.Target Collider in Colliders)
+                {
+                    foreach (Collision.Target Target in Unit.Targets.Within(Collider.Geometry.Bounds))
+                    {
+                        if (Collider.CollidesWith(Target))
+                        {
+                            if (!Result.Colliders.Contains(Collider)) { Result.Colliders.Add(Collider); }
+                            if (!Result.Targets.Contains(Target)) { Result.Targets.Add(Target); }
+                        }
+                    }
+                }
+            }
+
+            return Result;
         }
 
         /// <summary>
