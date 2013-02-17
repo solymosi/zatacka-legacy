@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Zatacka.Game.State
 {
@@ -14,8 +15,8 @@ namespace Zatacka.Game.State
             : base(Game)
         {
             Panel = new Unit.Game.Panel(Game);
-            Panel.Add(new Unit.Text(Panel, "GAME OVER", 72, new System.Windows.Rect(50, 100, 0, 0)));
-            Panel.Add(new Unit.Text(Panel, "Press END to return to menu.", 24, new System.Windows.Rect(50, 200, 0, 0)));
+            Panel.Add(new Unit.Text(Panel, "GAME OVER", 72, new Point(0,100), new Size(Game.Arena.Size.Width, 0), TextAlignment.Center));
+            Panel.Add(new Unit.Text(Panel, "Press END to return to menu.", 24, new Point(50, 200)));
         }
 
         public override void Enter()

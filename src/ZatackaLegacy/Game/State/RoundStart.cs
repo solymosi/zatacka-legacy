@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Zatacka.Game.State
 {
@@ -16,7 +17,7 @@ namespace Zatacka.Game.State
             : base(Game)
         {
             Panel = new Unit.Game.Panel(Game);
-            Countdown = new Unit.Text(Panel, "", 72, new System.Windows.Rect(200, 200, 0, 0));
+            Countdown = new Unit.Text(Panel, "", 72, new Point(200, 200));
             Panel.Add(Countdown);
             CountdownFrequency = 25;
         }
