@@ -29,6 +29,11 @@ namespace Zatacka.Unit
         private bool Changed { get; set; }
 
         /// <summary>
+        /// The underlying Text unit that displays the messages.
+        /// </summary>
+        private Text Text { get; set; }
+
+        /// <summary>
         /// Creates the Log and sets the number of stored log messages.
         /// </summary>
         /// <param name="Canvas">The Canvas this Log is displayed on.</param>
@@ -37,6 +42,9 @@ namespace Zatacka.Unit
         {
             Messages = new List<string>();
             DisplayMessages = 25;
+
+            Text = new Text(Canvas, null, new FontFamily("Consolas"), 10, FontWeights.Normal, FontStyles.Normal, Brushes.White, new Point(10, 10), new Size(Canvas.Size.Width - 20, 0), TextAlignment.Left, 1, TextTrimming.CharacterEllipsis);
+            Add(Text);
         }
 
         /// <summary>
@@ -77,11 +85,7 @@ namespace Zatacka.Unit
         {
             if (Changed)
             {
-                using (DrawingContext Context = RenderOpen())
-                {
-                    Context.DrawText(new FormattedText(string.Join("\r\n", Messages), CultureInfo.InvariantCulture, FlowDirection.LeftToRight, new Typeface("Consolas"), 10, Brushes.White), new Point(10, 10));
-                }
-
+                Text.Label = string.Join("\r\n", Messages);
                 Changed = false;
             }
         }
