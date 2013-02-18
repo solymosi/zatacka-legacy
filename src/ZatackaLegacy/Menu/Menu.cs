@@ -11,22 +11,13 @@ namespace Zatacka.Menu
     class Menu : State.Screen
     {
 
-        /*List<Brush> PlayerColors = new List<Brush>();*/
         List<string> Actions = new List<string>();
         List<Unit.Text> Textes = new List<Unit.Text>();
-        List<Unit.Shape.Rectangle> Rectangles = new List<Unit.Shape.Rectangle>();
 
         public Menu(State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
             Canvas.Background = new SolidColorBrush(Colors.DarkRed);
-
-            /*PlayerColors.Add(Brushes.Red); 
-            PlayerColors.Add(Brushes.Green);
-            PlayerColors.Add(Brushes.Yellow);
-            PlayerColors.Add(Brushes.Blue);
-            PlayerColors.Add(Brushes.Cyan);
-            PlayerColors.Add(Brushes.Pink);*/
 
             Actions.Add("2 1 Q");
             Actions.Add("K M ,");
@@ -53,11 +44,8 @@ namespace Zatacka.Menu
             for (int i = 1; i <7 ; i++) 
             {
                 Unit.Text TextTmp = new Unit.Text(Canvas, "Player" + i + "  " + Actions[i-1], fontSize, FontWeights.Normal, FontStyles.Normal, Brushes.Gray, new Point(startPos, startPos / 2 + i * fontSize), new Size(0, 0));
-                //Unit.Shape.Rectangle RectTmp = new Unit.Shape.Rectangle(Canvas, new Rect(startPos - 50, startPos / 2 +  + i * fontSize, 20, 20), PlayerColors[i - 1], null);
                 Textes.Add(TextTmp);
-                //Rectangles.Add(RectTmp);
                 Canvas.Add(TextTmp);
-                //Canvas.Add(RectTmp);
             }
         }
 
@@ -65,14 +53,13 @@ namespace Zatacka.Menu
         {
             if (Button == Key.Enter)
             {
-                Dispatcher.Change(State.Dispatcher.State.Game);
-
-                /*Player seven = new Player(, Colors.Orange);
+                Dispatcher.Game = new Game.Slayer(Dispatcher);
+                Player seven = new Player(Dispatcher.Game, Colors.Orange);
                 seven.Buttons.Add(Key.D1, Action.Left);
                 seven.Buttons.Add(Key.Q, Action.Right);
                 seven.Buttons.Add(Key.D2, Action.Trigger);
-                //this[State.Game].As<Game.Slayer>().Players.Add(seven);*/
-
+                Dispatcher.Game.Players.Add(seven);
+                Dispatcher.Change(State.Dispatcher.State.Game);
             }
 
             if (Button == Key.Escape)

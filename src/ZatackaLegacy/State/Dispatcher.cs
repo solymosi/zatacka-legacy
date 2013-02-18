@@ -17,6 +17,7 @@ namespace Zatacka.State
         public Unit.Canvas.Dispatcher Canvas { get; private set; }
         public Unit.Log Log { get; protected set; }
         public event EventHandler Ended = delegate { };
+        public Game.Game Game { get; set; }
 
         public Dispatcher(Size Size)
         {
@@ -40,8 +41,10 @@ namespace Zatacka.State
             /* Temporary entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
-            
-            Player One = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Red);
+            //Add(State.Game, Game); - error
+
+
+            /*Player One = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Red);
             One.Buttons.Add(Key.D1, Action.Left);
             One.Buttons.Add(Key.Q, Action.Right);
             One.Buttons.Add(Key.D2, Action.Trigger);
@@ -75,7 +78,7 @@ namespace Zatacka.State
             Six.Buttons.Add(Key.NumPad6, Action.Left);
             Six.Buttons.Add(Key.NumPad9, Action.Right);
             Six.Buttons.Add(Key.Add, Action.Trigger);
-            this[State.Game].As<Game.Slayer>().Players.Add(Six);
+            this[State.Game].As<Game.Slayer>().Players.Add(Six);*/
             /* ---------- */
         }
 
