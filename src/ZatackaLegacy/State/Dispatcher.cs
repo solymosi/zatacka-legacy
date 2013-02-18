@@ -40,24 +40,42 @@ namespace Zatacka.State
             /* Temporary entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
+            
+            Player One = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Red);
+            One.Buttons.Add(Key.D1, Action.Left);
+            One.Buttons.Add(Key.Q, Action.Right);
+            One.Buttons.Add(Key.D2, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(One);
 
-            Player P = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Red);
-            P.Buttons.Add(Key.D1, Action.Left);
-            P.Buttons.Add(Key.Q, Action.Right);
-            P.Buttons.Add(Key.D2, Action.Trigger);
-            this[State.Game].As<Game.Slayer>().Players.Add(P);
+            Player Two = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Green);
+            Two.Buttons.Add(Key.M, Action.Left);
+            Two.Buttons.Add(Key.OemComma, Action.Right);
+            Two.Buttons.Add(Key.K, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Two);
 
-            Player Q = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Green);
-            Q.Buttons.Add(Key.M, Action.Left);
-            Q.Buttons.Add(Key.OemComma, Action.Right);
-            Q.Buttons.Add(Key.K, Action.Trigger);
-            this[State.Game].As<Game.Slayer>().Players.Add(Q);
+            Player Three = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Yellow);
+            Three.Buttons.Add(Key.Left, Action.Left);
+            Three.Buttons.Add(Key.Up, Action.Right);
+            Three.Buttons.Add(Key.Down, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Three);
 
-            Player R = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Yellow);
-            R.Buttons.Add(Key.Left, Action.Left);
-            R.Buttons.Add(Key.Up, Action.Right);
-            R.Buttons.Add(Key.Down, Action.Trigger);
-            this[State.Game].As<Game.Slayer>().Players.Add(R);
+            Player Four = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Blue);
+            Four.Buttons.Add(Key.Y, Action.Left);
+            Four.Buttons.Add(Key.X, Action.Right);
+            Four.Buttons.Add(Key.C, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Four);
+
+            Player Five = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Cyan);
+            Five.Buttons.Add(Key.D4, Action.Left);
+            Five.Buttons.Add(Key.D5, Action.Right);
+            Five.Buttons.Add(Key.R, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Five);
+
+            Player Six = new Player(this[State.Game].As<Game.Game>(), System.Windows.Media.Colors.Pink);
+            Six.Buttons.Add(Key.NumPad6, Action.Left);
+            Six.Buttons.Add(Key.NumPad9, Action.Right);
+            Six.Buttons.Add(Key.Add, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Six);
             /* ---------- */
         }
 
