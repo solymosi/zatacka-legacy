@@ -37,6 +37,13 @@ namespace Zatacka
         /// The player's score.
         /// </summary>
         public int Score { get; set; }
+        
+        /* BarnaBalu */
+        /// <summary>
+        /// If the player is alive.
+        /// </summary>
+        public bool IsAlive { get; set; }
+        /* -- BarnaBalu */
 
         /// <summary>
         /// Contains every Goodie the player has collected.
@@ -54,7 +61,13 @@ namespace Zatacka
             this.Color = Color;
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
+            /* BarnaBalu */
+            this.Score = 0;
+            this.IsAlive = true;
+            /* -- BarnaBalu */
         }
+
+ 
 
         /// <summary>
         /// Assigns a keyboard button to this Player and specified the action it performs.
