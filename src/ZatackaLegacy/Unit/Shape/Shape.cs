@@ -22,8 +22,11 @@ namespace Zatacka.Unit.Shape
             get { return _Geometry; }
             set
             {
-                _Geometry = value;
-                Draw();
+                if (_Geometry != value)
+                {
+                    _Geometry = value;
+                    Draw();
+                }
             }
         }
 
@@ -37,8 +40,11 @@ namespace Zatacka.Unit.Shape
             get { return _Fill; }
             set
             {
-                _Fill = value;
-                Draw();
+                if (_Fill != value)
+                {
+                    _Fill = value;
+                    Draw();
+                }
             }
         }
 
@@ -52,8 +58,11 @@ namespace Zatacka.Unit.Shape
             get { return _Pen; }
             set
             {
-                _Pen = value;
-                Draw();
+                if (_Pen != value)
+                {
+                    _Pen = value;
+                    Draw();
+                }
             }
         }
 
