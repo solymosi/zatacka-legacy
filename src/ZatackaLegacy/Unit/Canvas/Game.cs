@@ -29,19 +29,6 @@ namespace Zatacka.Unit.Canvas
             {
                 //throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
             }
-<<<<<<< HEAD
-            else
-            {
-
-                Collision.Result Result = null;
-                foreach (Unit U in Units)
-                {
-                    Result = CollisionsWith(U);
-                    if (Result.Any)
-                    {
-                        Collision(this, U, Result.Colliders, Result.Targets);
-                    }
-=======
 
             Collision.Result Result = null;
             List<Collision.Result> Collisions = new List<Collision.Result>();
@@ -55,36 +42,6 @@ namespace Zatacka.Unit.Canvas
 
                 Result = U.CollisionsWith(this);
                 if (Result.Any) { Collisions.Add(Result); }
->>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
-
-                    Result = U.CollisionsWith(this);
-                    if (Result.Any)
-                    {
-<<<<<<< HEAD
-                        Collision(U, this, Result.Colliders, Result.Targets);
-                    }
-
-                    foreach (Unit V in Units)
-                    {
-                        if (U != V || U.SelfCollision)
-                        {
-                            Result = U.CollisionsWith(V);
-                            if (Result.Any)
-                            {
-                                Collision(U, V, Result.Colliders, Result.Targets);
-                            }
-                        }
-                    }
-
-                    if (U is Game)
-                    {
-                        U.As<Game>().CheckCollisions();
-                    }
-=======
-                        Result = U.CollisionsWith(V);
-                        if (Result.Any) { Collisions.Add(Result); }
-                    }
-                }
             }
 
             foreach (Collision.Result R in Collisions)
@@ -97,7 +54,6 @@ namespace Zatacka.Unit.Canvas
                 if (Unit is Game && Unit.EnableCollisions)
                 {
                     Unit.As<Game>().CheckCollisions();
->>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
                 }
             }
         }
