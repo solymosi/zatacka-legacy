@@ -18,6 +18,11 @@ namespace Zatacka.Game
         public Zatacka.State.State<State> Manager { get; private set; }
         public Unit.Canvas.Game Arena { get; private set; }
 
+        public IEnumerable<Player> PlayersAlive
+        {
+            get { return Players.Where((Player P) => { return P.IsAlive; }); }
+        }
+
         public new Unit.Canvas.Game Canvas
         {
             get { return base.Canvas.As<Unit.Canvas.Game>(); }
@@ -86,6 +91,7 @@ namespace Zatacka.Game
         {
             foreach (Player P in Players)
             {
+                P.IsAlive = true;
                 P.CreateCurve();
             }
         }
