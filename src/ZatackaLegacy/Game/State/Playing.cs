@@ -70,6 +70,7 @@ namespace Zatacka.Game.State
 
             if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
             {
+                Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
                 Game.Manager.Change(Zatacka.Game.Game.State.End);
             }
             
