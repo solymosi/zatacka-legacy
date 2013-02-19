@@ -19,8 +19,7 @@ namespace Zatacka.Game.State
             if (!Game.Manager.Is(Zatacka.Game.Game.State.Playing)) { return; }
 
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
-            int maxScore = 0;
-            int maxSecondScore = 0;
+
             foreach (Player P in Game.Players)
             {
                 if (P.Curve == From)
@@ -33,20 +32,12 @@ namespace Zatacka.Game.State
                 {
                     if (P.Curve.IsAlive)
                     {
-                        P.Score += 1;//itt kéne beolvasni a Slayer-hez tartozó pontszámokat
-
+                        P.Score += 1; //itt kéne beolvasni a Slayer-hez tartozó pontszámokat
                     }
-                }
-                if (P.Score > maxScore)
-                {
-                    maxScore = P.Score;
-                }
-                if (P.Score > maxSecondScore && P.Score < maxScore)
-                {
-                    maxSecondScore = P.Score;
                 }
                 Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
             }
+
             if (Game.PlayersAlive.Count() == 1)
             {
                 foreach (Player P in Game.PlayersAlive)
@@ -58,6 +49,23 @@ namespace Zatacka.Game.State
                     }
                 }
             }
+
+            Player FirstPlayer = Game.Players.Aggregate(null, (Player M, Player P) => { return M == null || P.Score > M.Score ? P : M; });
+            Player SecondPlayer = Game.Players.Except(new Player[] { FirstPlayer }).Aggregate(null, (Player M, Player P) => { return M == null || P.Score > M.Score ? P : M; });
+
+            Game.Dispatcher.Log.Add("MaxScore: " + FirstPlayer.Score.ToString());
+            Game.Dispatcher.Log.Add("SecondScore: " + SecondPlayer.Score.ToString());
+
+            if (FirstPlayer.Score >= (Game.Players.Count * 3) && FirstPlayer.Score >= SecondPlayer.Score + 5)
+            {
+                foreach (Player P in Game.PlayersAlive)
+                {
+                    P.Curve.IsAlive = false;
+                }
+                Game.Manager.Change(Zatacka.Game.Game.State.End);
+                return;
+            }
+
             if (Game.PlayersAlive.Count() == 0)
             {
                 Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
@@ -66,14 +74,8 @@ namespace Zatacka.Game.State
                     Game.Dispatcher.Log.Add(P.Color + ": " + P.Score);
                 }
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
+                return;
             }
-
-            if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
-            {
-                Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
-                Game.Manager.Change(Zatacka.Game.Game.State.End);
-            }
-            
         }
 
         public override void Execute()
