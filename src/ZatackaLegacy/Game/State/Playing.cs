@@ -27,6 +27,7 @@ namespace Zatacka.Game.State
                 {
                     Game.Dispatcher.Log.Add("Bukta: " + P.Color);
                     P.IsAlive = false;
+                    P.Curve.EnableCollisions = false;
                 }
                 else
                 {

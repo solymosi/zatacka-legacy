@@ -27,39 +27,42 @@ namespace Zatacka.Unit.Canvas
         {
             if (!EnableCollisions)
             {
-                throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
+                //throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
             }
-
-            Collision.Result Result = null;
-            foreach (Unit U in Units)
+            else
             {
-                Result = CollisionsWith(U);
-                if (Result.Any)
-                {
-                    Collision(this, U, Result.Colliders, Result.Targets);
-                }
 
-                Result = U.CollisionsWith(this);
-                if (Result.Any)
+                Collision.Result Result = null;
+                foreach (Unit U in Units)
                 {
-                    Collision(U, this, Result.Colliders, Result.Targets);
-                }
-
-                foreach (Unit V in Units)
-                {
-                    if (U != V || U.SelfCollision)
+                    Result = CollisionsWith(U);
+                    if (Result.Any)
                     {
-                        Result = U.CollisionsWith(V);
-                        if (Result.Any)
+                        Collision(this, U, Result.Colliders, Result.Targets);
+                    }
+
+                    Result = U.CollisionsWith(this);
+                    if (Result.Any)
+                    {
+                        Collision(U, this, Result.Colliders, Result.Targets);
+                    }
+
+                    foreach (Unit V in Units)
+                    {
+                        if (U != V || U.SelfCollision)
                         {
-                            Collision(U, V, Result.Colliders, Result.Targets);
+                            Result = U.CollisionsWith(V);
+                            if (Result.Any)
+                            {
+                                Collision(U, V, Result.Colliders, Result.Targets);
+                            }
                         }
                     }
-                }
 
-                if (U is Game)
-                {
-                    U.As<Game>().CheckCollisions();
+                    if (U is Game)
+                    {
+                        U.As<Game>().CheckCollisions();
+                    }
                 }
             }
         }

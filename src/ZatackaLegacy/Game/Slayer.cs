@@ -10,21 +10,37 @@ namespace Zatacka.Game
     class Slayer : Game
     {
         /* BarnaBalu */
-        public int ScoreOtherPlayerDied { get; private set; }
-        public int ScoreRoundWin { get; private set; }
+        public int ScoreWhenOtherPlayerDie { get; private set; }
+        public int ScoreWhenWinTheRound { get; private set; }
         /* -- BarnaBalu */
         public Slayer(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
             /* BarnaBalu */
-            ScoreOtherPlayerDied = 1;
-            ScoreRoundWin = 2;
+            ScoreWhenOtherPlayerDie = 1;
+            ScoreWhenWinTheRound = 2;
             /* -- BarnaBalu */
         }
 
         protected override void Update()
         {
             
+        }
+        public void GetScoreWhenOtherPlayerDie(Player P)
+        {
+            P.Score += ScoreWhenOtherPlayerDie;
+        }
+        public void GetScoreWhenWinTheRound(Player P)
+        {
+            P.Score += ScoreWhenWinTheRound;
+        }
+
+        public bool IsOneOfThePlayerWonTheMatch(List<Player> Players, Player Player)
+        {
+            foreach (Player P in Players)
+            {
+            }
+            return false;
         }
     }
 }

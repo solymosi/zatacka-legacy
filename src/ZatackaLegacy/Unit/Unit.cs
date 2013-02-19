@@ -92,9 +92,8 @@ namespace Zatacka.Unit
         {
             if (!EnableCollisions)
             {
-                throw new InvalidOperationException("Collisions are not enabled for this Unit.");
+                //throw new InvalidOperationException("Collisions are not enabled for this Unit.");
             }
-
             Collision.Result Result = new Collision.Result(this, Unit);
 
             if (Unit.EnableCollisions)
@@ -111,7 +110,6 @@ namespace Zatacka.Unit
                     }
                 }
             }
-
             return Result;
         }
 
