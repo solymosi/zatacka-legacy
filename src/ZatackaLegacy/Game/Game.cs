@@ -48,6 +48,7 @@ namespace Zatacka.Game
             Arena = new Unit.Canvas.Game(this, new Size(Canvas.Size.Width - 250, Canvas.Size.Height));
             Arena.Background = new SolidColorBrush(Color.FromRgb(30, 30, 30));
             Arena.EnableCollisions = true;
+            Arena.Targets.Add(new Unit.Collision.Target(Arena, Arena.Bounds, true));
             Canvas.Add(Arena);
 
             Manager = new Zatacka.State.State<State>();

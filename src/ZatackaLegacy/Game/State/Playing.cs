@@ -16,6 +16,8 @@ namespace Zatacka.Game.State
 
         public void Collision(Unit.Unit From, Unit.Unit To, List<Unit.Collision.Target> Colliders, List<Unit.Collision.Target> Targets)
         {
+            if (!Game.Manager.Is(Zatacka.Game.Game.State.Playing)) { return; }
+
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
             /* BarnaBalu */
             int NumberOfAlivePlayers = 0;
@@ -52,7 +54,7 @@ namespace Zatacka.Game.State
             /* BarnaBalu */
             if (Game.PlayersAlive.Count() == 0)
             {
-                Game.Dispatcher.Log.Add("Final Score:");
+                Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
                 foreach (Player P in Game.Players)
                 {
                     Game.Dispatcher.Log.Add(P.Color + ": " + P.Score);
