@@ -29,6 +29,7 @@ namespace Zatacka.Unit.Canvas
             {
                 //throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
             }
+<<<<<<< HEAD
             else
             {
 
@@ -40,10 +41,26 @@ namespace Zatacka.Unit.Canvas
                     {
                         Collision(this, U, Result.Colliders, Result.Targets);
                     }
+=======
+
+            Collision.Result Result = null;
+            List<Collision.Result> Collisions = new List<Collision.Result>();
+
+            foreach (Unit U in Units)
+            {
+                if (!U.EnableCollisions) { continue; }
+
+                Result = CollisionsWith(U);
+                if (Result.Any) { Collisions.Add(Result); }
+
+                Result = U.CollisionsWith(this);
+                if (Result.Any) { Collisions.Add(Result); }
+>>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
 
                     Result = U.CollisionsWith(this);
                     if (Result.Any)
                     {
+<<<<<<< HEAD
                         Collision(U, this, Result.Colliders, Result.Targets);
                     }
 
@@ -63,6 +80,24 @@ namespace Zatacka.Unit.Canvas
                     {
                         U.As<Game>().CheckCollisions();
                     }
+=======
+                        Result = U.CollisionsWith(V);
+                        if (Result.Any) { Collisions.Add(Result); }
+                    }
+                }
+            }
+
+            foreach (Collision.Result R in Collisions)
+            {
+                Collision(R.From, R.To, R.Colliders, R.Targets);
+            }
+
+            foreach (Unit Unit in Units)
+            {
+                if (Unit is Game && Unit.EnableCollisions)
+                {
+                    Unit.As<Game>().CheckCollisions();
+>>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
                 }
             }
         }

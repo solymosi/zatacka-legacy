@@ -31,7 +31,7 @@ namespace Zatacka.Unit
         /// <summary>
         /// Contains Target instances other units use to determine whether they have a collision with this Unit. Used only when collisions are enabled.
         /// </summary>
-        public Collision.Field Targets { get; protected set; }
+        public HashSet<Collision.Target> Targets { get; protected set; }
 
         /// <summary>
         /// Contains Target instances this Unit uses to determine whether it has a collision with other units. Used only when collisions are enabled.
@@ -60,7 +60,7 @@ namespace Zatacka.Unit
             EnableCollisions = false;
             SelfCollision = false;
 
-            this.Targets = new Collision.Field(this);
+            this.Targets = new HashSet<Collision.Target>();
             this.Colliders = new HashSet<Collision.Target>();
         }
 
@@ -90,17 +90,20 @@ namespace Zatacka.Unit
         /// <param name="Unit">The other Unit to test collisions on.</param>
         public virtual Collision.Result CollisionsWith(Unit Unit)
         {
+<<<<<<< HEAD
             if (!EnableCollisions)
             {
                 //throw new InvalidOperationException("Collisions are not enabled for this Unit.");
             }
+=======
+>>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
             Collision.Result Result = new Collision.Result(this, Unit);
 
-            if (Unit.EnableCollisions)
+            if (EnableCollisions && Unit.EnableCollisions)
             {
                 foreach (Collision.Target Collider in Colliders)
                 {
-                    foreach (Collision.Target Target in Unit.Targets.Within(Collider.Geometry.Bounds))
+                    foreach (Collision.Target Target in Unit.TargetsWithin(Collider.Geometry.Bounds))
                     {
                         if (Collider.CollidesWith(Target))
                         {
@@ -111,6 +114,15 @@ namespace Zatacka.Unit
                 }
             }
             return Result;
+        }
+
+        /// <summary>
+        /// Returns all collision targets. Can be overloaded to return targets only within the specified bounds using a Field.
+        /// </summary>
+        /// <param name="Bounds">The rectangle used to determine which targets to return.</param>
+        protected virtual HashSet<Collision.Target> TargetsWithin(Rect Bounds)
+        {
+            return Targets;
         }
 
         /// <summary>

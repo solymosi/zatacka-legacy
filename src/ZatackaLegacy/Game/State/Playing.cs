@@ -8,22 +8,22 @@ namespace Zatacka.Game.State
 {
     class Playing : State
     {
-        public bool IsEveryBodyDead { get; private set; }/* BarnaBalu */
         public Playing(Zatacka.Game.Game Game)
             : base(Game)
         {
             Game.Arena.Collision += new Unit.Canvas.Game.CollisionEvent(Collision);
-            IsEveryBodyDead = false;/* BarnaBalu */
         }
 
         public void Collision(Unit.Unit From, Unit.Unit To, List<Unit.Collision.Target> Colliders, List<Unit.Collision.Target> Targets)
         {
+            if (!Game.Manager.Is(Zatacka.Game.Game.State.Playing)) { return; }
+
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
             /* BarnaBalu */
             int NumberOfAlivePlayers = 0;
             foreach (Player P in Game.Players)
             {
-                if (P.Curve == From && P.IsAlive == true)
+                if (P.Curve == From)
                 {
                     Game.Dispatcher.Log.Add("Bukta: " + P.Color);
                     P.IsAlive = false;
@@ -31,7 +31,7 @@ namespace Zatacka.Game.State
                 }
                 else
                 {
-                    if (P.IsAlive == true)
+                    if (P.IsAlive)
                     {
                         P.Score += 1;//itt kéne beolvasni a Slayer-hez tartozó pontszámokat
                         NumberOfAlivePlayers += 1;
@@ -43,34 +43,18 @@ namespace Zatacka.Game.State
             {
                 foreach (Player P in Game.Players)
                 {
-                    if (P.IsAlive == true)
+                    if (P.IsAlive)
                     {
                         P.Score += 2;
                         P.IsAlive = false;
-                        IsEveryBodyDead = true;
                     }
                 }
-                
-            }
-            /* -- BarnaBalu */
-        }
 
-        public override void Execute()
-        {
-            foreach (Player P in Game.Players)
-            {
-                /* BarnaBalu if köret */
-                if(P.IsAlive == true)
-                    P.Curve.Advance();
             }
             /* BarnaBalu */
-            if (IsEveryBodyDead == false)
+            if (Game.PlayersAlive.Count() == 0)
             {
-                Game.Arena.CheckCollisions();//eredeti
-            }
-            else
-            {
-                Game.Dispatcher.Log.Add("Final Score:");
+                Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
                 foreach (Player P in Game.Players)
                 {
                     Game.Dispatcher.Log.Add(P.Color + ": " + P.Score);
@@ -78,6 +62,16 @@ namespace Zatacka.Game.State
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
             }
             /* -- BarnaBalu */
+        }
+
+        public override void Execute()
+        {
+            foreach (Player P in Game.PlayersAlive)
+            {
+                P.Curve.Advance();
+            }
+
+            Game.Arena.CheckCollisions();
         }
 
         public override void Input(Key Button)
