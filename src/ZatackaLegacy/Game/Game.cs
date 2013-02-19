@@ -17,7 +17,7 @@ namespace Zatacka.Game
         public List<Player> Players { get; private set; }
         public Zatacka.State.State<State> Manager { get; private set; }
         public Unit.Canvas.Game Arena { get; private set; }        
-        public Dictionary<string, Unit.Text> ScoreText { get; private set; }
+        public Dictionary<string, Unit.Text> ScoreLabels { get; private set; }
 
          public IEnumerable<Player> PlayersAlive
         {
@@ -40,6 +40,7 @@ namespace Zatacka.Game
             MovementSpeed = 3;
 
             Players = new List<Player>();
+            ScoreLabels = new Dictionary<string, Unit.Text>();
         }
 
         public override void Enter()
@@ -52,16 +53,11 @@ namespace Zatacka.Game
             Arena.Targets.Add(new Unit.Collision.Target(Arena, Arena.Bounds, true));
             Canvas.Add(Arena);
 
-            ScoreText = new Dictionary<string, Unit.Text>();
-            int i = 0;
-            
-            foreach (Zatacka.Player P in this.Players)
+            for (int i = 0; i < Players.Count; i++)
             {
-                i++;
-                
-                ScoreText.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30,new SolidColorBrush(P.Color), new Point(Canvas.Size.Width - 250, i * 30)));
-                Canvas.Add(ScoreText[P.Name]);
-                Dispatcher.Log.Add(P.Name + " : " + P.Score+" "+i);
+                Player P = Players[i];
+                ScoreLabels.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30, new SolidColorBrush(P.Color), new Point(Canvas.Size.Width - 250, i * 30)));
+                Canvas.Add(ScoreLabels[P.Name]);
             }
 
             Manager = new Zatacka.State.State<State>();
@@ -81,19 +77,15 @@ namespace Zatacka.Game
             base.Execute();
             this.Input();
             Manager.Execute();
-            string Score;
             
             foreach (Zatacka.Player P in this.Players)
             {
-                Score = P.Name + " : " + P.Score.ToString();
-                if (Score!=ScoreText[P.Name].Label )
+                string Score = P.Name + " : " + P.Score.ToString();
+                if (Score != ScoreLabels[P.Name].Label)
                 {
-                    ScoreText[P.Name].Label = Score;
+                    ScoreLabels[P.Name].Label = Score;
                 }
-               // Dispatcher.Log.Add(P.Name + " : " + P.Score);
             }
-
-            
         }
 
         public void Input()
