@@ -108,7 +108,6 @@ namespace Zatacka.Game
             {
                 P.CreateCurve();
                 P.Curve.IsAlive = true;
-                P.Score = 0;/* BarnaBalu */
             }
         }
         /* BarnaBalu
