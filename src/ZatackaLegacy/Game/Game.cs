@@ -16,9 +16,10 @@ namespace Zatacka.Game
         public double MovementSpeed { get; protected set; }
         public List<Player> Players { get; private set; }
         public Zatacka.State.State<State> Manager { get; private set; }
-        public Unit.Canvas.Game Arena { get; private set; }
+        public Unit.Canvas.Game Arena { get; private set; }        
+        public Dictionary<string, Unit.Text> ScoreText { get; private set; }
 
-        public IEnumerable<Player> PlayersAlive
+         public IEnumerable<Player> PlayersAlive
         {
             get { return Players.Where((Player P) => { return P.IsAlive; }); }
         }
@@ -51,6 +52,18 @@ namespace Zatacka.Game
             Arena.Targets.Add(new Unit.Collision.Target(Arena, Arena.Bounds, true));
             Canvas.Add(Arena);
 
+            ScoreText = new Dictionary<string, Unit.Text>();
+            int i = 0;
+            
+            foreach (Zatacka.Player P in this.Players)
+            {
+                i++;
+                
+                ScoreText.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30,new SolidColorBrush(P.Color), new Point(Canvas.Size.Width - 250, i * 30)));
+                Canvas.Add(ScoreText[P.Name]);
+                Dispatcher.Log.Add(P.Name + " : " + P.Score+" "+i);
+            }
+
             Manager = new Zatacka.State.State<State>();
 
             Manager.Add(State.Playing, new Zatacka.Game.State.Playing(this));
@@ -68,6 +81,19 @@ namespace Zatacka.Game
             base.Execute();
             this.Input();
             Manager.Execute();
+            string Score;
+            
+            foreach (Zatacka.Player P in this.Players)
+            {
+                Score = P.Name + " : " + P.Score.ToString();
+                if (Score!=ScoreText[P.Name].Label )
+                {
+                    ScoreText[P.Name].Label = Score;
+                }
+               // Dispatcher.Log.Add(P.Name + " : " + P.Score);
+            }
+
+            
         }
 
         public void Input()

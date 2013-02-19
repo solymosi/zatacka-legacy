@@ -8,6 +8,8 @@ namespace Zatacka.Game.State
 {
     class Playing : State
     {
+        public Unit.Text ScoreText { get; set; }
+
         public Playing(Zatacka.Game.Game Game)
             : base(Game)
         {
@@ -35,9 +37,12 @@ namespace Zatacka.Game.State
                     {
                         P.Score += 1;//itt kéne beolvasni a Slayer-hez tartozó pontszámokat
                         NumberOfAlivePlayers += 1;
+                        
                     }
                 }
-                Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
+                //Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
+               
+                
             }
             if (NumberOfAlivePlayers == 1)
             {
