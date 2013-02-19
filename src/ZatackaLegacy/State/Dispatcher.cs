@@ -41,7 +41,7 @@ namespace Zatacka.State
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
 
-            Player P = new Player(this[State.Game].As<Game.Game>(), "Player 1",System.Windows.Media.Colors.Red);
+            Player P = new Player(this[State.Game].As<Game.Game>(), "Player 1", System.Windows.Media.Colors.Red);
             P.Buttons.Add(Key.D1, Action.Left);
             P.Buttons.Add(Key.Q, Action.Right);
             P.Buttons.Add(Key.D2, Action.Trigger);

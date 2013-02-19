@@ -77,14 +77,10 @@ namespace Zatacka.Game
             base.Execute();
             this.Input();
             Manager.Execute();
-            
+
             foreach (Zatacka.Player P in this.Players)
             {
-                string Score = P.Name + " : " + P.Score.ToString();
-                if (Score != ScoreLabels[P.Name].Label)
-                {
-                    ScoreLabels[P.Name].Label = Score;
-                }
+                ScoreLabels[P.Name].Label = P.Name + " : " + P.Score.ToString();
             }
         }
 
