@@ -90,7 +90,7 @@ namespace Zatacka.Unit.Game.Curve
 
         protected void Add(Target Target)
         {
-            Targets.Add(Target);
+            Field.Add(Target);
             Colliders.Clear();
             Colliders.Add(Target);
             this.Target = Target;
