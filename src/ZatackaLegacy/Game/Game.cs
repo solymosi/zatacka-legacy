@@ -20,7 +20,7 @@ namespace Zatacka.Game
 
         public IEnumerable<Player> PlayersAlive
         {
-            get { return Players.Where((Player P) => { return P.IsAlive; }); }
+            get { return Players.Where((Player P) => { return P.Curve.IsAlive; }); }
         }
 
         public new Unit.Canvas.Game Canvas
@@ -92,10 +92,13 @@ namespace Zatacka.Game
         {
             foreach (Player P in Players)
             {
-                P.IsAlive = true;
                 P.CreateCurve();
+                P.Curve.IsAlive = true;
+                P.Score = 0;/* BarnaBalu */
             }
         }
+
+        abstract protected void Score(Player P);
 
         public enum State
         {

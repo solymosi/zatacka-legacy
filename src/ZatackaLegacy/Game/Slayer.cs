@@ -26,6 +26,11 @@ namespace Zatacka.Game
         {
             
         }
+
+        protected override void Score(Player P)
+        {
+
+        }
         public void GetScoreWhenOtherPlayerDie(Player P)
         {
             P.Score += ScoreWhenOtherPlayerDie;

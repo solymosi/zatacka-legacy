@@ -42,13 +42,6 @@ namespace Zatacka
         /// The player's score.
         /// </summary>
         public int Score { get; set; }
-        
-        /* BarnaBalu */
-        /// <summary>
-        /// If the player is alive.
-        /// </summary>
-        public bool IsAlive { get; set; }
-        /* -- BarnaBalu */
 
         /// <summary>
         /// Contains every Goodie the player has collected.
@@ -69,7 +62,6 @@ namespace Zatacka
             this.Goodies = new List<Goodie.Goodie>();
             /* BarnaBalu */
             this.Score = 0;
-            this.IsAlive = true;
             /* -- BarnaBalu */
         }
 

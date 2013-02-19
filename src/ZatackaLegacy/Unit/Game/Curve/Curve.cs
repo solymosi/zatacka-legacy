@@ -19,6 +19,13 @@ namespace Zatacka.Unit.Game.Curve
         public List<Bit> Bits { get; private set; }
         /* public int BitLength { get; private set; } */
 
+        /* BarnaBalu */
+        /// <summary>
+        /// If the curve is alive.
+        /// </summary>
+        public bool IsAlive { get; set; }
+        /* -- BarnaBalu */
+
         public Target Target { get; private set; }
         public Collision.Field Field { get; private set; } 
 

@@ -19,39 +19,35 @@ namespace Zatacka.Game.State
             if (!Game.Manager.Is(Zatacka.Game.Game.State.Playing)) { return; }
 
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
-            /* BarnaBalu */
-            int NumberOfAlivePlayers = 0;
             foreach (Player P in Game.Players)
             {
                 if (P.Curve == From)
                 {
                     Game.Dispatcher.Log.Add("Bukta: " + P.Color);
-                    P.IsAlive = false;
+                    P.Curve.IsAlive = false;
                     P.Curve.EnableCollisions = false;
                 }
                 else
                 {
-                    if (P.IsAlive)
+                    if (P.Curve.IsAlive)
                     {
                         P.Score += 1;//itt kéne beolvasni a Slayer-hez tartozó pontszámokat
-                        NumberOfAlivePlayers += 1;
                     }
                 }
                 Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
             }
-            if (NumberOfAlivePlayers == 1)
+            if (Game.PlayersAlive.Count() == 1)
             {
-                foreach (Player P in Game.Players)
+                foreach (Player P in Game.PlayersAlive)
                 {
-                    if (P.IsAlive)
+                    if (P.Curve.IsAlive)
                     {
                         P.Score += 2;
-                        P.IsAlive = false;
+                        P.Curve.IsAlive = false;
                     }
                 }
 
             }
-            /* BarnaBalu */
             if (Game.PlayersAlive.Count() == 0)
             {
                 Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
@@ -61,7 +57,6 @@ namespace Zatacka.Game.State
                 }
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
             }
-            /* -- BarnaBalu */
         }
 
         public override void Execute()
@@ -70,7 +65,6 @@ namespace Zatacka.Game.State
             {
                 P.Curve.Advance();
             }
-
             Game.Arena.CheckCollisions();
         }
 

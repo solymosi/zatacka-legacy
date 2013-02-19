@@ -90,13 +90,10 @@ namespace Zatacka.Unit
         /// <param name="Unit">The other Unit to test collisions on.</param>
         public virtual Collision.Result CollisionsWith(Unit Unit)
         {
-<<<<<<< HEAD
             if (!EnableCollisions)
             {
                 //throw new InvalidOperationException("Collisions are not enabled for this Unit.");
             }
-=======
->>>>>>> de6cc0ad03c6671a1ef6a465f8b37e2c2c550487
             Collision.Result Result = new Collision.Result(this, Unit);
 
             if (EnableCollisions && Unit.EnableCollisions)
