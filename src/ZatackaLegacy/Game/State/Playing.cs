@@ -19,6 +19,8 @@ namespace Zatacka.Game.State
             if (!Game.Manager.Is(Zatacka.Game.Game.State.Playing)) { return; }
 
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
+            int maxScore = 0;
+            int maxSecondScore = 0;
             foreach (Player P in Game.Players)
             {
                 if (P.Curve == From)
@@ -32,7 +34,16 @@ namespace Zatacka.Game.State
                     if (P.Curve.IsAlive)
                     {
                         P.Score += 1;//itt kéne beolvasni a Slayer-hez tartozó pontszámokat
+
                     }
+                }
+                if (P.Score > maxScore)
+                {
+                    maxScore = P.Score;
+                }
+                if (P.Score > maxSecondScore && P.Score < maxScore)
+                {
+                    maxSecondScore = P.Score;
                 }
                 Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
             }
@@ -46,7 +57,6 @@ namespace Zatacka.Game.State
                         P.Curve.IsAlive = false;
                     }
                 }
-
             }
             if (Game.PlayersAlive.Count() == 0)
             {
@@ -57,6 +67,12 @@ namespace Zatacka.Game.State
                 }
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
             }
+
+            if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
+            {
+                Game.Manager.Change(Zatacka.Game.Game.State.End);
+            }
+            
         }
 
         public override void Execute()
