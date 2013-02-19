@@ -26,11 +26,12 @@ namespace Zatacka.Game
         {
             
         }
-
+        /* BarnaBalu
         protected override void Score(Player P)
         {
 
         }
+         * */
         public void GetScoreWhenOtherPlayerDie(Player P)
         {
             P.Score += ScoreWhenOtherPlayerDie;

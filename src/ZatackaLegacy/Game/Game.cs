@@ -111,9 +111,9 @@ namespace Zatacka.Game
                 P.Score = 0;/* BarnaBalu */
             }
         }
-
+        /* BarnaBalu
         abstract protected void Score(Player P);
-
+        */
         public enum State
         {
             Start = 1,
