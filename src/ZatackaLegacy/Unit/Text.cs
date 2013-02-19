@@ -76,8 +76,12 @@ namespace Zatacka.Unit
             get { return _Label; }
             set
             {
-                _Label = value == null ? "" : value;
-                Draw();
+                string L = value == null ? "" : value;
+                if (_Label != L)
+                {
+                    _Label = L;
+                    Draw();
+                }
             }
         }
 
@@ -91,8 +95,11 @@ namespace Zatacka.Unit
             get { return _FontFamily; }
             set
             {
-                _FontFamily = value;
-                Draw();
+                if (_FontFamily != value)
+                {
+                    _FontFamily = value;
+                    Draw();
+                }
             }
         }
 
@@ -106,8 +113,11 @@ namespace Zatacka.Unit
             get { return _FontSize; }
             set
             {
-                _FontSize = value;
-                Draw();
+                if (_FontSize != value)
+                {
+                    _FontSize = value;
+                    Draw();
+                }
             }
         }
 
@@ -121,8 +131,11 @@ namespace Zatacka.Unit
             get { return _FontWeight; }
             set
             {
-                _FontWeight = value;
-                Draw();
+                if (_FontWeight != value)
+                {
+                    _FontWeight = value;
+                    Draw();
+                }
             }
         }
 
@@ -136,8 +149,11 @@ namespace Zatacka.Unit
             get { return _FontStyle; }
             set
             {
-                _FontStyle = value;
-                Draw();
+                if (_FontStyle != value)
+                {
+                    _FontStyle = value;
+                    Draw();
+                }
             }
         }
 
@@ -151,8 +167,11 @@ namespace Zatacka.Unit
             get { return _Fill; }
             set
             {
-                _Fill = value;
-                Draw();
+                if (_Fill != value)
+                {
+                    _Fill = value;
+                    Draw();
+                }
             }
         }
 
@@ -166,8 +185,11 @@ namespace Zatacka.Unit
             get { return _Location; }
             set
             {
-                _Location = value;
-                Draw();
+                if (_Location != value)
+                {
+                    _Location = value;
+                    Draw();
+                }
             }
         }
 
@@ -181,8 +203,11 @@ namespace Zatacka.Unit
             get { return _Size; }
             set
             {
-                _Size = value;
-                Draw();
+                if (_Size != value)
+                {
+                    _Size = value;
+                    Draw();
+                }
             }
         }
 
@@ -196,8 +221,11 @@ namespace Zatacka.Unit
             get { return _LineHeight; }
             set
             {
-                _LineHeight = value;
-                Draw();
+                if (_LineHeight != value)
+                {
+                    _LineHeight = value;
+                    Draw();
+                }
             }
         }
 
@@ -211,8 +239,11 @@ namespace Zatacka.Unit
             get { return _TextAlignment; }
             set
             {
-                _TextAlignment = value;
-                Draw();
+                if (_TextAlignment != value)
+                {
+                    _TextAlignment = value;
+                    Draw();
+                }
             }
         }
 
@@ -226,8 +257,11 @@ namespace Zatacka.Unit
             get { return _Overflow; }
             set
             {
-                _Overflow = value;
-                Draw();
+                if (_Overflow != value)
+                {
+                    _Overflow = value;
+                    Draw();
+                }
             }
         }
 
