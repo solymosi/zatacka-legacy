@@ -20,6 +20,7 @@ namespace Zatacka.Unit.Game.Curve
         /* public int BitLength { get; private set; } */
 
         public Target Target { get; private set; }
+        public Collision.Field Field { get; private set; } 
 
         public int GapSize { get; private set; }
         public int GapDistance { get; private set; }
@@ -48,6 +49,7 @@ namespace Zatacka.Unit.Game.Curve
             : base(Canvas)
         {
             this.Bits = new List<Bit>();
+            this.Field = new Collision.Field(this);
             this.Heading = Heading;
             this.Color = Color;
             this.Fill = new SolidColorBrush(Color);
@@ -62,6 +64,11 @@ namespace Zatacka.Unit.Game.Curve
             EnableCollisions = true;
             SelfCollision = true;
             Add(new Target(this, Location, Game.CurveRadius, null));
+        }
+
+        protected override HashSet<Collision.Target> TargetsWithin(Rect Bounds)
+        {
+            return Field.Within(Bounds);
         }
 
         protected void Add(Bit Bit)
