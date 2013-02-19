@@ -27,7 +27,7 @@ namespace Zatacka.Unit.Canvas
         {
             if (!EnableCollisions)
             {
-                //throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
+                throw new InvalidOperationException("Collisions are not enabled for this Canvas.");
             }
 
             Collision.Result Result = null;
@@ -42,6 +42,15 @@ namespace Zatacka.Unit.Canvas
 
                 Result = U.CollisionsWith(this);
                 if (Result.Any) { Collisions.Add(Result); }
+
+                foreach (Unit V in Units)
+                {
+                    if (U != V || U.SelfCollision)
+                    {
+                        Result = U.CollisionsWith(V);
+                        if (Result.Any) { Collisions.Add(Result); }
+                    }
+                }
             }
 
             foreach (Collision.Result R in Collisions)
