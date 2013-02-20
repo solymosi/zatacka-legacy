@@ -56,16 +56,11 @@ namespace Zatacka
         public Player(Game.Game Game,string Name,Color Color)
         {
             this.Game = Game;
-            this.Name = Name;
             this.Color = Color;
+            this.Name = Name;
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
-            /* BarnaBalu */
-            this.Score = 0;
-            /* -- BarnaBalu */
         }
-
- 
 
         /// <summary>
         /// Assigns a keyboard button to this Player and specified the action it performs.
@@ -77,6 +72,9 @@ namespace Zatacka
             Buttons.Add(Button, Action);
         }
 
+        /// <summary>
+        /// Checks whether any of the buttons assigned to this Player are currently pressed and calls Game.Input with the corresponding Action values.
+        /// </summary>
         public void Input()
         {
             foreach (KeyValuePair<Key, Action> Item in Buttons)
@@ -88,6 +86,9 @@ namespace Zatacka
             }
         }
 
+        /// <summary>
+        /// Creates the Curve of this Player and places it on the game arena.
+        /// </summary>
         public void CreateCurve()
         {
             if (Curve != null)
