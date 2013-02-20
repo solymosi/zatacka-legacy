@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace Zatacka.Unit.Game
 {
-    class Panel : Canvas.Game
+    class Panel : Canvas.Screen
     {
         public Panel(Zatacka.Game.Game Game)
             : base(Game, Game.Arena.Size)

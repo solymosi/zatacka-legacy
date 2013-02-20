@@ -31,35 +31,38 @@ namespace Zatacka.Unit.Canvas
             }
 
             Collision.Result Result = null;
+            List<Collision.Result> Collisions = new List<Collision.Result>();
+
             foreach (Unit U in Units)
             {
+                if (!U.EnableCollisions) { continue; }
+
                 Result = CollisionsWith(U);
-                if (Result.Any)
-                {
-                    Collision(this, U, Result.Colliders, Result.Targets);
-                }
+                if (Result.Any) { Collisions.Add(Result); }
 
                 Result = U.CollisionsWith(this);
-                if (Result.Any)
-                {
-                    Collision(U, this, Result.Colliders, Result.Targets);
-                }
+                if (Result.Any) { Collisions.Add(Result); }
 
                 foreach (Unit V in Units)
                 {
                     if (U != V || U.SelfCollision)
                     {
                         Result = U.CollisionsWith(V);
-                        if (Result.Any)
-                        {
-                            Collision(U, V, Result.Colliders, Result.Targets);
-                        }
+                        if (Result.Any) { Collisions.Add(Result); }
                     }
                 }
+            }
 
-                if (U is Game)
+            foreach (Collision.Result R in Collisions)
+            {
+                Collision(R.From, R.To, R.Colliders, R.Targets);
+            }
+
+            foreach (Unit Unit in Units)
+            {
+                if (Unit is Game && Unit.EnableCollisions)
                 {
-                    U.As<Game>().CheckCollisions();
+                    Unit.As<Game>().CheckCollisions();
                 }
             }
         }

@@ -41,6 +41,7 @@ namespace Zatacka.State
             /* Temporary entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
             Add(State.Game, new Game.Slayer(this));
+<<<<<<< HEAD
             //Add(State.Game, Game); - error
 
 
@@ -79,6 +80,26 @@ namespace Zatacka.State
             Six.Buttons.Add(Key.NumPad9, Action.Right);
             Six.Buttons.Add(Key.Add, Action.Trigger);
             this[State.Game].As<Game.Slayer>().Players.Add(Six);*/
+=======
+
+            Player P = new Player(this[State.Game].As<Game.Game>(), "Player 1", System.Windows.Media.Colors.Red);
+            P.Buttons.Add(Key.D1, Action.Left);
+            P.Buttons.Add(Key.Q, Action.Right);
+            P.Buttons.Add(Key.D2, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(P);
+
+            Player Q = new Player(this[State.Game].As<Game.Game>(), "Player 2", System.Windows.Media.Colors.Green);
+            Q.Buttons.Add(Key.M, Action.Left);
+            Q.Buttons.Add(Key.OemComma, Action.Right);
+            Q.Buttons.Add(Key.K, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(Q);
+
+            Player R = new Player(this[State.Game].As<Game.Game>(), "Player 3", System.Windows.Media.Colors.Yellow);
+            R.Buttons.Add(Key.Left, Action.Left);
+            R.Buttons.Add(Key.Up, Action.Right);
+            R.Buttons.Add(Key.Down, Action.Trigger);
+            this[State.Game].As<Game.Slayer>().Players.Add(R);
+>>>>>>> 8010fdced13fb431e16284ac9167a740c6cf1ac0
             /* ---------- */
         }
 

@@ -34,6 +34,11 @@ namespace Zatacka
         public Dictionary<Key, Action> Buttons { get; private set; }
 
         /// <summary>
+        /// The player's name.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// The player's score.
         /// </summary>
         public int Score { get; set; }
@@ -48,13 +53,19 @@ namespace Zatacka
         /// </summary>
         /// <param name="Game">The Game instance this Player will belong to.</param>
         /// <param name="Color">The color of this Player and its curve.</param>
-        public Player(Game.Game Game, Color Color)
+        public Player(Game.Game Game,string Name,Color Color)
         {
             this.Game = Game;
+            this.Name = Name;
             this.Color = Color;
             this.Buttons = new Dictionary<Key, Action>();
             this.Goodies = new List<Goodie.Goodie>();
+            /* BarnaBalu */
+            this.Score = 0;
+            /* -- BarnaBalu */
         }
+
+ 
 
         /// <summary>
         /// Assigns a keyboard button to this Player and specified the action it performs.

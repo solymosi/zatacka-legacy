@@ -11,12 +11,36 @@ namespace Zatacka.Unit.Game.Curve
     class Curve : Unit
     {
         public double Heading { get; private set; }
+
         public Color Color { get; private set; }
         public Brush Fill { get; private set; }
+
         public Bit Bit { get; private set; }
         public List<Bit> Bits { get; private set; }
-        public int BitLength { get; private set; }
+        /* public int BitLength { get; private set; } */
+
+        /* BarnaBalu */
+        /// <summary>
+        /// If the curve is alive.
+        /// </summary>
+        public bool IsAlive { get; set; }
+        /* -- BarnaBalu */
+
         public Target Target { get; private set; }
+        public Collision.Field Field { get; private set; } 
+
+        public int GapSize { get; private set; }
+        public int GapDistance { get; private set; }
+
+        public int GapPeriod
+        {
+            get { return (int)(Time % (long)GapDistance); }
+        }
+
+        public bool Gap
+        {
+            get { return GapPeriod >= GapDistance - GapSize; }
+        }
 
         public Zatacka.Game.Game Game
         {
@@ -32,18 +56,26 @@ namespace Zatacka.Unit.Game.Curve
             : base(Canvas)
         {
             this.Bits = new List<Bit>();
+            this.Field = new Collision.Field(this);
             this.Heading = Heading;
             this.Color = Color;
             this.Fill = new SolidColorBrush(Color);
             this.Fill.Freeze();
+            this.GapSize = 6;
+            this.GapDistance = 150;
 
-            BitLength = 100;
-            Add(new Bit(this));
+            /* BitLength = 100; */
+            Add(new Bit(this, false));
             Add(Location);
 
             EnableCollisions = true;
             SelfCollision = true;
             Add(new Target(this, Location, Game.CurveRadius, null));
+        }
+
+        protected override HashSet<Collision.Target> TargetsWithin(Rect Bounds)
+        {
+            return Field.Within(Bounds);
         }
 
         protected void Add(Bit Bit)
@@ -55,9 +87,9 @@ namespace Zatacka.Unit.Game.Curve
 
         protected void Add(Point Location)
         {
-            if (Bit.Points.Count >= BitLength)
+            if (Gap ^ Bit.Gap)
             {
-                Add(new Bit(this));
+                Add(new Bit(this, Gap));
             }
 
             Bit.Add(Location);
@@ -65,7 +97,7 @@ namespace Zatacka.Unit.Game.Curve
 
         protected void Add(Target Target)
         {
-            Targets.Add(Target);
+            Field.Add(Target);
             Colliders.Clear();
             Colliders.Add(Target);
             this.Target = Target;
@@ -101,15 +133,16 @@ namespace Zatacka.Unit.Game.Curve
             Point Next = new Point(Head.X + X, Head.Y + Y);
             Add(Next);
 
-            if (Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
+            if (!Gap && Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
                 Add(new Target(this, Next, Game.CurveRadius, Target));
-                DrawingVisual V = new DrawingVisual();
+
+                /*DrawingVisual V = new DrawingVisual();
                 using (DrawingContext C = V.RenderOpen())
                 {
                     C.DrawEllipse(Brushes.Yellow, null, Next, 1, 1);
                 }
-                this.Children.Add(V);
+                this.Children.Add(V);*/
             }
         }
     }
