@@ -20,9 +20,6 @@ namespace Zatacka.Game.State
 
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
 
-            Player.Player FirstPlayer = null;
-            Player.Player SecondPlayer = null;
-
             foreach (Player.Player P in Game.Players)
             {
                 if (P.Curve == From)
@@ -53,31 +50,30 @@ namespace Zatacka.Game.State
                 }
             }
 
-
+            Player.Player FirstPlayer = null;
+            Player.Player SecondPlayer = null;
 
             foreach (Player.Player P in Game.Players)
             {
-                if (P.Score > maxScore)
+                if (FirstPlayer == null || P.Score > FirstPlayer.Score)
                 {
-                    maxScore = P.Score;
                     FirstPlayer = P;
                 }
             }
             foreach (Player.Player P in Game.Players)
             {
-                if (P.Score > maxSecondScore && P != FirstPlayer)
+                if (SecondPlayer == null || (P.Score > SecondPlayer.Score && P != FirstPlayer))
                 {
-                    maxSecondScore = P.Score;
                     SecondPlayer = P;
                 }
             }
-            if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
+            if (FirstPlayer.Score >= (Game.Players.Count * 10) && (SecondPlayer.Score + 2) <= FirstPlayer.Score)
             {
                 foreach (Player.Player P in Game.Players)
                 {
                     P.Curve.IsAlive = false;
                 }
-                //Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
+
                 Game.Manager.Change(Zatacka.Game.Game.State.End);
                 return;
             }
