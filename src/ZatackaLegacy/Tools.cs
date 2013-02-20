@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace Zatacka
 {
@@ -120,6 +121,24 @@ namespace Zatacka
             Action.Invoke();
             Timer.Stop();
             return Timer.ElapsedMilliseconds;
+        }
+
+        /// <summary>
+        /// Returns whether the specified keyboard button is currently pressed.
+        /// </summary>
+        /// <param name="Button">The keyboard button to test.</param>
+        static public bool KeyboardPressed(Key Button)
+        {
+            return Keyboard.IsKeyDown(Button);
+        }
+
+        /// <summary>
+        /// Returns whether the specified mouse button is currently pressed.
+        /// </summary>
+        /// <param name="Button">The mouse button to test.</param>
+        static public bool MousePressed(MouseButton Button)
+        {
+            return Button == MouseButton.Left && Mouse.LeftButton == MouseButtonState.Pressed || Button == MouseButton.Middle && Mouse.MiddleButton == MouseButtonState.Pressed || Button == MouseButton.Right && Mouse.RightButton == MouseButtonState.Pressed || Button == MouseButton.XButton1 && Mouse.XButton1 == MouseButtonState.Pressed || Button == MouseButton.XButton2 && Mouse.XButton2 == MouseButtonState.Pressed;
         }
     }
 }

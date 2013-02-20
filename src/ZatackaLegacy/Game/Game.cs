@@ -14,14 +14,14 @@ namespace Zatacka.Game
         public double CurveRadius { get; protected set; }
         public double SteeringSensitivity { get; protected set; }
         public double MovementSpeed { get; protected set; }
-        public List<Player> Players { get; private set; }
+        public List<Player.Player> Players { get; private set; }
         public Zatacka.State.State<State> Manager { get; private set; }
         public Unit.Canvas.Game Arena { get; private set; }        
         public Dictionary<string, Unit.Text> ScoreLabels { get; private set; }
 
-         public IEnumerable<Player> PlayersAlive
+         public IEnumerable<Player.Player> PlayersAlive
         {
-            get { return Players.Where((Player P) => { return P.Curve.IsAlive; }); }
+            get { return Players.Where((Player.Player P) => { return P.Curve.IsAlive; }); }
         }
 
         public new Unit.Canvas.Game Canvas
@@ -39,7 +39,7 @@ namespace Zatacka.Game
             SteeringSensitivity = 5;
             MovementSpeed = 3;
 
-            Players = new List<Player>();
+            Players = new List<Player.Player>();
             ScoreLabels = new Dictionary<string, Unit.Text>();
         }
 
@@ -55,7 +55,7 @@ namespace Zatacka.Game
 
             for (int i = 0; i < Players.Count; i++)
             {
-                Player P = Players[i];
+                Player.Player P = Players[i];
                 ScoreLabels.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30, new SolidColorBrush(P.Color), new Point(Canvas.Size.Width - 250, i * 30)));
                 Canvas.Add(ScoreLabels[P.Name]);
             }
@@ -78,7 +78,7 @@ namespace Zatacka.Game
             this.Input();
             Manager.Execute();
 
-            foreach (Zatacka.Player P in this.Players)
+            foreach (Player.Player P in this.Players)
             {
                 ScoreLabels[P.Name].Label = P.Name + " : " + P.Score.ToString();
             }
@@ -86,7 +86,7 @@ namespace Zatacka.Game
 
         public void Input()
         {
-            foreach (Player Player in Players)
+            foreach (Player.Player Player in Players)
             {
                 Player.Input();
             }
@@ -97,14 +97,14 @@ namespace Zatacka.Game
             Manager.Current.As<Zatacka.Game.State.State>().Input(Button);
         }
 
-        public void Input(Player Player, Action Action)
+        public void Input(Player.Player Player, Player.Action Action)
         {
             Manager.Current.As<Zatacka.Game.State.State>().Input(Player, Action);
         }
 
         public void NextRound()
         {
-            foreach (Player P in Players)
+            foreach (Player.Player P in Players)
             {
                 P.CreateCurve();
                 P.Curve.IsAlive = true;

@@ -13,9 +13,9 @@ namespace Zatacka.Menu
 
         List<string> Actions = new List<string>();
         List<Unit.Text> Textes = new List<Unit.Text>();
-        List<Player> SelectedPlayers = new List<Player>();
+        List<Player.Player> SelectedPlayers = new List<Player.Player>();
 
-        Player P, Q, R, S, T, Z;
+        Player.Player P, Q, R, S, T, Z;
 
         public Menu(State.Dispatcher Dispatcher)
             : base(Dispatcher)
@@ -53,35 +53,35 @@ namespace Zatacka.Menu
 
             Dispatcher.Game = new Game.Slayer(Dispatcher);
 
-            P = new Player(Dispatcher.Game, "Player1", Colors.Red);
-            P.Buttons.Add(Key.D1, Action.Left);
-            P.Buttons.Add(Key.Q, Action.Right);
-            P.Buttons.Add(Key.D2, Action.Trigger);
+            P = new Player.Player(Dispatcher.Game, "Player1", Colors.Red);
+            P.KeyboardButtons.Add(Key.D1, Player.Action.Left);
+            P.KeyboardButtons.Add(Key.Q, Player.Action.Right);
+            P.KeyboardButtons.Add(Key.D2, Player.Action.Trigger);
 
-            Q = new Player(Dispatcher.Game, "Player2", Colors.Green);
-            Q.Buttons.Add(Key.NumPad6, Action.Left);
-            Q.Buttons.Add(Key.NumPad9, Action.Right);
-            Q.Buttons.Add(Key.Add, Action.Trigger);
+            Q = new Player.Player(Dispatcher.Game, "Player2", Colors.Green);
+            Q.KeyboardButtons.Add(Key.NumPad6, Player.Action.Left);
+            Q.KeyboardButtons.Add(Key.NumPad9, Player.Action.Right);
+            Q.KeyboardButtons.Add(Key.Add, Player.Action.Trigger);
 
-            R = new Player(Dispatcher.Game, "Player3", Colors.Yellow);
-            R.Buttons.Add(Key.M, Action.Left);
-            R.Buttons.Add(Key.OemComma, Action.Right);
-            R.Buttons.Add(Key.K, Action.Trigger);
+            R = new Player.Player(Dispatcher.Game, "Player3", Colors.Yellow);
+            R.KeyboardButtons.Add(Key.M, Player.Action.Left);
+            R.KeyboardButtons.Add(Key.OemComma, Player.Action.Right);
+            R.KeyboardButtons.Add(Key.K, Player.Action.Trigger);
 
-            S = new Player(Dispatcher.Game, "Player4", Colors.Blue);
-            S.Buttons.Add(Key.Left, Action.Left);
-            S.Buttons.Add(Key.Up, Action.Right);
-            S.Buttons.Add(Key.Down, Action.Trigger);
+            S = new Player.Player(Dispatcher.Game, "Player4", Colors.Blue);
+            S.KeyboardButtons.Add(Key.Left, Player.Action.Left);
+            S.KeyboardButtons.Add(Key.Up, Player.Action.Right);
+            S.KeyboardButtons.Add(Key.Down, Player.Action.Trigger);
 
-            T = new Player(Dispatcher.Game, "Player5", Colors.Orange);
-            T.Buttons.Add(Key.Y, Action.Left);
-            T.Buttons.Add(Key.X, Action.Right);
-            T.Buttons.Add(Key.C, Action.Trigger);
+            T = new Player.Player(Dispatcher.Game, "Player5", Colors.Orange);
+            T.KeyboardButtons.Add(Key.Y, Player.Action.Left);
+            T.KeyboardButtons.Add(Key.X, Player.Action.Right);
+            T.KeyboardButtons.Add(Key.C, Player.Action.Trigger);
 
-            Z = new Player(Dispatcher.Game, "Player4", Colors.Pink);
-            Z.Buttons.Add(Key.D4, Action.Left);
-            Z.Buttons.Add(Key.D5, Action.Right);
-            Z.Buttons.Add(Key.R, Action.Trigger);
+            Z = new Player.Player(Dispatcher.Game, "Player4", Colors.Pink);
+            Z.KeyboardButtons.Add(Key.D4, Player.Action.Left);
+            Z.KeyboardButtons.Add(Key.D5, Player.Action.Right);
+            Z.KeyboardButtons.Add(Key.R, Player.Action.Trigger);
 
         }
 
@@ -91,7 +91,7 @@ namespace Zatacka.Menu
             {
                 if (SelectedPlayers.Count >= 2)
                 {
-                    foreach (Player selected in SelectedPlayers)
+                    foreach (Player.Player selected in SelectedPlayers)
                     {
                         Dispatcher.Game.Players.Add(selected);
                     }

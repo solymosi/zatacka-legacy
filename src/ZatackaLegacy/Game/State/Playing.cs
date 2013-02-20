@@ -21,7 +21,7 @@ namespace Zatacka.Game.State
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
             int maxScore = 0;
             int maxSecondScore = 0;
-            foreach (Player P in Game.Players)
+            foreach (Player.Player P in Game.Players)
             {
                 if (P.Curve == From)
                 {
@@ -49,7 +49,7 @@ namespace Zatacka.Game.State
             }
             if (Game.PlayersAlive.Count() == 1)
             {
-                foreach (Player P in Game.PlayersAlive)
+                foreach (Player.Player P in Game.PlayersAlive)
                 {
                     if (P.Curve.IsAlive)
                     {
@@ -61,7 +61,7 @@ namespace Zatacka.Game.State
             if (Game.PlayersAlive.Count() == 0)
             {
                 Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
-                foreach (Player P in Game.Players)
+                foreach (Player.Player P in Game.Players)
                 {
                     Game.Dispatcher.Log.Add(P.Color + ": " + P.Score);
                 }
@@ -78,7 +78,7 @@ namespace Zatacka.Game.State
 
         public override void Execute()
         {
-            foreach (Player P in Game.PlayersAlive)
+            foreach (Player.Player P in Game.PlayersAlive)
             {
                 P.Curve.Advance();
             }
@@ -103,17 +103,17 @@ namespace Zatacka.Game.State
             }
         }
 
-        public override void Input(Player Player, Action Action)
+        public override void Input(Player.Player Player, Player.Action Action)
         {
             switch (Action)
             {
-                case Action.Left:
+                case Zatacka.Player.Action.Left:
                     Player.Curve.Left();
                     break;
-                case Action.Right:
+                case Zatacka.Player.Action.Right:
                     Player.Curve.Right();
                     break;
-                case Action.Trigger:
+                case Zatacka.Player.Action.Trigger:
                     break;
             }
         }

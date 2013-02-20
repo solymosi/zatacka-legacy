@@ -82,6 +82,7 @@
     <Compile Include="Game\State\Start.cs" />
     <Compile Include="Game\State\Playing.cs" />
     <Compile Include="Game\State\State.cs" />
+    <Compile Include="Player\Template.cs" />
     <Compile Include="Unit\Collision\Result.cs" />
     <Compile Include="Unit\Game\Curve\Bit.cs" />
     <Compile Include="Unit\Game\Curve\Target.cs" />
@@ -161,7 +162,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Unit\Canvas\Canvas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
