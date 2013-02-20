@@ -73,7 +73,7 @@ namespace Zatacka.Menu
             S.Buttons.Add(Key.Up, Action.Right);
             S.Buttons.Add(Key.Down, Action.Trigger);
 
-            T = new Player(Dispatcher.Game, "Player5", Colors.Cyan);
+            T = new Player(Dispatcher.Game, "Player5", Colors.Orange);
             T.Buttons.Add(Key.Y, Action.Left);
             T.Buttons.Add(Key.X, Action.Right);
             T.Buttons.Add(Key.C, Action.Trigger);
@@ -89,11 +89,14 @@ namespace Zatacka.Menu
         {
             if (Button == Key.Enter)
             {
-                foreach (Player selected in SelectedPlayers)
+                if (SelectedPlayers.Count >= 2)
                 {
-                    Dispatcher.Game.Players.Add(selected);
+                    foreach (Player selected in SelectedPlayers)
+                    {
+                        Dispatcher.Game.Players.Add(selected);
+                    }
+                    Dispatcher.Change(State.Dispatcher.State.Game);
                 }
-                Dispatcher.Change(State.Dispatcher.State.Game);
             }
 
             if (Button == Key.Escape)
@@ -177,13 +180,10 @@ namespace Zatacka.Menu
                     }
                     break;
             }
-        }
 
-        protected override void Update()
-        {
             Unit.Text TextTmp = new Unit.Text(Canvas, "Press Enter to start", 48, FontWeights.Normal, FontStyles.Normal, Brushes.White, new Point(600, 200), new Size(0, 0));
             Textes.Add(TextTmp);
-            if (SelectedPlayers.Count >=2)
+            if (SelectedPlayers.Count >= 2)
             {
                 Canvas.Add(TextTmp);
             }
@@ -191,6 +191,11 @@ namespace Zatacka.Menu
             {
                 Canvas.Remove(TextTmp);
             }
+        }
+
+        protected override void Update()
+        {
+
         }
     }
 }
