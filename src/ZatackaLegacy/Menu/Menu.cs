@@ -13,6 +13,9 @@ namespace Zatacka.Menu
 
         List<string> Actions = new List<string>();
         List<Unit.Text> Textes = new List<Unit.Text>();
+        List<Player> SelectedPlayers = new List<Player>();
+
+        Player P, Q, R, S, T, Z;
 
         public Menu(State.Dispatcher Dispatcher)
             : base(Dispatcher)
@@ -47,18 +50,49 @@ namespace Zatacka.Menu
                 Textes.Add(TextTmp);
                 Canvas.Add(TextTmp);
             }
+
+            Dispatcher.Game = new Game.Slayer(Dispatcher);
+
+            P = new Player(Dispatcher.Game, "Player1", Colors.Red);
+            P.Buttons.Add(Key.D1, Action.Left);
+            P.Buttons.Add(Key.Q, Action.Right);
+            P.Buttons.Add(Key.D2, Action.Trigger);
+
+            Q = new Player(Dispatcher.Game, "Player2", Colors.Green);
+            Q.Buttons.Add(Key.NumPad6, Action.Left);
+            Q.Buttons.Add(Key.NumPad9, Action.Right);
+            Q.Buttons.Add(Key.Add, Action.Trigger);
+
+            R = new Player(Dispatcher.Game, "Player3", Colors.Yellow);
+            R.Buttons.Add(Key.M, Action.Left);
+            R.Buttons.Add(Key.OemComma, Action.Right);
+            R.Buttons.Add(Key.K, Action.Trigger);
+
+            S = new Player(Dispatcher.Game, "Player4", Colors.Blue);
+            S.Buttons.Add(Key.Left, Action.Left);
+            S.Buttons.Add(Key.Up, Action.Right);
+            S.Buttons.Add(Key.Down, Action.Trigger);
+
+            T = new Player(Dispatcher.Game, "Player5", Colors.Cyan);
+            T.Buttons.Add(Key.Y, Action.Left);
+            T.Buttons.Add(Key.X, Action.Right);
+            T.Buttons.Add(Key.C, Action.Trigger);
+
+            Z = new Player(Dispatcher.Game, "Player4", Colors.Pink);
+            Z.Buttons.Add(Key.D4, Action.Left);
+            Z.Buttons.Add(Key.D5, Action.Right);
+            Z.Buttons.Add(Key.R, Action.Trigger);
+
         }
 
         public override void Input(Key Button)
         {
             if (Button == Key.Enter)
             {
-                Dispatcher.Game = new Game.Slayer(Dispatcher);
-                Player seven = new Player(Dispatcher.Game, Colors.Orange);
-                seven.Buttons.Add(Key.D1, Action.Left);
-                seven.Buttons.Add(Key.Q, Action.Right);
-                seven.Buttons.Add(Key.D2, Action.Trigger);
-                Dispatcher.Game.Players.Add(seven);
+                foreach (Player selected in SelectedPlayers)
+                {
+                    Dispatcher.Game.Players.Add(selected);
+                }
                 Dispatcher.Change(State.Dispatcher.State.Game);
             }
 
@@ -67,38 +101,96 @@ namespace Zatacka.Menu
                 Dispatcher.Exit();
             }
 
+            SolidColorBrush tmp;
             switch (Button) 
             {
                 case Key.D2:
-                    //Textes[0].FontWeight = Textes[0].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[0].Fill = Textes[0].Fill == Brushes.Gray ? Brushes.Red : Brushes.Gray;
+                    tmp = new SolidColorBrush(P.Color);
+                    Textes[0].Fill = Textes[0].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[0].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(P);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(P);
+                    }
                     break;
                 case Key.K:
-                    //Textes[1].FontWeight = Textes[1].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[1].Fill = Textes[1].Fill == Brushes.Gray ? Brushes.Green : Brushes.Gray;
+                    tmp = new SolidColorBrush(Q.Color);
+                    Textes[1].Fill = Textes[1].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[1].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(Q);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(Q);
+                    }
                     break;
                 case Key.Down:
-                    //Textes[2].FontWeight = Textes[2].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[2].Fill = Textes[2].Fill == Brushes.Gray ? Brushes.Yellow : Brushes.Gray;
+                    tmp = new SolidColorBrush(R.Color);
+                    Textes[2].Fill = Textes[2].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[2].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(R);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(R);
+                    }
                     break;
                 case Key.C:
-                    //Textes[3].FontWeight = Textes[3].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[3].Fill = Textes[3].Fill == Brushes.Gray ? Brushes.Blue : Brushes.Gray;
+                    tmp = new SolidColorBrush(S.Color);
+                    Textes[3].Fill = Textes[3].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[3].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(S);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(S);
+                    }
                     break;
                 case Key.R:
-                    //Textes[4].FontWeight = Textes[4].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[4].Fill = Textes[4].Fill == Brushes.Gray ? Brushes.Cyan : Brushes.Gray;
+                    tmp = new SolidColorBrush(T.Color);
+                    Textes[4].Fill = Textes[4].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[4].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(T);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(T);
+                    }
                     break;
                 case Key.Add:
-                    //Textes[5].FontWeight = Textes[5].FontWeight == FontWeights.Normal ? FontWeights.Bold : FontWeights.Normal;
-                    Textes[5].Fill = Textes[5].Fill == Brushes.Gray ? Brushes.Pink : Brushes.Gray;
+                    tmp = new SolidColorBrush(Z.Color);
+                    Textes[5].Fill = Textes[5].Fill == Brushes.Gray ? tmp : Brushes.Gray;
+                    if (Textes[5].Fill == tmp)
+                    {
+                        SelectedPlayers.Add(Z);
+                    }
+                    else
+                    {
+                        SelectedPlayers.Remove(Z);
+                    }
                     break;
             }
         }
 
         protected override void Update()
         {
-            
+            Unit.Text TextTmp = new Unit.Text(Canvas, "Press Enter to start", 48, FontWeights.Normal, FontStyles.Normal, Brushes.White, new Point(600, 200), new Size(0, 0));
+            Textes.Add(TextTmp);
+            if (SelectedPlayers.Count >=2)
+            {
+                Canvas.Add(TextTmp);
+            }
+            else
+            {
+                Canvas.Remove(TextTmp);
+            }
         }
     }
 }
