@@ -32,18 +32,18 @@ namespace Zatacka.Game
 
         }
          * */
-        public void GetScoreWhenOtherPlayerDie(Player P)
+        public void GetScoreWhenOtherPlayerDie(Player.Player P)
         {
             P.Score += ScoreWhenOtherPlayerDie;
         }
-        public void GetScoreWhenWinTheRound(Player P)
+        public void GetScoreWhenWinTheRound(Player.Player P)
         {
             P.Score += ScoreWhenWinTheRound;
         }
 
-        public bool IsOneOfThePlayerWonTheMatch(List<Player> Players, Player Player)
+        public bool IsOneOfThePlayerWonTheMatch(List<Player.Player> Players, Player.Player Player)
         {
-            foreach (Player P in Players)
+            foreach (Player.Player P in Players)
             {
             }
             return false;

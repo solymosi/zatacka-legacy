@@ -18,6 +18,6 @@ namespace Zatacka.Game.State
 
         public virtual void Input(Key Button) { }
         public virtual void Input(MouseButton Button) { }
-        public virtual void Input(Player Player, Action Action) { }
+        public virtual void Input(Player.Player Player, Player.Action Action) { }
     }
 }
