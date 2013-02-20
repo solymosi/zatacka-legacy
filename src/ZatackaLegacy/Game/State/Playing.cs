@@ -21,6 +21,9 @@ namespace Zatacka.Game.State
             Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " ==> " + To.ToString());
             int maxScore = 0;
             int maxSecondScore = 0;
+            Player.Player FirstPlayer = null;
+            Player.Player SecondPlayer = null;
+
             foreach (Player.Player P in Game.Players)
             {
                 if (P.Curve == From)
@@ -40,13 +43,20 @@ namespace Zatacka.Game.State
                 if (P.Score > maxScore)
                 {
                     maxScore = P.Score;
-                }
-                if (P.Score > maxSecondScore && P.Score < maxScore)
-                {
-                    maxSecondScore = P.Score;
+                    FirstPlayer = P;
                 }
                 Game.Dispatcher.Log.Add("COLLISION: " + From.ToString() + " pontszám: " + P.Score);
             }
+            foreach (Player.Player P in Game.Players)
+            {
+                if (P.Score > maxSecondScore && P != FirstPlayer)
+                {
+                    maxSecondScore = P.Score;
+                    SecondPlayer = P;
+                }
+            }
+
+
             if (Game.PlayersAlive.Count() == 1)
             {
                 foreach (Player.Player P in Game.PlayersAlive)
@@ -58,6 +68,38 @@ namespace Zatacka.Game.State
                     }
                 }
             }
+
+
+
+            foreach (Player.Player P in Game.Players)
+            {
+                if (P.Score > maxScore)
+                {
+                    maxScore = P.Score;
+                    FirstPlayer = P;
+                }
+            }
+            foreach (Player.Player P in Game.Players)
+            {
+                if (P.Score > maxSecondScore && P != FirstPlayer)
+                {
+                    maxSecondScore = P.Score;
+                    SecondPlayer = P;
+                }
+            }
+            if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
+            {
+                foreach (Player.Player P in Game.Players)
+                {
+                    P.Curve.IsAlive = false;
+                }
+                //Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
+                Game.Manager.Change(Zatacka.Game.Game.State.End);
+                return;
+            }
+
+
+
             if (Game.PlayersAlive.Count() == 0)
             {
                 Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
@@ -67,14 +109,9 @@ namespace Zatacka.Game.State
                 }
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
             }
-
-            if (maxScore >= (Game.Players.Count * 10) && (maxSecondScore + 2) <= maxScore)
-            {
-                Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
-                Game.Manager.Change(Zatacka.Game.Game.State.End);
-            }
-            
         }
+
+
 
         public override void Execute()
         {
