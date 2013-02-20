@@ -25,14 +25,13 @@ namespace Zatacka.Game.State
                 if (P.Curve == From)
                 {
                     Game.Dispatcher.Log.Add("Bukta: " + P.Color);
-                    P.Curve.IsAlive = false;
-                    P.Curve.EnableCollisions = false;
+                    P.Curve.Kill();
                 }
                 else
                 {
-                    if (P.Curve.IsAlive)
+                    if (P.Curve.Alive)
                     {
-                        P.Score += 1; //itt kéne beolvasni a Slayer-hez tartozó pontszámokat
+                        P.Score += 1;
                     }
                 }
             }
@@ -42,10 +41,10 @@ namespace Zatacka.Game.State
             {
                 foreach (Player.Player P in Game.PlayersAlive)
                 {
-                    if (P.Curve.IsAlive)
+                    if (P.Curve.Alive)
                     {
                         P.Score += 2;
-                        P.Curve.IsAlive = false;
+                        P.Curve.Kill();
                     }
                 }
             }
@@ -67,11 +66,12 @@ namespace Zatacka.Game.State
                     SecondPlayer = P;
                 }
             }
+
             if (FirstPlayer.Score >= (Game.Players.Count * 10) && (SecondPlayer.Score + 2) <= FirstPlayer.Score)
             {
                 foreach (Player.Player P in Game.Players)
                 {
-                    P.Curve.IsAlive = false;
+                    P.Curve.Kill();
                 }
 
                 Game.Manager.Change(Zatacka.Game.Game.State.End);

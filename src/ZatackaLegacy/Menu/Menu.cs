@@ -53,35 +53,12 @@ namespace Zatacka.Menu
 
             Dispatcher.Game = new Game.Slayer(Dispatcher);
 
-            P = new Player.Player(Dispatcher.Game, "Player1", Colors.Red);
-            P.KeyboardButtons.Add(Key.D1, Player.Action.Left);
-            P.KeyboardButtons.Add(Key.Q, Player.Action.Right);
-            P.KeyboardButtons.Add(Key.D2, Player.Action.Trigger);
-
-            Q = new Player.Player(Dispatcher.Game, "Player2", Colors.Green);
-            Q.KeyboardButtons.Add(Key.NumPad6, Player.Action.Left);
-            Q.KeyboardButtons.Add(Key.NumPad9, Player.Action.Right);
-            Q.KeyboardButtons.Add(Key.Add, Player.Action.Trigger);
-
-            R = new Player.Player(Dispatcher.Game, "Player3", Colors.Yellow);
-            R.KeyboardButtons.Add(Key.M, Player.Action.Left);
-            R.KeyboardButtons.Add(Key.OemComma, Player.Action.Right);
-            R.KeyboardButtons.Add(Key.K, Player.Action.Trigger);
-
-            S = new Player.Player(Dispatcher.Game, "Player4", Colors.Blue);
-            S.KeyboardButtons.Add(Key.Left, Player.Action.Left);
-            S.KeyboardButtons.Add(Key.Up, Player.Action.Right);
-            S.KeyboardButtons.Add(Key.Down, Player.Action.Trigger);
-
-            T = new Player.Player(Dispatcher.Game, "Player5", Colors.Orange);
-            T.KeyboardButtons.Add(Key.Y, Player.Action.Left);
-            T.KeyboardButtons.Add(Key.X, Player.Action.Right);
-            T.KeyboardButtons.Add(Key.C, Player.Action.Trigger);
-
-            Z = new Player.Player(Dispatcher.Game, "Player4", Colors.Pink);
-            Z.KeyboardButtons.Add(Key.D4, Player.Action.Left);
-            Z.KeyboardButtons.Add(Key.D5, Player.Action.Right);
-            Z.KeyboardButtons.Add(Key.R, Player.Action.Trigger);
+            P = new Player.Player(Dispatcher.Game, Player.Player.Templates[1]);
+            Q = new Player.Player(Dispatcher.Game, Player.Player.Templates[4]);
+            R = new Player.Player(Dispatcher.Game, Player.Player.Templates[7]);
+            S = new Player.Player(Dispatcher.Game, Player.Player.Templates[4]);
+            T = new Player.Player(Dispatcher.Game, Player.Player.Templates[5]);
+            Z = new Player.Player(Dispatcher.Game, Player.Player.Templates[6]);
 
         }
 

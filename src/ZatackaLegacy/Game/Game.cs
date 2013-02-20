@@ -21,7 +21,7 @@ namespace Zatacka.Game
 
          public IEnumerable<Player.Player> PlayersAlive
         {
-            get { return Players.Where((Player.Player P) => { return P.Curve.IsAlive; }); }
+            get { return Players.Where((Player.Player P) => { return P.Curve.Alive; }); }
         }
 
         public new Unit.Canvas.Game Canvas
@@ -107,7 +107,7 @@ namespace Zatacka.Game
             foreach (Player.Player P in Players)
             {
                 P.CreateCurve();
-                P.Curve.IsAlive = true;
+                P.Curve.Alive = true;
             }
         }
         /* BarnaBalu

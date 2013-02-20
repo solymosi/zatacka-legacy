@@ -19,12 +19,10 @@ namespace Zatacka.Unit.Game.Curve
         public List<Bit> Bits { get; private set; }
         /* public int BitLength { get; private set; } */
 
-        /* BarnaBalu */
         /// <summary>
-        /// If the curve is alive.
+        /// Specifies whether this Curve is still alive.
         /// </summary>
-        public bool IsAlive { get; set; }
-        /* -- BarnaBalu */
+        public bool Alive { get; set; }
 
         public Target Target { get; private set; }
         public Collision.Field Field { get; private set; } 
@@ -71,6 +69,15 @@ namespace Zatacka.Unit.Game.Curve
             EnableCollisions = true;
             SelfCollision = true;
             Add(new Target(this, Location, Game.CurveRadius, null));
+        }
+
+        /// <summary>
+        /// Kills this Curve and prevents it from moving or colliding with others.
+        /// </summary>
+        public void Kill()
+        {
+            Alive = false;
+            Colliders.Clear();
         }
 
         protected override HashSet<Collision.Target> TargetsWithin(Rect Bounds)
