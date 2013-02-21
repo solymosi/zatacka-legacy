@@ -10,6 +10,7 @@ namespace Zatacka.Unit.Game.Curve
 {
     class Curve : Unit
     {
+        public Player.Player Player { get; private set; }
         public double Heading { get; private set; }
 
         public Color Color { get; private set; }
@@ -17,10 +18,9 @@ namespace Zatacka.Unit.Game.Curve
 
         public Bit Bit { get; private set; }
         public List<Bit> Bits { get; private set; }
-        /* public int BitLength { get; private set; } */
 
         /// <summary>
-        /// Specifies whether this Curve is still alive.
+        /// Specifies whether this Curve is alive.
         /// </summary>
         public bool Alive { get; set; }
 
@@ -50,19 +50,22 @@ namespace Zatacka.Unit.Game.Curve
             get { return Bit.Head; }
         }
 
-        public Curve(Canvas.Canvas Canvas, Point Location, double Heading, Color Color)
+        public Curve(Canvas.Canvas Canvas, Player.Player Player, Point Location, double Heading, Color Color)
             : base(Canvas)
         {
+            this.Player = Player;
+            this.Heading = Heading;
+
             this.Bits = new List<Bit>();
             this.Field = new Collision.Field(this);
-            this.Heading = Heading;
+            
             this.Color = Color;
             this.Fill = new SolidColorBrush(Color);
             this.Fill.Freeze();
-            this.GapSize = 6;
-            this.GapDistance = 150;
 
-            /* BitLength = 100; */
+            this.GapSize = 6;
+            this.GapDistance = 100;
+
             Add(new Bit(this, false));
             Add(Location);
 
@@ -143,13 +146,6 @@ namespace Zatacka.Unit.Game.Curve
             if (!Gap && Head.DistanceFrom(Target.Location) >= Game.CurveRadius * 2)
             {
                 Add(new Target(this, Next, Game.CurveRadius, Target));
-
-                /*DrawingVisual V = new DrawingVisual();
-                using (DrawingContext C = V.RenderOpen())
-                {
-                    C.DrawEllipse(Brushes.Yellow, null, Next, 1, 1);
-                }
-                this.Children.Add(V);*/
             }
         }
     }

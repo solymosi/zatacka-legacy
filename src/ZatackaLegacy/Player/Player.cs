@@ -137,7 +137,34 @@ namespace Zatacka.Player
                 Game.Arena.Remove(Curve);
             }
 
-            Curve = new Unit.Game.Curve.Curve(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Tools.Random(0, 359), Color);
+            Point P;
+            Geometry G;
+            bool Collides;
+
+            Geometry W = new RectangleGeometry(Game.Arena.Bounds);
+            double Radius = Math.Sqrt(Game.Arena.Size.Width * Game.Arena.Size.Height / 35);
+
+            do
+            {
+                Collides = false;
+
+                P = new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height));
+                G = new EllipseGeometry(P, Radius, Radius);
+
+                if (G.FillContainsWithDetail(W) != IntersectionDetail.FullyInside)
+                {
+                    Collides = true;
+                    continue;
+                }
+
+                foreach (Player R in Game.Players)
+                {
+                    if (R.Curve == null) { continue; }
+                    if (G.FillContains(R.Curve.Head)) { Collides = true; }
+                }
+            } while (Collides);
+
+            Curve = new Unit.Game.Curve.Curve(Game.Arena, this, P, Tools.Random(0, 359), Color);
             Game.Arena.Add(Curve);
         }
     }
