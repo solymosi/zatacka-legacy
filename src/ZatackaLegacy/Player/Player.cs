@@ -14,62 +14,6 @@ namespace Zatacka.Player
     class Player : Template
     {
         /// <summary>
-        /// Contains the default player templates from which new players can be created.
-        /// </summary>
-        static public Dictionary<int, Template> Templates { get; private set; }
-
-        /// <summary>
-        /// Creates and initializes the default player templates.
-        /// </summary>
-        static Player()
-        {
-            Template Template = null;
-            Templates = new Dictionary<int, Template>();
-
-            Template = new Template("Player 1", Colors.Red);
-            Template.Bind(Key.D1, Action.Left);
-            Template.Bind(Key.Q, Action.Right);
-            Template.Bind(Key.D2, Action.Trigger);
-            Templates.Add(1, Template);
-
-            Template = new Template("Player 2", Colors.Yellow);
-            Template.Bind(Key.LeftCtrl, Action.Left);
-            Template.Bind(Key.LeftAlt, Action.Right);
-            Template.Bind(Key.X, Action.Trigger);
-            Templates.Add(2, Template);
-
-            Template = new Template("Player 3", Colors.Blue);
-            Template.Bind(Key.D4, Action.Left);
-            Template.Bind(Key.D5, Action.Right);
-            Template.Bind(Key.R, Action.Trigger);
-            Templates.Add(3, Template);
-
-            Template = new Template("Player 4", Colors.Gold);
-            Template.Bind(Key.M, Action.Left);
-            Template.Bind(Key.OemComma, Action.Right);
-            Template.Bind(Key.K, Action.Trigger);
-            Templates.Add(4, Template);
-
-            Template = new Template("Player 5", Colors.Pink);
-            Template.Bind(Key.Left, Action.Left);
-            Template.Bind(Key.Down, Action.Right);
-            Template.Bind(Key.Up, Action.Trigger);
-            Templates.Add(5, Template);
-
-            Template = new Template("Player 6", Colors.Green);
-            Template.Bind(Key.Divide, Action.Left);
-            Template.Bind(Key.Multiply, Action.Right);
-            Template.Bind(Key.Subtract, Action.Trigger);
-            Templates.Add(6, Template);
-
-            Template = new Template("Player 7", Colors.Cyan);
-            Template.Bind(MouseButton.Left, Action.Left);
-            Template.Bind(MouseButton.Right, Action.Right);
-            Template.Bind(MouseButton.Middle, Action.Trigger);
-            Templates.Add(7, Template);
-        }
-
-        /// <summary>
         /// The Game instance this Player belongs to.
         /// </summary>
         public Game.Game Game { get; protected set; }
@@ -118,7 +62,47 @@ namespace Zatacka.Player
             : base(Name, Color)
         {
             this.Game = Game;
-            this.Goodies = new List<Goodie.Goodie>();
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Creates a Player instance with the specified parameters and keyboard button assignments.
+        /// </summary>
+        /// <param name="Game">The Game instance this Player will belong to.</param>
+        /// <param name="Name">The name of this Player.</param>
+        /// <param name="Color">The color of this Player and its curve.</param>
+        /// <param name="Left">Button used to turn the curve left.</param>
+        /// <param name="Right">Button used to turn the curve right.</param>
+        /// <param name="Trigger">Button used to trigger the effect of the currently active power-up (e.g: fire a weapon).</param>
+        public Player(Game.Game Game, string Name, Color Color, Key Left, Key Right, Key Trigger)
+            : base(Name, Color, Left, Right, Trigger)
+        {
+            this.Game = Game;
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Creates a Player instance with the specified parameters and mouse button assignments.
+        /// </summary>
+        /// <param name="Game">The Game instance this Player will belong to.</param>
+        /// <param name="Name">The name of this Player.</param>
+        /// <param name="Color">The color of this Player and its curve.</param>
+        /// <param name="Left">Button used to turn the curve left.</param>
+        /// <param name="Right">Button used to turn the curve right.</param>
+        /// <param name="Trigger">Button used to trigger the effect of the currently active power-up (e.g: fire a weapon).</param>
+        public Player(Game.Game Game, string Name, Color Color, MouseButton Left, MouseButton Right, MouseButton Trigger)
+            : base(Name, Color, Left, Right, Trigger)
+        {
+            this.Game = Game;
+            this.Initialize();
+        }
+
+        /// <summary>
+        /// Initializes the state of this Player.
+        /// </summary>
+        private void Initialize()
+        {
+            Goodies = new List<Goodie.Goodie>();
         }
 
         /// <summary>
