@@ -36,7 +36,7 @@ namespace Zatacka.Game
             GoodieIconRadius = 10;
             Time = 0;
             CurveRadius = 3;
-            SteeringSensitivity = 5;
+            SteeringSensitivity = 4;
             MovementSpeed = 3;
 
             Players = new List<Player.Player>();
@@ -110,9 +110,7 @@ namespace Zatacka.Game
                 P.Curve.Alive = true;
             }
         }
-        /* BarnaBalu
-        abstract protected void Score(Player P);
-        */
+
         public enum State
         {
             Start = 1,
