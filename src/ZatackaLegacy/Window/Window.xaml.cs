@@ -58,8 +58,14 @@ namespace Zatacka.Window
         private void Input(object sender, KeyEventArgs e)
         {
             Dispatcher.Input(e.Key);
-            /* */
-            //Dispatcher.Log.Add(e.Key.ToString());
+        }
+
+        /// <summary>
+        /// Executed when a mouse button is pressed. Forwards the input to the Dispatcher.
+        /// </summary>
+        private void Input(object sender, MouseButtonEventArgs e)
+        {
+            Dispatcher.Input(e.ChangedButton);
         }
     }
 }

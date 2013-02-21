@@ -38,11 +38,7 @@ namespace Zatacka.State
 
         protected void Initialize()
         {
-            /* Temporary entries, todo: implement final */
             Add(State.Menu, new Menu.Menu(this));
-            //Add(State.Game, new Game.Slayer(this));
-            Add(State.Game, Game);
-            /* ---------- */
         }
 
         private void Tick(object sender, EventArgs e)

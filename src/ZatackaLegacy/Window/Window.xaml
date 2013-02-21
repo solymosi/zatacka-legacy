@@ -2,6 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:usercontrols="clr-namespace:Zatacka.Window"
-        Title="Zatacka Legacy" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" SizeToContent="Manual" Cursor="None" Background="Black" Loaded="Load" ResizeMode="NoResize" KeyDown="Input" xmlns:my="clr-namespace:Zatacka" Icon="/ZatackaLegacy;component/Resources/ZatackaLegacy.png">
+        Title="Zatacka Legacy" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" SizeToContent="Manual" Cursor="None" Background="Black" Loaded="Load" ResizeMode="NoResize" KeyDown="Input" xmlns:my="clr-namespace:Zatacka" Icon="/ZatackaLegacy;component/Resources/ZatackaLegacy.png" MouseDown="Input">
     <usercontrols:Canvas x:Name="Canvas" />
 </Window>
