@@ -61,7 +61,7 @@ namespace Zatacka.Game.State
             }
             foreach (Player.Player P in Game.Players)
             {
-                if (SecondPlayer == null || (P.Score > SecondPlayer.Score && P != FirstPlayer))
+                if (P != FirstPlayer && (SecondPlayer == null || P.Score > SecondPlayer.Score))
                 {
                     SecondPlayer = P;
                 }
