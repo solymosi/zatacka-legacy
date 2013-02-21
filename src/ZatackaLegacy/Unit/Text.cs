@@ -170,6 +170,7 @@ namespace Zatacka.Unit
                 if (_Fill != value)
                 {
                     _Fill = value;
+                    _Fill.Freeze();
                     Draw();
                 }
             }
