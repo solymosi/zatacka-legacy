@@ -38,7 +38,7 @@ namespace Zatacka.State
 
         protected void Initialize()
         {
-            Add(State.Menu, new Menu.Menu(this));
+            Add(State.Main, new Menu.Main(this));
         }
 
         private void Tick(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace Zatacka.State
 
         public override void Enter()
         {
-            Change(State.Menu);
+            Change(State.Main);
             Timer.Start();
         }
 
@@ -74,7 +74,8 @@ namespace Zatacka.State
         public enum State
         {
             Game = 1,
-            Menu = 2
+            Main,
+            Create
         }
     }
 }

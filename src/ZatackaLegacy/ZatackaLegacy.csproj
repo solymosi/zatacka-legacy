@@ -82,6 +82,8 @@
     <Compile Include="Game\State\Start.cs" />
     <Compile Include="Game\State\Playing.cs" />
     <Compile Include="Game\State\State.cs" />
+    <Compile Include="Menu\Create.cs" />
+    <Compile Include="Menu\Main.cs" />
     <Compile Include="Player\Template.cs" />
     <Compile Include="Unit\Collision\Result.cs" />
     <Compile Include="Unit\Game\Curve\Bit.cs" />

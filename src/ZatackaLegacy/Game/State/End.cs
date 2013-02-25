@@ -30,7 +30,7 @@ namespace Zatacka.Game.State
         {
             if (Button == Key.End)
             {
-                Game.Dispatcher.Change(Zatacka.State.Dispatcher.State.Menu);
+                Game.Dispatcher.Change(Zatacka.State.Dispatcher.State.Main);
             }
         }
     }
