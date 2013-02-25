@@ -18,7 +18,7 @@ namespace Zatacka.Unit.Shape
         public Rect Bounds
         {
             get { return Geometry.As<RectangleGeometry>().Bounds; }
-            set { Geometry = new RectangleGeometry(Bounds); }
+            set { Geometry = new RectangleGeometry(value); }
         }
 
         /// <summary>
