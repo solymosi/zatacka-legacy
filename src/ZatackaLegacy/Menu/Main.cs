@@ -27,8 +27,7 @@ namespace Zatacka.Menu
             Add(Item.Exit, new Unit.Text(Canvas, "Exit", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, new Point(0, Canvas.Size.Height * 0.7), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
 
             Highlight = new Unit.Shape.Rectangle(Canvas, new Rect(Canvas.Size.Width / 2 - 200, 0, 400, 70), new SolidColorBrush(Color.FromArgb(255, 112, 146, 190)), null);
-            Select(Item.Exit);
-            Select(Item.Credits);
+            Select(Item.NewGame);
         }
 
         protected void Add(Item Item, Unit.Text Label)
