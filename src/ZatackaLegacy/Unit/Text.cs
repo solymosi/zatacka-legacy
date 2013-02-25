@@ -557,7 +557,7 @@ namespace Zatacka.Unit
             _Fill = Fill;
             _Location = Location;
             _Size = Size;
-            _LineHeight = FontSize * LineHeight;
+            _LineHeight = LineHeight;
             _TextAlignment = TextAlignment;
             _Overflow = Overflow;
             Fill.Freeze();
@@ -587,7 +587,7 @@ namespace Zatacka.Unit
                     Text.MaxTextHeight = Size.Height;
                     Text.Trimming = Overflow;
                 }
-                Text.LineHeight = LineHeight;
+                Text.LineHeight = LineHeight * FontSize;
 
                 Context.DrawText(Text, Location);
             }
