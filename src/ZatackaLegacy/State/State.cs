@@ -106,8 +106,14 @@ namespace Zatacka.State
             return Active && Has(Type) && Current == this[Type];
         }
 
-        public void Add(T Type, State State)
+        public void Add(T Type, State State) { Add(Type, State, false); }
+        public void Add(T Type, State State, bool Replace)
         {
+            if (Replace && Has(Type))
+            {
+                Remove(Type);
+            }
+
             Items.Add(Type, State);
         }
 
