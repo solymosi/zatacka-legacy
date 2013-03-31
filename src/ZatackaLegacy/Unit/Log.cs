@@ -43,7 +43,7 @@ namespace Zatacka.Unit
             Messages = new List<string>();
             DisplayMessages = 25;
 
-            Text = new Text(Canvas, null, new FontFamily("Consolas"), 10, FontWeights.Normal, FontStyles.Normal, Brushes.White, new Point(10, 10), new Size(Canvas.Size.Width - 20, 0), TextAlignment.Left, 1, TextTrimming.CharacterEllipsis);
+            Text = new Text(Canvas, null, new FontFamily("Consolas"), 10, FontWeights.Normal, FontStyles.Normal, Brushes.White, null, new Point(10, 10), new Size(Canvas.Size.Width - 20, 0), TextAlignment.Left, 1, TextTrimming.CharacterEllipsis);
             Add(Text);
         }
 

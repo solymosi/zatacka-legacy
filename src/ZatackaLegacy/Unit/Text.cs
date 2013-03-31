@@ -36,6 +36,11 @@ namespace Zatacka.Unit
         static public Brush DefaultFill { get; set; }
 
         /// <summary>
+        /// Default background to use when no background is specified for a Text.
+        /// </summary>
+        static public Brush DefaultBackground { get; set; }
+
+        /// <summary>
         /// Default text alignment to use when no text alignment is specified for a Text.
         /// </summary>
         static public TextAlignment DefaultTextAlignment { get; set; }
@@ -61,6 +66,7 @@ namespace Zatacka.Unit
             DefaultFontStyle = FontStyles.Normal;
             DefaultFill = new SolidColorBrush(Colors.White);
             DefaultFill.Freeze();
+            DefaultBackground = null;
             DefaultTextAlignment = TextAlignment.Left;
             DefaultLineHeight = 1.25;
             DefaultOverflow = TextTrimming.CharacterEllipsis;
@@ -171,6 +177,28 @@ namespace Zatacka.Unit
                 {
                     _Fill = value;
                     _Fill.Freeze();
+                    Draw();
+                }
+            }
+        }
+
+        protected Brush _Background { get; set; }
+
+        /// <summary>
+        /// The Brush used to fill the background of this Text.
+        /// </summary>
+        public Brush Background
+        {
+            get { return _Background; }
+            set
+            {
+                if (_Background != value)
+                {
+                    _Background = value;
+                    if (_Background != null)
+                    {
+                        _Background.Freeze();
+                    }
                     Draw();
                 }
             }
@@ -314,7 +342,7 @@ namespace Zatacka.Unit
         /// <param name="FontSize">The font size used to display this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         public Text(Canvas.Canvas Canvas, string Label, double FontSize, Point Location) :
-            this(Canvas, Label, FontSize, DefaultFill, Location) { }
+            this(Canvas, Label, FontSize, DefaultFill, DefaultBackground, Location) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -325,7 +353,7 @@ namespace Zatacka.Unit
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
         public Text(Canvas.Canvas Canvas, string Label, double FontSize, Point Location, Size Size) :
-            this(Canvas, Label, FontSize, DefaultFill, Location, Size) { }
+            this(Canvas, Label, FontSize, DefaultFill, DefaultBackground, Location, Size) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -336,7 +364,7 @@ namespace Zatacka.Unit
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
         public Text(Canvas.Canvas Canvas, string Label, double FontSize, Point Location, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontSize, DefaultFill, Location, TextAlignment) { }
+            this(Canvas, Label, FontSize, DefaultFill, DefaultBackground, Location, TextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -348,7 +376,7 @@ namespace Zatacka.Unit
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
         public Text(Canvas.Canvas Canvas, string Label, double FontSize, Point Location, Size Size, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontSize, DefaultFill, Location, Size, TextAlignment) { }
+            this(Canvas, Label, FontSize, DefaultFill, DefaultBackground, Location, Size, TextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -357,9 +385,10 @@ namespace Zatacka.Unit
         /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
         /// <param name="FontSize">The font size used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Point Location) :
-            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Location) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Brush Background, Point Location) :
+            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Background, Location) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -368,35 +397,38 @@ namespace Zatacka.Unit
         /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
         /// <param name="FontSize">The font size used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
-        /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
-        /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Point Location, Size Size) :
-            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Location, Size) { }
-
-        /// <summary>
-        /// Creates and initializes this Text with the specified properties.
-        /// </summary>
-        /// <param name="Canvas">The Canvas this Text is displayed on.</param>
-        /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
-        /// <param name="FontSize">The font size used to display this Text.</param>
-        /// <param name="Fill">The fill applied when displaying this Text.</param>
-        /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
-        /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Point Location, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Location, TextAlignment) { }
-
-        /// <summary>
-        /// Creates and initializes this Text with the specified properties.
-        /// </summary>
-        /// <param name="Canvas">The Canvas this Text is displayed on.</param>
-        /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
-        /// <param name="FontSize">The font size used to display this Text.</param>
-        /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Brush Background, Point Location, Size Size) :
+            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Background, Location, Size) { }
+
+        /// <summary>
+        /// Creates and initializes this Text with the specified properties.
+        /// </summary>
+        /// <param name="Canvas">The Canvas this Text is displayed on.</param>
+        /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
+        /// <param name="FontSize">The font size used to display this Text.</param>
+        /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
+        /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Point Location, Size Size, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Location, Size, TextAlignment) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Brush Background, Point Location, TextAlignment TextAlignment) :
+            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Background, Location, TextAlignment) { }
+
+        /// <summary>
+        /// Creates and initializes this Text with the specified properties.
+        /// </summary>
+        /// <param name="Canvas">The Canvas this Text is displayed on.</param>
+        /// <param name="Label">The string displayed by this Text. Null is accepted and treated as an empty string.</param>
+        /// <param name="FontSize">The font size used to display this Text.</param>
+        /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
+        /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
+        /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
+        /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, Brush Fill, Brush Background, Point Location, Size Size, TextAlignment TextAlignment) :
+            this(Canvas, Label, FontSize, DefaultFontWeight, DefaultFontStyle, Fill, Background, Location, Size, TextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -407,9 +439,10 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location) :
-            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Location) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location) :
+            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -420,10 +453,11 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, Size Size) :
-            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Location, Size) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, Size Size) :
+            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, Size) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -434,10 +468,11 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, TextAlignment TextAlignment) :
-            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Location, TextAlignment) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, TextAlignment TextAlignment) :
+            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, TextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -448,11 +483,12 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, Size Size, TextAlignment TextAlignment) :
-            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Location, Size, TextAlignment) { }
+        public Text(Canvas.Canvas Canvas, string Label, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, Size Size, TextAlignment TextAlignment) :
+            this(Canvas, Label, DefaultFontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, Size, TextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -464,9 +500,10 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location) :
-            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Location, DefaultTextAlignment) { }
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location) :
+            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, DefaultTextAlignment) { }
         
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -478,10 +515,11 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, Size Size) :
-            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Location, Size, DefaultTextAlignment) { }
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, Size Size) :
+            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, Size, DefaultTextAlignment) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -493,10 +531,11 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Location, TextAlignment, DefaultLineHeight, DefaultOverflow) { }
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, TextAlignment TextAlignment) :
+            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, TextAlignment, DefaultLineHeight, DefaultOverflow) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -508,11 +547,12 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, Size Size, TextAlignment TextAlignment) :
-            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Location, Size, TextAlignment, DefaultLineHeight, DefaultOverflow) { }
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, Size Size, TextAlignment TextAlignment) :
+            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, Size, TextAlignment, DefaultLineHeight, DefaultOverflow) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -524,12 +564,13 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
         /// <param name="LineHeight">The line height used to display this Text in relation to the font size. 1 = single, 2 = double, etc.</param>
         /// <param name="Overflow">Specifies the method used to trim lines that overflow the bounding area of this Text. Used only if either Size.Width or Size.Height is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, TextAlignment TextAlignment, double LineHeight, TextTrimming Overflow) :
-            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Location, new Size(0, 0), TextAlignment, LineHeight, Overflow) { }
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, TextAlignment TextAlignment, double LineHeight, TextTrimming Overflow) :
+            this(Canvas, Label, FontFamily, FontSize, FontWeight, FontStyle, Fill, Background, Location, new Size(0, 0), TextAlignment, LineHeight, Overflow) { }
 
         /// <summary>
         /// Creates and initializes this Text with the specified properties.
@@ -541,12 +582,13 @@ namespace Zatacka.Unit
         /// <param name="FontWeight">The font weight (e.g. normal or bold) used to display this Text.</param>
         /// <param name="FontStyle">The font style (e.g. normal or italic) used to display this Text.</param>
         /// <param name="Fill">The fill applied when displaying this Text.</param>
+        /// <param name="Background">The Brush used to fill the background of this Text.</param>
         /// <param name="Location">Specifies the top left corner of the displayed Text.</param>
         /// <param name="Size">Specifies the max. width and height of the area occupied by this Text. Lines longer than Size.Width are broken into multiple lines. Lines overflowing Size.Height are not shown. Set Size.Width to zero to disable line wrapping and automatically calculate the width based on the longest line. Set Size.Height to zero to automatically calculate the height based on the line height and the number of lines.</param>
         /// <param name="TextAlignment">The horizontal alignment of the text within its bounding area specified in the Size property. Used only if Size.Width is not zero.</param>
         /// <param name="LineHeight">The line height used to display this Text in relation to the font size. 1 = single, 2 = double, etc.</param>
         /// <param name="Overflow">Specifies the method used to trim lines that overflow the bounding area of this Text. Used only if either Size.Width or Size.Height is not zero.</param>
-        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Point Location, Size Size, TextAlignment TextAlignment, double LineHeight, TextTrimming Overflow)
+        public Text(Canvas.Canvas Canvas, string Label, FontFamily FontFamily, double FontSize, FontWeight FontWeight, FontStyle FontStyle, Brush Fill, Brush Background, Point Location, Size Size, TextAlignment TextAlignment, double LineHeight, TextTrimming Overflow)
             : base(Canvas)
         {
             _Label = Label == null ? "" : Label;
@@ -555,6 +597,7 @@ namespace Zatacka.Unit
             _FontWeight = FontWeight;
             _FontStyle = FontStyle;
             _Fill = Fill;
+            _Background = Background;
             _Location = Location;
             _Size = Size;
             _LineHeight = LineHeight;
@@ -588,6 +631,11 @@ namespace Zatacka.Unit
                     Text.Trimming = Overflow;
                 }
                 Text.LineHeight = LineHeight * FontSize;
+
+                if (Background != null)
+                {
+                    Context.DrawRectangle(Background, null, new Rect(Location, new Size(Size.Width > 0 ? Text.MaxTextWidth : Text.Width, Size.Height > 0 ? Text.MaxTextHeight : Text.Height)));
+                }
 
                 Context.DrawText(Text, Location);
             }

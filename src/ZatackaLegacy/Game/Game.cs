@@ -56,7 +56,7 @@ namespace Zatacka.Game
             for (int i = 0; i < Players.Count; i++)
             {
                 Player.Player P = Players[i];
-                ScoreLabels.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30, new SolidColorBrush(P.Color), new Point(Canvas.Size.Width - 250, i * 30)));
+                ScoreLabels.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30, new SolidColorBrush(P.Color), null, new Point(Canvas.Size.Width - 250, i * 30)));
                 Canvas.Add(ScoreLabels[P.Name]);
             }
 
