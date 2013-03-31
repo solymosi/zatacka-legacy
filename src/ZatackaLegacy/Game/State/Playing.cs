@@ -24,7 +24,7 @@ namespace Zatacka.Game.State
             {
                 if (P.Curve == From)
                 {
-                    Game.Dispatcher.Log.Add("Bukta: " + P.Color);
+                    Game.Dispatcher.Log.Add("Bukta: " + P.Name);
                     P.Curve.Kill();
                 }
                 else
@@ -85,7 +85,7 @@ namespace Zatacka.Game.State
                 Game.Dispatcher.Log.Add("=== FINAL SCORE ===");
                 foreach (Player.Player P in Game.Players)
                 {
-                    Game.Dispatcher.Log.Add(P.Color + ": " + P.Score);
+                    Game.Dispatcher.Log.Add(P.Name + ": " + P.Score);
                 }
                 Game.Manager.Change(Zatacka.Game.Game.State.RoundEnd);
                 return;
