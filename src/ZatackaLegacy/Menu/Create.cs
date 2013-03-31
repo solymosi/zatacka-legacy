@@ -10,27 +10,35 @@ namespace Zatacka.Menu
 {
     class Create : Menu
     {
+        public Unit.Text Title { get; private set; }
+        public Unit.Text Subtitle { get; private set; }
         public List<Player.Template> Selected { get; private set; }
         public Dictionary<Player.Template, Unit.Text> Labels { get; private set; }
-        public Unit.Text PressEnter { get; private set; }
 
         public Create(State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
+            Title = new Unit.Text(Canvas, "New Game", 72, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.15), new Size(Canvas.Size.Width, 0), TextAlignment.Center);
+            Canvas.Add(Title);
+
+            Subtitle = new Unit.Text(Canvas, "Select players by pressing their buttons...", 30, new Point(0, Canvas.Size.Height * 0.3), new Size(Canvas.Size.Width, 0), TextAlignment.Center);
+            Canvas.Add(Subtitle);
+
             Selected = new List<Player.Template>();
             Labels = new Dictionary<Player.Template, Unit.Text>();
 
             for (int i = 1; i <= 7; i++)
             {
                 Player.Template T = Player.Template.Templates[i];
-                Unit.Text Text = new Unit.Text(Canvas, "Player " + i + " - " + string.Join(" ", T.KeyboardButtons.Keys.Select((Key K) => { return K.ToString(); })) + string.Join(" ", T.MouseButtons.Keys.Select((MouseButton M) => { return M.ToString(); })), 48, Brushes.Gray, new Point(200, 200 + (i - 1) * 60));
+
+                double Y = Canvas.Size.Height * (0.45 + (i - 1) * 0.07);
+                Unit.Shape.Rectangle Color = new Unit.Shape.Rectangle(Canvas, new Rect(Canvas.Size.Width / 2 - 300, Y - 20, 40, 40), new SolidColorBrush(T.Color), null);
+                Canvas.Add(Color);
+
+                Unit.Text Text = new Unit.Text(Canvas, T.Name, 30, FontWeights.Bold, FontStyles.Normal, Brushes.Gray, null, new Point(Canvas.Size.Width / 2 - 230, Y - 15 * Unit.Text.DefaultLineHeight), new Size(300, 0));
                 Labels[T] = Text;
                 Canvas.Add(Text);
             }
-
-            PressEnter = new Unit.Text(Canvas, "Press ENTER to start the game.", 48, FontWeights.Bold, FontStyles.Normal, Brushes.White, new Point(0, Canvas.Size.Height - 80), new Size(Canvas.Size.Width, 0), TextAlignment.Center);
-            PressEnter.Opacity = 0;
-            Canvas.Add(PressEnter);
         }
 
         public override void Input(Key Button)
@@ -50,7 +58,7 @@ namespace Zatacka.Menu
 
             if (Button == Key.Escape)
             {
-                Dispatcher.Exit();
+                Dispatcher.Change(State.Dispatcher.State.Main);
                 return;
             }
 
@@ -88,7 +96,8 @@ namespace Zatacka.Menu
                 else { Labels[T].Fill = Brushes.Gray; }
             }
 
-            PressEnter.Opacity = Selected.Count >= 2 ? 1 : 0;
+            Subtitle.Label = Selected.Count >= 2 ? "Press ENTER to start the game!" : "Select players by pressing their buttons...";
+            Subtitle.FontWeight = Selected.Count >= 2 ? FontWeights.Bold : FontWeights.Normal;
         }
 
         protected override void Update() { }
