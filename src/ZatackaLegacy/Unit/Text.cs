@@ -295,6 +295,14 @@ namespace Zatacka.Unit
         }
 
         /// <summary>
+        /// Returns the actual bounds of the rectangle occupied by this Text.
+        /// </summary>
+        /*public double Bounds
+        {
+
+        }*/
+
+        /// <summary>
         /// Creates and initializes this Text with the specified properties.
         /// </summary>
         /// <param name="Canvas">The Canvas this Text is displayed on.</param>

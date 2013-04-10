@@ -14,6 +14,7 @@ namespace Zatacka.Menu
         public Unit.Text Subtitle { get; private set; }
         public List<Player.Template> Selected { get; private set; }
         public Dictionary<Player.Template, Unit.Text> Labels { get; private set; }
+        public Dictionary<Player.Template, List<Unit.Text>> Buttons { get; private set; }
 
         public Create(State.Dispatcher Dispatcher)
             : base(Dispatcher)
@@ -26,6 +27,7 @@ namespace Zatacka.Menu
 
             Selected = new List<Player.Template>();
             Labels = new Dictionary<Player.Template, Unit.Text>();
+            Buttons = new Dictionary<Player.Template, List<Unit.Text>>();
 
             for (int i = 1; i <= 7; i++)
             {
@@ -38,6 +40,14 @@ namespace Zatacka.Menu
                 Unit.Text Text = new Unit.Text(Canvas, T.Name, 30, FontWeights.Bold, FontStyles.Normal, Brushes.Gray, null, new Point(Canvas.Size.Width / 2 - 230, Y - 15 * Unit.Text.DefaultLineHeight), new Size(300, 0));
                 Labels[T] = Text;
                 Canvas.Add(Text);
+
+                Buttons[T] = new List<Unit.Text>();
+                foreach (Player.Action Action in new Player.Action[] { Player.Action.Left, Player.Action.Right, Player.Action.Trigger })
+                {
+                    string Label = T.KeyboardButtons.Where((KeyValuePair<Key, Player.Action> P) => { return P.Value == Action; }).Select((KeyValuePair<Key, Player.Action> P) => { return P.Key.Label(); }).Concat(T.MouseButtons.Where((KeyValuePair<MouseButton, Player.Action> P) => { return P.Value == Action; }).Select((KeyValuePair<MouseButton, Player.Action> P) => { return P.Key.Label(); })).First();
+                    
+                    //Buttons[T].Add(
+                }
             }
         }
 

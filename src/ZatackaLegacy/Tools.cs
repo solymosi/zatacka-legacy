@@ -140,5 +140,84 @@ namespace Zatacka
         {
             return Button == MouseButton.Left && Mouse.LeftButton == MouseButtonState.Pressed || Button == MouseButton.Middle && Mouse.MiddleButton == MouseButtonState.Pressed || Button == MouseButton.Right && Mouse.RightButton == MouseButtonState.Pressed || Button == MouseButton.XButton1 && Mouse.XButton1 == MouseButtonState.Pressed || Button == MouseButton.XButton2 && Mouse.XButton2 == MouseButtonState.Pressed;
         }
+
+        /// <summary>
+        /// Returns the display label of a keyboard button.
+        /// </summary>
+        /// <param name="Button">The keyboard button</param>
+        static public string Label(this Key Button)
+        {
+            switch (Button)
+            {
+                case Key.Add: return "Num +";
+                case Key.Back: return "Backspace";
+                case Key.CapsLock: return "Caps Lock";
+                case Key.D0: return "0";
+                case Key.D1: return "1";
+                case Key.D2: return "2";
+                case Key.D3: return "3";
+                case Key.D4: return "4";
+                case Key.D5: return "5";
+                case Key.D6: return "6";
+                case Key.D7: return "7";
+                case Key.D8: return "8";
+                case Key.D9: return "9";
+                case Key.Divide: return "Num /";
+                case Key.Escape: return "Esc";
+                case Key.LWin: return "Left Windows";
+                case Key.LeftAlt: return "Left Alt";
+                case Key.LeftCtrl: return "Left Ctrl";
+                case Key.LeftShift: return "Left Shift";
+                case Key.Multiply: return "Num *";
+                case Key.NumLock: return "Num Lock";
+                case Key.NumPad0: return "Num 0";
+                case Key.NumPad1: return "Num 1";
+                case Key.NumPad2: return "Num 2";
+                case Key.NumPad3: return "Num 3";
+                case Key.NumPad4: return "Num 4";
+                case Key.NumPad5: return "Num 5";
+                case Key.NumPad6: return "Num 6";
+                case Key.NumPad7: return "Num 7";
+                case Key.NumPad8: return "Num 8";
+                case Key.NumPad9: return "Num 9";
+                case Key.OemBackslash: return "\\";
+                case Key.OemCloseBrackets: return "]";
+                case Key.OemComma: return ",";
+                case Key.OemMinus: return "-";
+                case Key.OemOpenBrackets: return "[";
+                case Key.OemPeriod: return ".";
+                case Key.OemPipe: return "|";
+                case Key.OemPlus: return "+";
+                case Key.OemQuestion: return "?";
+                case Key.OemSemicolon: return ";";
+                case Key.OemTilde: return "~";
+                case Key.PageDown: return "Page Down";
+                case Key.PageUp: return "Page Up";
+                case Key.PrintScreen: return "Print Screen";
+                case Key.RWin: return "Right Windows";
+                case Key.Return: return "Enter";
+                case Key.RightAlt: return "Right Alt";
+                case Key.RightCtrl: return "Right Ctrl";
+                case Key.RightShift: return "Right Shift";
+                case Key.Scroll: return "Scroll Lock";
+                case Key.Subtract: return "Num -";
+                default: return Button.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Returns the display label of a mouse button.
+        /// </summary>
+        /// <param name="Button">The mouse button</param>
+        static public string Label(this MouseButton Button)
+        {
+            switch (Button)
+            {
+                case MouseButton.Left: return "Left Mouse";
+                case MouseButton.Middle: return "Middle Mouse";
+                case MouseButton.Right: return "Right Mouse";
+                default: return Button.ToString();
+            }
+        }
     }
 }

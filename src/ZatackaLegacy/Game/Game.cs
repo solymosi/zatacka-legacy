@@ -33,7 +33,7 @@ namespace Zatacka.Game
         public Game(Zatacka.State.Dispatcher Dispatcher)
             : base(Dispatcher)
         {
-            GoodieIconRadius = 10;
+            GoodieIconRadius = 20;
             Time = 0;
             CurveRadius = 3;
             SteeringSensitivity = 4;

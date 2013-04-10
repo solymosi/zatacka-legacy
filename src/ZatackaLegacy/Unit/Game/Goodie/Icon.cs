@@ -33,8 +33,11 @@ namespace Zatacka.Unit.Game.Goodie
         public Icon(Canvas.Game Canvas, Point Center, Zatacka.Goodie.Category Category, Zatacka.Goodie.Type Type)
             : base(Canvas, Center, new Size(Canvas.State.GoodieIconRadius * 2, Canvas.State.GoodieIconRadius * 2), Brushes.White, null)
         {
+            EnableCollisions = true;
             this.Category = Category;
             this.Type = Type;
+            this.Add(new Text(Canvas, Type.ToString().Substring(0, 1), 20, Brushes.Red, null, new Point(Center.X - Canvas.State.GoodieIconRadius, Center.Y - Canvas.State.GoodieIconRadius), new Size(Size.Width, Size.Height), TextAlignment.Center));
+            this.Targets.Add(new Collision.Target(this, new EllipseGeometry(Center, Canvas.State.GoodieIconRadius, Canvas.State.GoodieIconRadius)));
         }
     }
 }
