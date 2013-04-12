@@ -119,9 +119,9 @@ namespace Zatacka.Game.State
                 //this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
 
                 //object goodie = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon.Bazooka");
-                
+
                 //Game.Dispatcher.Log.Add(From.As<Zatacka.Player.Player>().Goodies[0].ToString());
-                
+
                 //Game.Dispatcher.Log.Add("COLLIDED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 //To.EnableCollisions = false;
                 //To.As<Unit.Shape.Ellipse>().Fill = Brushes.Gray;
@@ -135,8 +135,14 @@ namespace Zatacka.Game.State
 
         private void GenerateRandomGoodie()
         {
-            Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
+            Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, RandomType<Goodie.Type>());
             Game.Arena.Add(Icon);
+        }
+
+        public T RandomType<T>() //DG
+        {
+            T[] values = (T[])Enum.GetValues(typeof(T));
+            return values[new Random().Next(1,4)];//0, values.Length)]; //DG Itt ha a másikat választjuk és nem weapon categoryt kapunk vissza, akkor érthető módon errort kapunk
         }
 
         public override void Enter()

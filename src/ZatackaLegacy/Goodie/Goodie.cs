@@ -39,7 +39,7 @@ namespace Zatacka.Goodie
         Evil
     }
 
-    public enum Type
+    public enum Type //DG átírtam static-re
     {
         None,
 
