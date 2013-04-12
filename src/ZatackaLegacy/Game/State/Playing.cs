@@ -98,9 +98,29 @@ namespace Zatacka.Game.State
             }
             else if (To is Unit.Game.Goodie.Icon)
             {
-                Game.Dispatcher.Log.Add("COLLIDED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                To.EnableCollisions = false;
-                To.As<Unit.Shape.Ellipse>().Fill = Brushes.Gray;
+                Zatacka.Goodie.Weapon.Bazooka b = new Goodie.Weapon.Bazooka();
+
+                foreach (Player.Player p in Game.Players)
+                {
+                    if (p.Curve == From)
+                    {
+                        p.Goodies.Add(b);
+                        b.Player = p;
+                        this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
+                    }
+                }
+                //From.As<Zatacka.Player.Player>();
+                //To.As<Zatacka.Goodie.Goodie>().Player = From.As<Zatacka.Player.Player>();
+                //From.As<Zatacka.Player.Player>().Goodies.Add(To.As<Zatacka.Goodie.Goodie>());
+                //this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
+
+                //object goodie = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon.Bazooka");
+                
+                //Game.Dispatcher.Log.Add(From.As<Zatacka.Player.Player>().Goodies[0].ToString());
+                
+                //Game.Dispatcher.Log.Add("COLLIDED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                //To.EnableCollisions = false;
+                //To.As<Unit.Shape.Ellipse>().Fill = Brushes.Gray;
             }
         }
 
