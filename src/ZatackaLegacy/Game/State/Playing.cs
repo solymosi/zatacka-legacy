@@ -98,14 +98,13 @@ namespace Zatacka.Game.State
             }
             else if (To is Unit.Game.Goodie.Icon)
             {
-                Zatacka.Goodie.Weapon.Bazooka b = new Goodie.Weapon.Bazooka(); //DG
-
-                foreach (Player.Player p in Game.Players)
+                Zatacka.Goodie.Goodie g = (Zatacka.Goodie.Goodie)System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon." + To.As<Unit.Game.Goodie.Icon>().Type.ToString());
+                foreach (Player.Player p in Game.Players)  //DG
                 {
                     if (p.Curve == From)
                     {
-                        p.Goodies.Add(b);
-                        b.Player = p;
+                        p.Goodies.Add(g);
+                        g.Player = p;
                         this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
 
                         foreach (Goodie.Goodie item in p.Goodies)
@@ -189,6 +188,7 @@ namespace Zatacka.Game.State
                     Player.Curve.Right();
                     break;
                 case Zatacka.Player.Action.Trigger:
+                    Game.Dispatcher.Log.Add("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     foreach (Goodie.Goodie g in Player.Goodies) //DG
                     {
                         if (g.Active == false)
