@@ -25,6 +25,10 @@ namespace Zatacka.Unit.Shape
                 if (_Geometry != value)
                 {
                     _Geometry = value;
+                    if (_Geometry != null)
+                    {
+                        _Geometry.Freeze();
+                    }
                     Draw();
                 }
             }
@@ -43,6 +47,10 @@ namespace Zatacka.Unit.Shape
                 if (_Fill != value)
                 {
                     _Fill = value;
+                    if (_Fill != null)
+                    {
+                        _Fill.Freeze();
+                    }
                     Draw();
                 }
             }
@@ -61,6 +69,10 @@ namespace Zatacka.Unit.Shape
                 if (_Pen != value)
                 {
                     _Pen = value;
+                    if (_Pen != null)
+                    {
+                        _Pen.Freeze();
+                    }
                     Draw();
                 }
             }
