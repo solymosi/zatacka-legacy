@@ -66,5 +66,12 @@ namespace Zatacka.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        internal static byte[] Music {
+            get {
+                object obj = ResourceManager.GetObject("Music", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -19,6 +19,9 @@ namespace Zatacka.State
         public event EventHandler Ended = delegate { };
         public Game.Game Game { get; set; }
 
+        private IrrKlang.ISoundEngine Player { get; set; }
+        private IrrKlang.ISound Music { get; set; }
+
         public Dispatcher(Size Size)
         {
             this.Size = Size;
@@ -52,23 +55,49 @@ namespace Zatacka.State
         {
             Change(State.Main);
             Timer.Start();
+            StartMusic();
         }
 
         public override void Exit()
         {
             Timer.Stop();
+            StopMusic();
             Reset();
             Ended(this, new EventArgs());
         }
 
         public void Input(Key Button)
         {
+            if (Button == Key.F11)
+            {
+                Music.Volume = Math.Max(0.0F, Music.Volume - 0.01F);
+            }
+
+            if (Button == Key.F12)
+            {
+                Music.Volume = Math.Min(1.0F, Music.Volume + 0.01F);
+            }
+
             if (Active) { Current.As<Screen>().Input(Button); }
         }
 
         public void Input(MouseButton Button)
         {
             if (Active) { Current.As<Screen>().Input(Button); }
+        }
+
+        private void StartMusic()
+        {
+            Player = new IrrKlang.ISoundEngine();
+            Music = Player.Play2D(Player.AddSoundSourceFromMemory(Zatacka.Properties.Resources.Music, "Music"), true, true, false);
+            Music.Volume = 0.5f;
+            Music.Paused = false;
+        }
+
+        private void StopMusic()
+        {
+            Music.Stop();
+            Music.Dispose();
         }
 
         public enum State
