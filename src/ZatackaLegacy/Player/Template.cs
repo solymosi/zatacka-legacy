@@ -24,7 +24,7 @@ namespace Zatacka.Player
         {
             Templates = new Dictionary<int, Template>();
             Templates.Add(1, new Template("Player 1", Colors.Red, Key.D1, Key.Q, Key.D2));
-            Templates.Add(2, new Template("Player 2", Colors.Yellow, Key.LeftCtrl, Key.LeftAlt, Key.X));
+            Templates.Add(2, new Template("Player 2", Colors.Yellow, Key.X, Key.C, Key.D));
             Templates.Add(3, new Template("Player 3", Colors.Blue, Key.D4, Key.D5, Key.R));
             Templates.Add(4, new Template("Player 4", Colors.Orange, Key.M, Key.OemComma, Key.K));
             Templates.Add(5, new Template("Player 5", Colors.Pink, Key.Left, Key.Down, Key.Up));
