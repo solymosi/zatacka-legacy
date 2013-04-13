@@ -88,6 +88,7 @@
     <Compile Include="Unit\Collision\Result.cs" />
     <Compile Include="Unit\Game\Curve\Bit.cs" />
     <Compile Include="Unit\Game\Curve\Target.cs" />
+    <Compile Include="Unit\Game\Goodie\Indicator.cs" />
     <Compile Include="Unit\Game\Panel.cs" />
     <Compile Include="Unit\Text.cs" />
     <Compile Include="Window\Canvas.xaml.cs">
