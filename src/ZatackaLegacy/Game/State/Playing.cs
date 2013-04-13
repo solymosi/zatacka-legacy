@@ -11,6 +11,8 @@ namespace Zatacka.Game.State
     class Playing : State
     {
         public long NextGoodie { get; private set; }
+        public long TriggerDelay { get; private set; }
+    
 
         public Playing(Zatacka.Game.Game Game)
             : base(Game)
@@ -178,15 +180,21 @@ namespace Zatacka.Game.State
                     Player.Curve.Right();
                     break;
                 case Zatacka.Player.Action.Trigger:
-                    Game.Dispatcher.Log.Add("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                    foreach (Goodie.Goodie g in Player.Goodies) //DG
+
+                    if (Game.Time >= TriggerDelay)
                     {
-                        if (g.Active == false)
+                        //Game.Dispatcher.Log.Add(Game.Time + "!!!!!!!!!!!!!!!!!!!" + TriggerDelay);
+                        foreach (Goodie.Goodie g in Player.Goodies) //DG
                         {
-                            g.Active = true;
-                            break;
+                            if (g.Active == false)
+                            {
+                                g.Active = true;
+                                break;
+                            }
                         }
+                        TriggerDelay = Game.Time + 20;
                     }
+
                     break;
             }
         }
