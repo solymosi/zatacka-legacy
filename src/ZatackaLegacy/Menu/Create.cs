@@ -15,7 +15,7 @@ namespace Zatacka.Menu
         public List<Player.Template> Selected { get; private set; }
         public Dictionary<Player.Template, Unit.Shape.Rectangle> Squares { get; private set; }
         public Dictionary<Player.Template, Unit.Text> Labels { get; private set; }
-        public Dictionary<Player.Template, List<Unit.Unit>> Buttons { get; private set; }
+        public Dictionary<Player.Template, List<Unit.Shape.Rectangle>> Buttons { get; private set; }
 
         public Create(State.Dispatcher Dispatcher)
             : base(Dispatcher)
@@ -29,7 +29,7 @@ namespace Zatacka.Menu
             Selected = new List<Player.Template>();
             Squares = new Dictionary<Player.Template, Unit.Shape.Rectangle>();
             Labels = new Dictionary<Player.Template, Unit.Text>();
-            Buttons = new Dictionary<Player.Template, List<Unit.Unit>>();
+            Buttons = new Dictionary<Player.Template, List<Unit.Shape.Rectangle>>();
 
             for (int i = 1; i <= 7; i++)
             {
@@ -44,7 +44,7 @@ namespace Zatacka.Menu
                 Labels[T] = Text;
                 Canvas.Add(Text);
 
-                Buttons[T] = new List<Unit.Unit>();
+                Buttons[T] = new List<Unit.Shape.Rectangle>();
                 double X = Canvas.Size.Width / 2;
 
                 foreach (Player.Action Action in new Player.Action[] { Player.Action.Left, Player.Action.Right, Player.Action.Trigger })
