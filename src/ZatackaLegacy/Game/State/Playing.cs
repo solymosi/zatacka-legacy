@@ -97,34 +97,18 @@ namespace Zatacka.Game.State
                 }
             }
             else if (To is Unit.Game.Goodie.Icon)
-            {
+            {   //DG
                 Zatacka.Goodie.Goodie g = (Zatacka.Goodie.Goodie)System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon." + To.As<Unit.Game.Goodie.Icon>().Type.ToString());
-                foreach (Player.Player p in Game.Players)  //DG
+                
+                From.As<Zatacka.Unit.Game.Curve.Curve>().Player.Goodies.Add(g);
+                g.Player = From.As<Zatacka.Unit.Game.Curve.Curve>().Player;
+                this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
+
+
+                foreach (Goodie.Goodie item in From.As<Unit.Game.Curve.Curve>().Player.Goodies)
                 {
-                    if (p.Curve == From)
-                    {
-                        p.Goodies.Add(g);
-                        g.Player = p;
-                        this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
-
-                        foreach (Goodie.Goodie item in p.Goodies)
-                        {
-                            Game.Dispatcher.Log.Add(p.Color.ToString() + " " + item.ToString() + " " + item.Active.ToString());
-                        }
-                    }
+                    Game.Dispatcher.Log.Add(From.As<Unit.Game.Curve.Curve>().Color.ToString() + " " + item.ToString() + " " + item.Active.ToString());
                 }
-                //From.As<Zatacka.Player.Player>();
-                //To.As<Zatacka.Goodie.Goodie>().Player = From.As<Zatacka.Player.Player>();
-                //From.As<Zatacka.Player.Player>().Goodies.Add(To.As<Zatacka.Goodie.Goodie>());
-                //this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
-
-                //object goodie = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon.Bazooka");
-
-                //Game.Dispatcher.Log.Add(From.As<Zatacka.Player.Player>().Goodies[0].ToString());
-
-                //Game.Dispatcher.Log.Add("COLLIDED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                //To.EnableCollisions = false;
-                //To.As<Unit.Shape.Ellipse>().Fill = Brushes.Gray;
             }
         }
 
