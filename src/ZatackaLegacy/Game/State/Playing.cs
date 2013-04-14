@@ -10,9 +10,7 @@ namespace Zatacka.Game.State
 {
     class Playing : State
     {
-        public long NextGoodie { get; private set; }
-        public long TriggerDelay { get; private set; }
-    
+        public long NextGoodie { get; private set; }    
 
         public Playing(Zatacka.Game.Game Game)
             : base(Game)
@@ -181,9 +179,9 @@ namespace Zatacka.Game.State
                     break;
                 case Zatacka.Player.Action.Trigger:
 
-                    if (Game.Time >= TriggerDelay)
+                    if (Game.Time >= Player.TriggerDelay)
                     {
-                        //Game.Dispatcher.Log.Add(Game.Time + "!!!!!!!!!!!!!!!!!!!" + TriggerDelay);
+                        //Game.Dispatcher.Log.Add(Game.Time + "!!!!!!!!!!!!!!!!!!!" + Player.TriggerDelay);
                         foreach (Goodie.Goodie g in Player.Goodies) //DG
                         {
                             if (g.Active == false)
@@ -192,7 +190,7 @@ namespace Zatacka.Game.State
                                 break;
                             }
                         }
-                        TriggerDelay = Game.Time + 20;
+                        Player.TriggerDelay = Game.Time + 2000;
                     }
 
                     break;
