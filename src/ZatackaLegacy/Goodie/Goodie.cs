@@ -14,9 +14,17 @@ namespace Zatacka.Goodie
         public bool Active { get; set; }
         public bool HasIcon { get; set; }
 
+
         public Goodie()
         {
 
+        }
+        //BarnaBalu
+        public Goodie(Category Category, Type Type, Player.Player Player)
+        {
+            this.Category = Category;
+            this.Type = Type;
+            this.Player = Player;
         }
 
         public override void Enter()
@@ -26,7 +34,7 @@ namespace Zatacka.Goodie
 
         public override void Execute()
         {
-            
+
         }
     }
 
