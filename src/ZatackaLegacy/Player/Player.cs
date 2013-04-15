@@ -33,6 +33,8 @@ namespace Zatacka.Player
         /// </summary>
         public List<Goodie.Goodie> Goodies { get; protected set; }
 
+        public long TriggerDelay { get; set; }
+
         /// <summary>
         /// Creates a Player instance from a player template.
         /// </summary>
