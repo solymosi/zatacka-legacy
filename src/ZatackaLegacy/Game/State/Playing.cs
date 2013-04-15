@@ -128,7 +128,7 @@ namespace Zatacka.Game.State
         {
             foreach (Player.Player P in Game.Players)
             {
-                Goodie.Goodie Bazooka = new Goodie.Weapon.Bazooka();
+                Goodie.Goodie Bazooka = new Goodie.Weapon.Bazooka(Game, P);
                 Bazooka.Active = true;
                 P.Goodies.Add(Bazooka);
                 Game.Dispatcher.Log.Add("Valami van - bazooka - " + P.Name + " goodie-jainak száma: " + P.Goodies.Count);
