@@ -52,13 +52,30 @@ namespace Zatacka.Goodie.Weapon
         }
         public override void Execute()
         {
+            
             BazookaBullet = this.BazookaBullet;
-            G.Dispatcher.Log.Add("Player: " + P.Name + "PEEEEEEEW!");
             
-            double X = Math.Sin(Heading.ToRadians()) * G.MovementSpeed;
-            double Y = Math.Cos(Heading.ToRadians()) * G.MovementSpeed * -1;
+
+            double NewX = BazookaBullet.Center.X + Math.Sin(Heading.ToRadians()) * G.MovementSpeed;
+            double NewY = BazookaBullet.Center.Y + Math.Cos(Heading.ToRadians()) * G.MovementSpeed * -1;
+
+
+
+            double UpperBoundry = G.Arena.Location.Y;
+            double LowerBoundry = G.Arena.Location.Y + G.Arena.Size.Height;
+            double LeftBoundry = G.Arena.Location.X;
+            double RightBoundry = G.Arena.Location.X + G.Arena.Size.Width;
+
+            if (NewX > LeftBoundry && NewX < RightBoundry && NewY > UpperBoundry && NewY < LowerBoundry)
+            {
+                BazookaBullet.Center = new Point(NewX, NewY);
+            }
+            else
+            {
+                //Goodie kiiktatása
+                G.Dispatcher.Log.Add("Goodie pályán kívül.");
+            }
             
-            BazookaBullet.Center = new Point(BazookaBullet.Center.X + X, BazookaBullet.Center.Y + Y);
         }
         
     }
