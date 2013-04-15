@@ -124,6 +124,18 @@ namespace Zatacka.Game.State
             Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, RandomType<Goodie.Type>());
             Game.Arena.Add(Icon);
         }
+        private void GenerateBazooka()
+        {
+            foreach (Player.Player P in Game.Players)
+            {
+                Goodie.Goodie Bazooka = new Goodie.Weapon.Bazooka();
+                Bazooka.Active = true;
+                P.Goodies.Add(Bazooka);
+                Game.Dispatcher.Log.Add("Valami van - bazooka - " + P.Name + " goodie-jainak száma: " + P.Goodies.Count);
+                Bazooka.Enter();
+                
+            }
+        }
 
         public T RandomType<T>() //DG
         {
@@ -147,6 +159,8 @@ namespace Zatacka.Game.State
             if (Game.Time == NextGoodie)
             {
                 GenerateRandomGoodie();
+                //Ideiglenes - BarnaBalu
+                GenerateBazooka();
                 SetNextGoodie();
             }
         }
