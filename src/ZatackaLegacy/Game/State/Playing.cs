@@ -153,6 +153,10 @@ namespace Zatacka.Game.State
             foreach (Player.Player P in Game.PlayersAlive)
             {
                 P.Curve.Advance();
+                foreach (Goodie.Goodie Goodie in P.Goodies)
+                {
+                    Goodie.Execute();
+                }
             }
             Game.Arena.CheckCollisions();
 

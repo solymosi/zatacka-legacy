@@ -34,7 +34,7 @@ namespace Zatacka.Goodie
 
         public override void Execute()
         {
-            
+
         }
     }
 
