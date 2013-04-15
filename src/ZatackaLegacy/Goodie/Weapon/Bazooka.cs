@@ -54,16 +54,13 @@ namespace Zatacka.Goodie.Weapon
             double X = Math.Sin(Heading.ToRadians()) * Player.Game.MovementSpeed;
             double Y = Math.Cos(Heading.ToRadians()) * Player.Game.MovementSpeed * -1;
 
+            double NewX = BazookaBullet.Center.X + Math.Sin(Heading.ToRadians()) * Player.Game.MovementSpeed;
+            double NewY = BazookaBullet.Center.Y + Math.Cos(Heading.ToRadians()) * Player.Game.MovementSpeed * -1;
 
-            double NewX = BazookaBullet.Center.X + Math.Sin(Heading.ToRadians()) * G.MovementSpeed;
-            double NewY = BazookaBullet.Center.Y + Math.Cos(Heading.ToRadians()) * G.MovementSpeed * -1;
-
-
-
-            double UpperBoundry = G.Arena.Location.Y;
-            double LowerBoundry = G.Arena.Location.Y + G.Arena.Size.Height;
-            double LeftBoundry = G.Arena.Location.X;
-            double RightBoundry = G.Arena.Location.X + G.Arena.Size.Width;
+            double UpperBoundry = Player.Game.Arena.Location.Y;
+            double LowerBoundry = Player.Game.Arena.Location.Y + Player.Game.Arena.Size.Height;
+            double LeftBoundry = Player.Game.Arena.Location.X;
+            double RightBoundry = Player.Game.Arena.Location.X + Player.Game.Arena.Size.Width;
 
             if (NewX > LeftBoundry && NewX < RightBoundry && NewY > UpperBoundry && NewY < LowerBoundry)
             {
@@ -71,8 +68,8 @@ namespace Zatacka.Goodie.Weapon
             }
             else
             {
-                //Goodie kiiktatása
-                G.Dispatcher.Log.Add("Goodie pályán kívül.");
+                Player.Game.Dispatcher.Log.Add("Goodie pályán kívül.");
+                Active = false;
             }
             
         }
