@@ -67,7 +67,7 @@ namespace Zatacka.Game
             Manager.Change(State.Start);
         }
 
-        private void updatePlayerList()
+        public void updatePlayerList()
         {
             int playerRow = 0;
             int row = 0;
@@ -75,23 +75,6 @@ namespace Zatacka.Game
             for (int i = 0; i < Players.Count; i++)
             {
                 Player.Player P = Players[i];
-                /*P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Bazooka());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());
-                P.Goodies.Add(new Goodie.Weapon.Shotgun());*/
                 
                 ScoreLabels.Add(P.Name, new Unit.Text(Canvas, P.Name + " : " + P.Score.ToString(), 30, new SolidColorBrush(P.Color), null, new Point(Canvas.Size.Width - 250, playerRow+align*10)));
                 Canvas.Add(ScoreLabels[P.Name]);

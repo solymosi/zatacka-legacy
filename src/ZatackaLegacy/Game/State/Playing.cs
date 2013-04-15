@@ -100,16 +100,17 @@ namespace Zatacka.Game.State
             }
             else if (To is Unit.Game.Goodie.Icon)
             {   //DG
-                Zatacka.Goodie.Goodie g = (Zatacka.Goodie.Goodie)System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon." + To.As<Unit.Game.Goodie.Icon>().Type.ToString());
+                Player.Player P = From.As<Zatacka.Unit.Game.Curve.Curve>().Player;
+                Zatacka.Goodie.Goodie G = (Zatacka.Goodie.Goodie)System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon." + To.As<Unit.Game.Goodie.Icon>().Type.ToString());
                 
-                From.As<Zatacka.Unit.Game.Curve.Curve>().Player.Goodies.Add(g);
-                g.Player = From.As<Zatacka.Unit.Game.Curve.Curve>().Player;
+                P.Goodies.Add(G);
+                G.Player = P;
                 this.Game.Arena.Remove(To.As<Unit.Shape.Ellipse>());
+                //Game.updatePlayerList();
 
-
-                foreach (Goodie.Goodie item in From.As<Unit.Game.Curve.Curve>().Player.Goodies)
+                foreach (Goodie.Goodie item in P.Goodies)
                 {
-                    Game.Dispatcher.Log.Add(From.As<Unit.Game.Curve.Curve>().Color.ToString() + " " + item.ToString() + " " + item.Active.ToString());
+                    Game.Dispatcher.Log.Add(P.Curve.Color.ToString() + " " + item.ToString() + " " + item.Active.ToString());
                 }
             }
         }
@@ -121,20 +122,9 @@ namespace Zatacka.Game.State
 
         private void GenerateRandomGoodie()
         {
-            Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, RandomType<Goodie.Type>());
+            //Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, RandomType<Goodie.Type>());
+            Unit.Game.Goodie.Icon Icon = new Unit.Game.Goodie.Icon(Game.Arena, new Point(Tools.Random(0, Game.Arena.Size.Width), Tools.Random(0, Game.Arena.Size.Height)), Goodie.Category.Weapon, Goodie.Type.Bazooka);
             Game.Arena.Add(Icon);
-        }
-        private void GenerateBazooka()
-        {
-            foreach (Player.Player P in Game.Players)
-            {
-                Goodie.Goodie Bazooka = new Goodie.Weapon.Bazooka(Game, P);
-                Bazooka.Active = true;
-                P.Goodies.Add(Bazooka);
-                Game.Dispatcher.Log.Add("Valami van - bazooka - " + P.Name + " goodie-jainak száma: " + P.Goodies.Count);
-                Bazooka.Enter();
-                
-            }
         }
 
         public T RandomType<T>() //DG
@@ -155,7 +145,7 @@ namespace Zatacka.Game.State
                 P.Curve.Advance();
                 foreach (Goodie.Goodie Goodie in P.Goodies)
                 {
-                    Goodie.Execute();
+                    if (Goodie.Active) { Goodie.Execute(); }
                 }
             }
             Game.Arena.CheckCollisions();
@@ -163,8 +153,6 @@ namespace Zatacka.Game.State
             if (Game.Time == NextGoodie)
             {
                 GenerateRandomGoodie();
-                //Ideiglenes - BarnaBalu
-                GenerateBazooka();
                 SetNextGoodie();
             }
         }
@@ -204,15 +192,15 @@ namespace Zatacka.Game.State
                         //Game.Dispatcher.Log.Add(Game.Time + "!!!!!!!!!!!!!!!!!!!" + TriggerDelay);
                         foreach (Goodie.Goodie g in Player.Goodies) //DG
                         {
-                            if (g.Active == false)
+                            if (!g.Active)
                             {
-                                g.Active = true;
+                                g.HasIcon = false;
+                                g.Enter();
                                 break;
                             }
                         }
                         TriggerDelay = Game.Time + 20;
                     }
-
                     break;
             }
         }

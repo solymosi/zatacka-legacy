@@ -10,29 +10,25 @@ namespace Zatacka.Goodie.Weapon
 {
     class Bazooka : Weapon
     {
-        public Game.Game G { get; set; }
-        public Player.Player P { get; set; }
         public Point Location { get; set; }
         public double Heading { get; set; }
         public Unit.Game.Goodie.Bullet BazookaBullet { get; set; }
 
-        public Bazooka(Game.Game Game, Player.Player Player)
+        public Bazooka()
         {
             Type = Zatacka.Goodie.Type.Bazooka;
-            this.G = Game;
-            this.P = Player;
         }
         public override void Enter()
         {
-            G.Dispatcher.Log.Add("Bazooka-Enter, Player: " + P.Name);
+            Player.Game.Dispatcher.Log.Add("Bazooka-Enter, Player: " + Player.Name);
             
-            Location = P.Curve.Head;
-            Heading = P.Curve.Heading;
+            Location = Player.Curve.Head;
+            Heading = Player.Curve.Heading;
 
-            double X = Math.Sin(Heading.ToRadians()) * G.MovementSpeed;
-            double Y = Math.Cos(Heading.ToRadians()) * G.MovementSpeed * -1;
+            double X = Math.Sin(Heading.ToRadians()) * Player.Game.MovementSpeed;
+            double Y = Math.Cos(Heading.ToRadians()) * Player.Game.MovementSpeed * -1;
 
-            Point LocationOfBazookaBullet = new Point(Location.X + X * 20, Location.Y + Y * 20);
+            Point LocationOfBazookaBullet = new Point(Location.X + X * 5, Location.Y + Y * 5);
 
             //Ellenőrizni kell, h a hely, ahová raknánk, a pályán belül van-e
 
@@ -43,16 +39,18 @@ namespace Zatacka.Goodie.Weapon
                 Add(new Target(this, Next, Game.CurveRadius, Target));
             }
             */
-            BazookaBullet = new Unit.Game.Goodie.Bullet(G.Arena, LocationOfBazookaBullet);
-            G.Arena.Add(BazookaBullet);
+            BazookaBullet = new Unit.Game.Goodie.Bullet(Player.Game.Arena, LocationOfBazookaBullet);
+            Player.Game.Arena.Add(BazookaBullet);
+
+            base.Enter();
         }
         public override void Execute()
         {
             BazookaBullet = this.BazookaBullet;
-            G.Dispatcher.Log.Add("Player: " + P.Name + "PEEEEEEEW!");
-            
-            double X = Math.Sin(Heading.ToRadians()) * G.MovementSpeed;
-            double Y = Math.Cos(Heading.ToRadians()) * G.MovementSpeed * -1;
+            Player.Game.Dispatcher.Log.Add("Player: " + Player.Name + "PEEEEEEEW!");
+
+            double X = Math.Sin(Heading.ToRadians()) * Player.Game.MovementSpeed;
+            double Y = Math.Cos(Heading.ToRadians()) * Player.Game.MovementSpeed * -1;
             
             BazookaBullet.Center = new Point(BazookaBullet.Center.X + X, BazookaBullet.Center.Y + Y);
         }
