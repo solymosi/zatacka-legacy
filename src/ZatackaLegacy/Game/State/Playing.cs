@@ -197,7 +197,7 @@ namespace Zatacka.Game.State
                                 break;
                             }
                         }
-                        Player.TriggerDelay = Game.Time + 2000;
+                        Player.TriggerDelay = Game.Time + 20;
                     }
                     break;
             }
