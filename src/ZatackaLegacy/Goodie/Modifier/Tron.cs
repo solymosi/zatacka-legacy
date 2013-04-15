@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Modifier
     {
         public Tron()
         {
-            Type = Type.Tron;
+            Type = Zatacka.Goodie.Type.Tron;
         }
     }
 }

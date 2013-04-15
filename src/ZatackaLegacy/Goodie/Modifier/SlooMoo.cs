@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Modifier
     {
         public SlooMoo()
         {
-            Type = Type.SlooMoo;
+            Type = Zatacka.Goodie.Type.SlooMoo;
         }
     }
 }

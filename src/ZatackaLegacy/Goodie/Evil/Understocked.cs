@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public BraveNewWorld()
         {
-            Type = Type.Understocked;
+            Type = Zatacka.Goodie.Type.Understocked;
         }
     }
 }

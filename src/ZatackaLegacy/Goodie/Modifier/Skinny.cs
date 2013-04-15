@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Modifier
     {
         public Skinny()
         {
-            Type = Type.Skinny;
+            Type = Zatacka.Goodie.Type.Skinny;
         }
     }
 }

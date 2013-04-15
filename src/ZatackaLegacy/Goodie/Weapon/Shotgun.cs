@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Weapon
     {
         public Shotgun()
         {
-            Type = Type.Shotgun;
+            Type = Zatacka.Goodie.Type.Shotgun;
         }
     }
 }

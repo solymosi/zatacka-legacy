@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Defense
     {
         public InstantShield()
         {
-            Type = Type.InstantShield;
+            Type = Zatacka.Goodie.Type.InstantShield;
         }
     }
 }

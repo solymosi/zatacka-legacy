@@ -12,4 +12,14 @@ namespace Zatacka.Goodie.Modifier
             Category = Category.Modifier;
         }
     }
+
+    public enum Type
+    {
+        None,
+        Juggernaut,
+        Skinny,
+        Tron,
+        Turbo,
+        SlooMoo,
+    }
 }

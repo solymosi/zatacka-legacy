@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public FinalDestination()
         {
-            Type = Type.FinalDestination;
+            Type = Zatacka.Goodie.Type.FinalDestination;
         }
     }
 }

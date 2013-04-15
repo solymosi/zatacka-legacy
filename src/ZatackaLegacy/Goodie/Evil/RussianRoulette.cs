@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public RussianRoulette()
         {
-            Type = Type.RussianRoulette;
+            Type = Zatacka.Goodie.Type.RussianRoulette;
         }
     }
 }

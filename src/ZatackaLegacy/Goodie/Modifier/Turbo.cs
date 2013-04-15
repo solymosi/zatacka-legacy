@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Modifier
     {
         public Turbo()
         {
-            Type = Type.Turbo;
+            Type = Zatacka.Goodie.Type.Turbo;
         }
     }
 }

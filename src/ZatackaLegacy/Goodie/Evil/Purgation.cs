@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public Purgation()
         {
-            Type = Type.Purgation;
+            Type = Zatacka.Goodie.Type.Purgation;
         }
     }
 }

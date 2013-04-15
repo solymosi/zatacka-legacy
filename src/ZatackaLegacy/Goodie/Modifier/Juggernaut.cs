@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Modifier
     {
         public Juggernaut()
         {
-            Type = Type.Juggernaut;
+            Type = Zatacka.Goodie.Type.Juggernaut;
         }
     }
 }

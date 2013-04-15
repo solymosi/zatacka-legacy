@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public FortuneWheel()
         {
-            Type = Type.FortuneWheel;
+            Type = Zatacka.Goodie.Type.FortuneWheel;
         }
     }
 }

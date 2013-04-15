@@ -12,4 +12,12 @@ namespace Zatacka.Goodie.Weapon
             Category = Category.Weapon;
         }
     }
+
+    public enum Type
+    {
+        None,
+        Bazooka,
+        Shotgun,
+        GuidedMissile,
+    }
 }

@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public Drunken()
         {
-            Type = Type.Drunken;
+            Type = Zatacka.Goodie.Type.Drunken;
         }
     }
 }

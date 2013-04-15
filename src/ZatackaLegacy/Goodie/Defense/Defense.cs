@@ -12,4 +12,12 @@ namespace Zatacka.Goodie.Defense
             Category = Category.Defense;
         }
     }
+
+    public enum Type
+    {
+        None,
+        Ghost,
+        InstantShield,
+        GuardianAngel
+    }
 }

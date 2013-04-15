@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Weapon
     {
         public GuidedMissile()
         {
-            Type = Type.GuidedMissile;
+            Type = Zatacka.Goodie.Type.GuidedMissile;
         }
     }
 }

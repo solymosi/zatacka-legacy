@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public Ninja()
         {
-            Type = Type.Ninja;
+            Type = Zatacka.Goodie.Type.Ninja;
         }
     }
 }

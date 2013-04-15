@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public Magneto()
         {
-            Type = Type.Magneto;
+            Type = Zatacka.Goodie.Type.Magneto;
         }
     }
 }

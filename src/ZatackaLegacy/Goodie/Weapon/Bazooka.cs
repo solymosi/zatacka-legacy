@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Weapon
     {
         public Bazooka()
         {
-            Type = Type.Bazooka;
+            Type = Zatacka.Goodie.Type.Bazooka;
         }
     }
 }

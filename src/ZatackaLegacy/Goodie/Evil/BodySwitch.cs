@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public BodySwitch()
         {
-            Type = Type.BodySwitch;
+            Type = Zatacka.Goodie.Type.BodySwitch;
         }
     }
 }

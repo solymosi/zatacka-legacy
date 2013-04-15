@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Defense
     {
         public Ghost()
         {
-            Type = Type.Ghost;
+            Type = Zatacka.Goodie.Type.Ghost;
         }
     }
 }

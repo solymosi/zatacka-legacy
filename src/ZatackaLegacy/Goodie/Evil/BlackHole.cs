@@ -9,7 +9,7 @@ namespace Zatacka.Goodie.Evil
     {
         public BlackHole()
         {
-            Type = Type.BlackHole;
+            Type = Zatacka.Goodie.Type.BlackHole;
         }
     }
 }

@@ -12,4 +12,22 @@ namespace Zatacka.Goodie.Evil
             Category = Category.Evil;
         }
     }
+
+    public enum Type
+    {
+        None,
+        Madness,
+        RussianRoulette,
+        BlackHole,
+        BodySwitch,
+        Drunken,
+        Ninja,
+        FortuneWheel,
+        SnowWhite,
+        FinalDestination,
+        Mist,
+        Purgation,
+        Magneto,
+        Understocked
+    }
 }
