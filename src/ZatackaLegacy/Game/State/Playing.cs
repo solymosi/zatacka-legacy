@@ -34,17 +34,25 @@ namespace Zatacka.Game.State
                         Game.Dispatcher.Log.Add("Bukta: " + P.Name);
                         P.Curve.Kill();
                     }
-                    else if (From is Unit.Game.Goodie.Bullet)
+                    else if (From is Unit.Game.Goodie.Bullet && To is Unit.Game.Curve.Curve)
                     {
-                        if (To.Colliders.Count>0 && P.Curve.Colliders.Count > 0 /*&& To.Colliders.Last() == P.Curve.Colliders.Last()*/)
+                        //Headshot
+                        //Ha az ütközést detektáló target megegyezik a curve fejével
+                        //To.Colliders.Count>0 && P.Curve.Colliders.Count > 0 
+                        if (false)//To.Colliders.Last() == P.Curve.Colliders.Last())
                         {
-                            //Ha fejbe lövik
                             
-                            //Game.Dispatcher.Log.Add("Headshot! " + P.Name + " is totally dead!");
-                            //From.As<Unit.Game.Goodie.Bullet>().Kill();
-                            //this.Game.Arena.Remove(From);
+                            Game.Dispatcher.Log.Add("Headshot! " + P.Name + " is totally dead!");
+                            From.As<Unit.Game.Goodie.Bullet>().Kill();
+                            this.Game.Arena.Remove(From);
+                            P.Curve.Kill();
                             
                         }
+                    }
+                    else if (From is Unit.Game.Goodie.Bullet && To is Unit.Canvas.Game)
+                    {
+                        //Bullet ütközik a pálya szélével (ilyenkor nem növeli a játékosok pontszámát
+                        //Az adott Goodie Execute()-ja intézi a pályaelhagyási műveletet (pl.: Bazooka esetén a törlést).
                     }
                     else
                     {
@@ -108,7 +116,7 @@ namespace Zatacka.Game.State
                     return;
                 }
             }
-            else if (To is Unit.Game.Goodie.Icon)
+            else if (To is Unit.Game.Goodie.Icon && !(From is Unit.Game.Goodie.Bullet))
             {   //DG
                 Player.Player P = From.As<Zatacka.Unit.Game.Curve.Curve>().Player;
                 Zatacka.Goodie.Goodie G = (Zatacka.Goodie.Goodie)System.Reflection.Assembly.GetExecutingAssembly().CreateInstance("Zatacka.Goodie.Weapon." + To.As<Unit.Game.Goodie.Icon>().Type.ToString());
