@@ -34,6 +34,18 @@ namespace Zatacka.Game.State
                         Game.Dispatcher.Log.Add("Bukta: " + P.Name);
                         P.Curve.Kill();
                     }
+                    else if (From is Unit.Game.Goodie.Bullet)
+                    {
+                        if (To.Colliders.Count>0 && P.Curve.Colliders.Count > 0 /*&& To.Colliders.Last() == P.Curve.Colliders.Last()*/)
+                        {
+                            //Ha fejbe lövik
+                            
+                            //Game.Dispatcher.Log.Add("Headshot! " + P.Name + " is totally dead!");
+                            //From.As<Unit.Game.Goodie.Bullet>().Kill();
+                            //this.Game.Arena.Remove(From);
+                            
+                        }
+                    }
                     else
                     {
                         if (P.Curve.Alive)
