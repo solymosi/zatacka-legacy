@@ -1,48 +1,48 @@
-PROSZÁMLA 2014
+PROSZÃMLA 2014
 
-- Adatbázis-alapú
+- AdatbÃ¡zis-alapÃº
 
-- Több felhasználó kezelése
-	0 - Bedrótozott jogkörök
-	1 - Jogosultságok, jogosultság-csoportok
-	2 - Felhasználói csoportok
+- TÃ¶bb felhasznÃ¡lÃ³ kezelÃ©se
+	0 - BedrÃ³tozott jogkÃ¶rÃ¶k
+	1 - JogosultsÃ¡gok, jogosultsÃ¡g-csoportok
+	2 - FelhasznÃ¡lÃ³i csoportok
 	
-- Ügyfelek nyilvántartása
-	0 - Csak vállalatok
-	1 - Magánszemélyek is
+- Ãœgyfelek nyilvÃ¡ntartÃ¡sa
+	0 - Csak vÃ¡llalatok
+	1 - MagÃ¡nszemÃ©lyek is
 	
-- Termékek nyilvántartása
-	0 - Egyszerû nyilvántartás
-	1 - A termékek kategorizálhatók is
-	2 - Hierarchikus kategorizálás, egy termék több kategóriába is tartozhat
-	3 - Létrehozhatók termékcsomagok meglévõ termékekbõl, melyek utána önálló termékként viselkednek, de pl. különbözõ árral
+- TermÃ©kek nyilvÃ¡ntartÃ¡sa
+	0 - EgyszerÅ± nyilvÃ¡ntartÃ¡s
+	1 - A termÃ©kek kategorizÃ¡lhatÃ³k is
+	2 - Hierarchikus kategorizÃ¡lÃ¡s, egy termÃ©k tÃ¶bb kategÃ³riÃ¡ba is tartozhat
+	3 - LÃ©trehozhatÃ³k termÃ©kcsomagok meglÃ©vÅ‘ termÃ©kekbÅ‘l, melyek utÃ¡na Ã¶nÃ¡llÃ³ termÃ©kkÃ©nt viselkednek, de pl. kÃ¼lÃ¶nbÃ¶zÅ‘ Ã¡rral
 	
-- Speciális árazási szabályok
-	0 - Ha egy ügyfél meghatározott darabszámnál többet vesz egy termékbõl, akkor százalékos vagy fix összegû kedvezményt kap a termék árából
-	1 - A kedvezmény nem csak egy adott termék darabszámára vonatkozhat, hanem alapulhat adott termékkel, termékkategóriával, vagy az összes termékkel kapcsolatban beérkezett megrendelések összértékére is
-	2 - Nem csak egy adott termék árából nyújthatunk kedvezményt, hanem egy kategória összes termékébõl, vagy minden termék árából
-	3 - A kedvezmény lehet visszamenõleges is (rabatt)
+- SpeciÃ¡lis Ã¡razÃ¡si szabÃ¡lyok
+	0 - Ha egy Ã¼gyfÃ©l meghatÃ¡rozott darabszÃ¡mnÃ¡l tÃ¶bbet vesz egy termÃ©kbÅ‘l, akkor szÃ¡zalÃ©kos vagy fix Ã¶sszegÅ± kedvezmÃ©nyt kap a termÃ©k Ã¡rÃ¡bÃ³l
+	1 - A kedvezmÃ©ny nem csak egy adott termÃ©k darabszÃ¡mÃ¡ra vonatkozhat, hanem alapulhat adott termÃ©kkel, termÃ©kkategÃ³riÃ¡val, vagy az Ã¶sszes termÃ©kkel kapcsolatban beÃ©rkezett megrendelÃ©sek Ã¶sszÃ©rtÃ©kÃ©re is
+	2 - Nem csak egy adott termÃ©k Ã¡rÃ¡bÃ³l nyÃºjthatunk kedvezmÃ©nyt, hanem egy kategÃ³ria Ã¶sszes termÃ©kÃ©bÅ‘l, vagy minden termÃ©k Ã¡rÃ¡bÃ³l
+	3 - A kedvezmÃ©ny lehet visszamenÅ‘leges is (rabatt)
 	
-- Számlák nyilvántartása
-	0 - Normál számlák
-	1 - Helyesbítõ és sztornózott számlák
-	2 - Papír-alapú és elektronikus számlák megkülönböztetése
+- SzÃ¡mlÃ¡k nyilvÃ¡ntartÃ¡sa
+	0 - NormÃ¡l szÃ¡mlÃ¡k
+	1 - HelyesbÃ­tÅ‘ Ã©s sztornÃ³zott szÃ¡mlÃ¡k
+	2 - PapÃ­r-alapÃº Ã©s elektronikus szÃ¡mlÃ¡k megkÃ¼lÃ¶nbÃ¶ztetÃ©se
 
-- Számlák nyomtatása, küldése
-	0 - Nyomtatás, küldés
-	1 - Többféle output támogatása
-	2 - Többféle számlakép-sablon támogatása
+- SzÃ¡mlÃ¡k nyomtatÃ¡sa, kÃ¼ldÃ©se
+	0 - NyomtatÃ¡s, kÃ¼ldÃ©s
+	1 - TÃ¶bbfÃ©le output tÃ¡mogatÃ¡sa
+	2 - TÃ¶bbfÃ©le szÃ¡mlakÃ©p-sablon tÃ¡mogatÃ¡sa
 
-- Ügyfélegyenleg és fizetések nyilvántartása
-	0 - Fizetések nyilvántartása
-	1 - Felszólítások automatikus küldése
+- ÃœgyfÃ©legyenleg Ã©s fizetÃ©sek nyilvÃ¡ntartÃ¡sa
+	0 - FizetÃ©sek nyilvÃ¡ntartÃ¡sa
+	1 - FelszÃ³lÃ­tÃ¡sok automatikus kÃ¼ldÃ©se
 
-- Kapcsolat a PROKÖNYVELÉS programmal
-	0 - Nem támogatott
-	1 - Automatikus könyvelés számlamûveletek és fizetések esetén
-	2 - Könyvelésekrõl szóló értesítések fogadása, és számlák automatikus kiegyenlítettnek tekintése, ha utalás érkezik
+- Kapcsolat a PROKÃ–NYVELÃ‰S programmal
+	0 - Nem tÃ¡mogatott
+	1 - Automatikus kÃ¶nyvelÃ©s szÃ¡mlamÅ±veletek Ã©s fizetÃ©sek esetÃ©n
+	2 - KÃ¶nyvelÃ©sekrÅ‘l szÃ³lÃ³ Ã©rtesÃ­tÃ©sek fogadÃ¡sa, Ã©s szÃ¡mlÃ¡k automatikus kiegyenlÃ­tettnek tekintÃ©se, ha utalÃ¡s Ã©rkezik
 
-- Moduláris felépítés, az egyes modulok külön-külön megvehetõk:
-	- Alapmodul (kötelezõ): felhasználó-kezelés, ügyfelek, termékek, számlák, nyomtatás, kifizetések nyilvántartása
-	- Speciális árazó modul: speciális árazási szabályok
-	- Kintlévõség modul: fizetési felszólítások küldése
+- ModulÃ¡ris felÃ©pÃ­tÃ©s, az egyes modulok kÃ¼lÃ¶n-kÃ¼lÃ¶n megvehetÅ‘k:
+	- Alapmodul (kÃ¶telezÅ‘): felhasznÃ¡lÃ³-kezelÃ©s, Ã¼gyfelek, termÃ©kek, szÃ¡mlÃ¡k, nyomtatÃ¡s, kifizetÃ©sek nyilvÃ¡ntartÃ¡sa
+	- SpeciÃ¡lis Ã¡razÃ³ modul: speciÃ¡lis Ã¡razÃ¡si szabÃ¡lyok
+	- KintlÃ©vÅ‘sÃ©g modul: fizetÃ©si felszÃ³lÃ­tÃ¡sok kÃ¼ldÃ©se
