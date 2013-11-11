@@ -1,0 +1,48 @@
+PROSZÁMLA 2014
+
+- Adatbázis-alapú
+
+- Több felhasználó kezelése
+	0 - Bedrótozott jogkörök
+	1 - Jogosultságok, jogosultság-csoportok
+	2 - Felhasználói csoportok
+	
+- Ügyfelek nyilvántartása
+	0 - Csak vállalatok
+	1 - Magánszemélyek is
+	
+- Termékek nyilvántartása
+	0 - Egyszerû nyilvántartás
+	1 - A termékek kategorizálhatók is
+	2 - Hierarchikus kategorizálás, egy termék több kategóriába is tartozhat
+	3 - Létrehozhatók termékcsomagok meglévõ termékekbõl, melyek utána önálló termékként viselkednek, de pl. különbözõ árral
+	
+- Speciális árazási szabályok
+	0 - Ha egy ügyfél meghatározott darabszámnál többet vesz egy termékbõl, akkor százalékos vagy fix összegû kedvezményt kap a termék árából
+	1 - A kedvezmény nem csak egy adott termék darabszámára vonatkozhat, hanem alapulhat adott termékkel, termékkategóriával, vagy az összes termékkel kapcsolatban beérkezett megrendelések összértékére is
+	2 - Nem csak egy adott termék árából nyújthatunk kedvezményt, hanem egy kategória összes termékébõl, vagy minden termék árából
+	3 - A kedvezmény lehet visszamenõleges is (rabatt)
+	
+- Számlák nyilvántartása
+	0 - Normál számlák
+	1 - Helyesbítõ és sztornózott számlák
+	2 - Papír-alapú és elektronikus számlák megkülönböztetése
+
+- Számlák nyomtatása, küldése
+	0 - Nyomtatás, küldés
+	1 - Többféle output támogatása
+	2 - Többféle számlakép-sablon támogatása
+
+- Ügyfélegyenleg és fizetések nyilvántartása
+	0 - Fizetések nyilvántartása
+	1 - Felszólítások automatikus küldése
+
+- Kapcsolat a PROKÖNYVELÉS programmal
+	0 - Nem támogatott
+	1 - Automatikus könyvelés számlamûveletek és fizetések esetén
+	2 - Könyvelésekrõl szóló értesítések fogadása, és számlák automatikus kiegyenlítettnek tekintése, ha utalás érkezik
+
+- Moduláris felépítés, az egyes modulok külön-külön megvehetõk:
+	- Alapmodul (kötelezõ): felhasználó-kezelés, ügyfelek, termékek, számlák, nyomtatás, kifizetések nyilvántartása
+	- Speciális árazó modul: speciális árazási szabályok
+	- Kintlévõség modul: fizetési felszólítások küldése
