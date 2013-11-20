@@ -11,12 +11,20 @@ namespace Zatacka.Unit.Game.Goodie
     {
         public static double BulletRadius = 10;
 
-        public Bullet(Canvas.Game Canvas, Point Center)
+        public Bullet(Zatacka.Goodie.Goodie Goodie, Canvas.Game Canvas, Point Center)
             : base(Canvas, Center, new Size(BulletRadius, BulletRadius), Brushes.White, null)
         {
             EnableCollisions = true;
             this.Add(new Text(Canvas, "Bazooka", 10, Brushes.LightBlue, null, new Point(Center.X - BulletRadius, Center.Y - BulletRadius), new Size(Size.Width, Size.Height), TextAlignment.Center));
-            //this.Colliders.Add(new Collision.Target(this, new EllipseGeometry(Center, BulletRadius, BulletRadius)));
+        }
+
+        /// <summary>
+        /// Kills this Curve and prevents it from moving or colliding with others.
+        /// </summary>
+        public void Kill()
+        {
+            this.Colliders.Clear();
+            this.Canvas.Remove(this);
         }
     }
 }
