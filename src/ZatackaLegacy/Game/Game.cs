@@ -19,7 +19,7 @@ namespace Zatacka.Game
         public Unit.Canvas.Game Arena { get; private set; }        
         public Dictionary<string, Unit.Text> ScoreLabels { get; private set; }
 
-         public IEnumerable<Player.Player> PlayersAlive
+        public IEnumerable<Player.Player> PlayersAlive
         {
             get { return Players.Where((Player.Player P) => { return P.Curve.Alive; }); }
         }
