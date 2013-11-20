@@ -104,7 +104,8 @@ namespace Zatacka.State
         {
             Game = 1,
             Main,
-            Create
+            Create,
+            TestMenu
         }
     }
 }

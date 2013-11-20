@@ -62,6 +62,12 @@ namespace Zatacka.Menu
 
         public override void Input(Key Button)
         {
+            if (Button == Key.F4)
+            {
+                Dispatcher.Add(State.Dispatcher.State.TestMenu, new TestMenu(Dispatcher), true);
+                Dispatcher.Change(State.Dispatcher.State.TestMenu);
+            }
+
             if (Button == Key.Up)
             {
                 SelectPrevious();
