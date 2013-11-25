@@ -22,12 +22,13 @@ namespace Zatacka.Menu
             Canvas.Add(Title);
 
             Labels = new List<KeyValuePair<Item, Unit.Text>>();
-            Add(Item.NewGame, new Unit.Text(Canvas, "New Game", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.5), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
+            Add(Item.NewGame, new Unit.Text(Canvas, "New Game", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.4), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
+            Add(Item.NewGameTemp, new Unit.Text(Canvas, "New Game Temp", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.5), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
             Add(Item.Credits, new Unit.Text(Canvas, "Credits", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.6), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
             Add(Item.Exit, new Unit.Text(Canvas, "Exit", 36, FontWeights.Bold, FontStyles.Normal, Brushes.White, null, new Point(0, Canvas.Size.Height * 0.7), new Size(Canvas.Size.Width, 0), TextAlignment.Center));
 
             Highlight = new Unit.Shape.Rectangle(Canvas, new Rect(Canvas.Size.Width / 2 - 200, 0, 400, 70), new SolidColorBrush(Color.FromArgb(255, 112, 146, 190)), null);
-            Select(Item.NewGame);
+            Select(Item.NewGameTemp);
         }
 
         protected void Add(Item Item, Unit.Text Label)
@@ -80,6 +81,10 @@ namespace Zatacka.Menu
                         Dispatcher.Add(State.Dispatcher.State.Create, new Create(Dispatcher), true);
                         Dispatcher.Change(State.Dispatcher.State.Create);
                         return;
+                    case Item.NewGameTemp:
+                        Dispatcher.Add(State.Dispatcher.State.CreateTemp, new CreateTemp(Dispatcher), true);
+                        Dispatcher.Change(State.Dispatcher.State.CreateTemp);
+                        return;
                     case Item.Credits:
                         return;
                     case Item.Exit:
@@ -94,6 +99,7 @@ namespace Zatacka.Menu
         public enum Item
         {
             NewGame,
+            NewGameTemp,
             Credits,
             Exit
         }

@@ -86,6 +86,7 @@
     <Compile Include="Game\State\Start.cs" />
     <Compile Include="Game\State\Playing.cs" />
     <Compile Include="Game\State\State.cs" />
+    <Compile Include="Menu\CreateTemp.cs" />
     <Compile Include="Menu\Create.cs" />
     <Compile Include="Menu\Main.cs" />
     <Compile Include="Player\Template.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Unit\Game\Goodie\Bullet.cs" />
     <Compile Include="Unit\Game\Goodie\Indicator.cs" />
     <Compile Include="Unit\Game\Panel.cs" />
+    <Compile Include="Unit\Shape\Button.cs" />
     <Compile Include="Unit\Text.cs" />
     <Compile Include="Window\Canvas.xaml.cs">
       <DependentUpon>Canvas.xaml</DependentUpon>
